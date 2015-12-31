@@ -1,0 +1,23 @@
+resources:
+- name: code 
+  type: git
+  source:
+    uri: {{target-repo}}
+- name: scripts 
+  type: git
+  source:
+    uri: https://github.com/18F/concourse-compliance-testing.git 
+
+jobs:
+- name: compliance-scan 
+  plan:
+  - get: code 
+  - get: scripts 
+  - task: scan-eslint
+    file: scripts/task-eslint.yml
+  - task: scan-bandit
+    file: scripts/task-bandit.yml
+  - task: scan-nessus
+    file: scripts/task-nessus.yml
+  - task: scan-zap
+    file: scripts/task-owasp.yml
