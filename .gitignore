@@ -1,0 +1,8 @@
+.bundle/
+.vagrant/
+
+*.swp
+results/
+Vagrantfile
+
+credentials.yml

@@ -1,0 +1,15 @@
+inputs:
+-  name: scripts
+outputs:
+- name: results
+params:
+  NESSUS_SERVER: {{nessus-server}}
+  NESSUS_USER: {{nessus-user}}
+  NESSUS_PASSWORD: {{nessus-password}}
+  LIVE_TARGET: {{live-target}}
+
+platform: linux
+image: "docker:///python"
+run:
+  path: ./scripts/test-nessus.sh
+ 

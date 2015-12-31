@@ -1,0 +1,11 @@
+inputs:
+-  name: code 
+   path: /code
+-  name: scripts
+outputs:
+- name: results
+platform: linux
+image: "docker:///python"
+run:
+  path: ./scripts/test-bandit.sh
+ 

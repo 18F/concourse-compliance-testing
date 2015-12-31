@@ -1,0 +1,11 @@
+inputs:
+-  name: scripts
+outputs:
+- name: results
+params:
+  LIVE_TARGET: {{live-target}}
+platform: linux
+image: "docker:///owasp/zap2docker-stable"
+run:
+  path: ./scripts/test-owasp.sh
+ 
