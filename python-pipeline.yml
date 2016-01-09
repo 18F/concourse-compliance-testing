@@ -6,7 +6,7 @@ resources:
 - name: scripts 
   type: git
   source:
-    uri: https://github.com/18F/concourse-compliance-testing.git 
+    uri: https://github.com/DavidEBest/concourse-compliance-testing.git 
 - name: collector
   type: s3
   source:
@@ -24,4 +24,4 @@ jobs:
     file: scripts/task-bandit.yml
   - put: collector
     params:
-      from: results
+      from: results/bandit.json
