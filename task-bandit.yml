@@ -1,9 +1,10 @@
 inputs:
--  name: code 
-   path: /code
--  name: scripts
+- name: code 
+  path: /code
+- name: scripts
 outputs:
 - name: results
+  path: bandit.json
 platform: linux
 image: "docker:///python"
 run:

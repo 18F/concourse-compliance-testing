@@ -1,3 +1,3 @@
 #!/bin/bash
 pip install bandit
-bandit code/ -r -f json -o results/bandit.json
+bandit code/ -r -f json -o bandit.json
