@@ -11,12 +11,12 @@ resources:
   type: s3
   source:
     bucket: concourse-collector
-    regexp: bandit.json
+    regexp: (bandit|zap).(?P<version>.*).(json|txt)
     access_key_id: {{aws-access-key}}
     secret_access_key: {{aws-secret-key}}
 
 jobs:
-- name: compliance-scan 
+- name: python-scan 
   plan:
   - get: code 
   - get: scripts 
@@ -24,4 +24,19 @@ jobs:
     file: scripts/task-bandit.yml
   - put: collector
     params:
-      from: results/bandit.json
+      to: ekip/
+      from: results/bandit.(.*).json
+
+- name: zap-scan 
+  plan:
+  - get: scripts 
+  - task: scan-owasp
+    file: scripts/task-owasp.yml
+    config:
+      params:
+        LIVE_TARGET: {{live-target}}
+  - put: collector
+    params:
+      to: ekip/
+      from: results/zap.(.*).txt
+
