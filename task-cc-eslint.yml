@@ -1,0 +1,15 @@
+inputs:
+- name: code 
+  path: /code
+outputs:
+- name: results
+platform: linux
+image: "docker:///codeclimate/codeclimate-eslint"
+run:
+  path: /usr/src/app/bin/eslint.js 
+#  path: /bin/codeclimate
+#  args:
+#  - analyze
+#  - -e
+#  - csslint
+ 
