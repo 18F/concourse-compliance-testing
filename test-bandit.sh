@@ -1,4 +1,4 @@
 #!/bin/bash
 pip install bandit
-bandit code/ -r -f json -o results/bandit.$(date -u +"%d%H%M").json
+bandit code/ -r -f json -o results/bandit.json
 exit 0
