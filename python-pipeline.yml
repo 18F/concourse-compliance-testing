@@ -7,11 +7,18 @@ resources:
   type: git
   source:
     uri: https://github.com/DavidEBest/concourse-compliance-testing.git 
-- name: collector
+- name: zap-collector
   type: s3
   source:
     bucket: concourse-collector
-    regexp: (bandit|zap).(?P<version>.*).(json|txt)
+    versioned_file: {{aws-zap}}
+    access_key_id: {{aws-access-key}}
+    secret_access_key: {{aws-secret-key}}
+- name: bandit-collector
+  type: s3
+  source:
+    bucket: concourse-collector
+    versioned_file: {{aws-bandit}}
     access_key_id: {{aws-access-key}}
     secret_access_key: {{aws-secret-key}}
 
@@ -22,10 +29,10 @@ jobs:
   - get: scripts 
   - task: scan-bandit
     file: scripts/task-bandit.yml
-  - put: collector
+  - put: bandit-collector
     params:
-      to: ekip/
-      from: results/bandit.(.*).json
+      to: {{aws-folder}}
+      from: results/bandit.json
 
 - name: zap-scan 
   plan:
@@ -35,8 +42,7 @@ jobs:
     config:
       params:
         LIVE_TARGET: {{live-target}}
-  - put: collector
+  - put: zap-collector
     params:
-      to: ekip/
-      from: results/zap.(.*).txt
+      from: results/zap.txt
 

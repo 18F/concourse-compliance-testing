@@ -5,9 +5,9 @@ inputs:
 outputs:
 - name: results
 platform: linux
-image: "docker:///codeclimate/codeclimate-eslint"
+image: "docker:///codeclimate/codeclimate-radon"
 run:
   path: /bin/sh
   args:
-  - ./scripts/test-cc-eslint.sh
+  - ./scripts/test-cc-radon.sh
  

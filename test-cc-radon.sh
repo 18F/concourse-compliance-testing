@@ -2,6 +2,6 @@
 
 cp -r ./code/* /code
 
-/usr/src/app/bin/eslint.js
+/usr/src/app/codeclimate-radon
 
 exit 0
