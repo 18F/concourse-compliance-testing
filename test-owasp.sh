@@ -1,5 +1,10 @@
 #!/bin/bash
-pip install --upgrade git+https://github.com/Grunny/zap-cli.git
+#pip install --upgrade git+https://github.com/Grunny/zap-cli.git
 
-zap-cli quick-scan --spider -r -sc -o '-config api.disablekey=true' $LIVE_TARGET > results/zap.txt
+zap-cli start --start-options '-config api.disablekey=true'
+zap-cli open-url $LIVE_TARGET
+zap-cli active-scan -s all -r $LIVE_TARGET
+zap-cli alerts -l Low -f json > results/zap.json
+zap-cli shutdown
+
 exit 0
