@@ -1,0 +1,26 @@
+resources:
+- name: scripts 
+  type: git
+  source:
+    uri: https://github.com/DavidEBest/concourse-compliance-testing.git 
+- name: zap-collector-json
+  type: s3
+  source:
+    bucket: {{aws-bucket}} 
+    versioned_file: {{aws-zap-json}}
+    access_key_id: {{aws-access-key}}
+    secret_access_key: {{aws-secret-key}}
+
+jobs:
+- name: zap-scan 
+  plan:
+  - get: scripts 
+  - task: scan-owasp
+    file: scripts/task-owasp.yml
+    config:
+      params:
+        LIVE_TARGET: {{live-target}}
+  - put: zap-collector-json
+    params:
+      from: results/zap.json
+
