@@ -14,7 +14,7 @@ resources:
   type: time
   source:
     start: 12:00 AM -0500
-    stop: 1:00 AM -0500
+    stop: 12:30 AM -0500
 
 jobs:
 - name: zap-scan 
