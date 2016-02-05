@@ -2,7 +2,8 @@ resources:
 - name: scripts 
   type: git
   source:
-    uri: https://github.com/DavidEBest/concourse-compliance-testing.git 
+    uri: https://github.com/18F/concourse-compliance-testing.git
+    branch: multi-file
 - name: zap-collector-json
   type: s3
   source:
