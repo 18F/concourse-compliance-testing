@@ -22,5 +22,5 @@ jobs:
         LIVE_TARGET: {{live-target}}
   - put: zap-collector-json
     params:
-      from: results/zap.json
+      from: results
 
