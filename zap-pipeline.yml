@@ -1,0 +1,26 @@
+resources:
+- name: scripts 
+  type: git
+  source:
+    uri: https://github.com/18F/concourse-compliance-testing.git 
+    branch: {{script-branch}}
+- name: after-midnight
+  type: time
+  source:
+    start: 12:00 AM -0500
+    stop: 12:30 AM -0500
+
+jobs:
+- name: zap-scan 
+  plan:
+  - get: after-midnight
+    trigger: true
+  - get: scripts 
+  - task: scan-owasp
+    file: scripts/task-owasp.yml
+    config:
+      params:
+        S3_ACCESS_KEY: {{aws-access-key}}
+        S3_SECRET_KEY: {{aws-secret-key}}
+        S3_BUCKET: {{aws-bucket}}
+

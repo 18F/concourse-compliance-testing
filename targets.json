@@ -1,0 +1,12 @@
+{
+  "targets": [
+    {
+      "name": "openopps",
+      "url": "https://openopps-staging.18f.gov/"
+    },
+    {
+      "name": "micropurchase",
+      "url" :"https://micropurchase.18f.gov"
+    }
+  ]
+}

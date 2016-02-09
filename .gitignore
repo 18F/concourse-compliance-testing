@@ -1,8 +1,10 @@
 .bundle/
 .vagrant/
+env/
 
 *.swp
 results/
 Vagrantfile
 
 credentials.yml
+credentials.18F.yml
