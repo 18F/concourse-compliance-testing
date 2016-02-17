@@ -8,3 +8,5 @@ Vagrantfile
 
 credentials.yml
 credentials.18F.yml
+
+tmp/
