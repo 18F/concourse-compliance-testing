@@ -1,6 +1,6 @@
 # local usage:
 #
-#   fly execute -c tasks/uptime-check.yml -i scripts=. -i projects-json=out
+#   fly execute -c tasks/uptime-check.yml -i scripts=.
 #
 platform: linux
 image_resource:
@@ -10,6 +10,5 @@ image_resource:
     tag: '14.04'
 inputs:
 - name: scripts
-- name: projects-json
 run:
   path: ./scripts/tasks/uptime-check.sh
