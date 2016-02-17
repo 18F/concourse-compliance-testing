@@ -2,14 +2,8 @@ resources:
 - name: scripts 
   type: git
   source:
-    uri: https://github.com/DavidEBest/concourse-compliance-testing.git 
-- name: zap-collector-json
-  type: s3
-  source:
-    bucket: {{aws-bucket}} 
-    versioned_file: {{aws-zap-json}}
-    access_key_id: {{aws-access-key}}
-    secret_access_key: {{aws-secret-key}}
+    uri: https://github.com/18F/concourse-compliance-testing.git 
+    branch: {{script-branch}}
 - name: after-midnight
   type: time
   source:
@@ -26,8 +20,7 @@ jobs:
     file: scripts/task-owasp.yml
     config:
       params:
-        LIVE_TARGET: {{live-target}}
-  - put: zap-collector-json
-    params:
-      from: results/zap.json
+        S3_ACCESS_KEY: {{aws-access-key}}
+        S3_SECRET_KEY: {{aws-secret-key}}
+        S3_BUCKET: {{aws-bucket}}
 

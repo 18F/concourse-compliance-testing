@@ -1,10 +1,27 @@
 #!/bin/bash
 
+apt-get install jq
+pip install tinys3
+
+COUNTER=0
+COUNT=$(cat scripts/targets.json | jq '.targets[] .url' | wc -l)
+
 zap-cli start --start-options '-config api.disablekey=true'
-zap-cli open-url $LIVE_TARGET
-zap-cli spider $LIVE_TARGET
-zap-cli active-scan -s all -r $LIVE_TARGET
-zap-cli alerts -l Informational -f json > results/zap.json
+
+while [ $COUNTER -lt $COUNT ]; do
+  NAME=$(cat scripts/targets.json | jq ".targets[${COUNTER}] .name" -r)
+  TARGET=$(cat scripts/targets.json | jq ".targets[${COUNTER}] .url" -r)
+
+  echo Scanning $NAME: $TARGET
+  zap-cli quick-scan --spider --scanners all $TARGET
+  zap-cli alerts -l Informational -f json > results/${NAME}.json
+  zap-cli session new
+
+  let COUNTER+=1
+done
+
 zap-cli shutdown
 
-exit 0
+echo Uploading files...
+python scripts/s3upload.py
+
