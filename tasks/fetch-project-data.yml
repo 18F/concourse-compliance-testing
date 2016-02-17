@@ -1,3 +1,7 @@
+# usage:
+#
+#   fly execute -c tasks/fetch-project-data.yml --output projects-json=tmp
+#
 platform: linux
 image_resource:
   type: docker-image
