@@ -9,8 +9,8 @@ jobs:
 - name: zap-scan 
   plan:
   - get: scripts 
-  - task: scan-owasp
-    file: scripts/tasks/task-owasp.yml
+  - task: scan-zap
+    file: scripts/tasks/task-zap.yml
     config:
       params:
         S3_ACCESS_KEY: {{aws-access-key}}
