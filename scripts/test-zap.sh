@@ -23,5 +23,5 @@ done
 zap-cli shutdown
 
 echo Uploading files...
-python scripts/s3upload.py
+python scripts/tools/s3upload.py
 

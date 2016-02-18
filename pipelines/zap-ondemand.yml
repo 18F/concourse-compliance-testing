@@ -10,7 +10,7 @@ jobs:
   plan:
   - get: scripts 
   - task: scan-owasp
-    file: scripts/task-owasp.yml
+    file: scripts/tasks/task-owasp.yml
     config:
       params:
         S3_ACCESS_KEY: {{aws-access-key}}

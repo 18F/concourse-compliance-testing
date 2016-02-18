@@ -7,6 +7,7 @@ resources:
 - name: after-midnight
   type: time
   source:
+    interval: 1h
     start: 12:00 AM -0500
     stop: 12:30 AM -0500
 
@@ -17,7 +18,7 @@ jobs:
     trigger: true
   - get: scripts 
   - task: scan-owasp
-    file: scripts/task-owasp.yml
+    file: scripts/tasks/task-owasp.yml
     config:
       params:
         S3_ACCESS_KEY: {{aws-access-key}}
