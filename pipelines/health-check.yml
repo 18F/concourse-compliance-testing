@@ -12,5 +12,7 @@ jobs:
 - name: health-check
   plan:
   - get: scripts
+  - task: fetch-project-data
+    file: scripts/tasks/fetch-project-data.yml
   - task: uptime-check
     file: scripts/tasks/uptime-check.yml
