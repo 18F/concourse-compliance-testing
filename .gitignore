@@ -9,4 +9,5 @@ Vagrantfile
 credentials.yml
 credentials.18F.yml
 
+node_modules/
 tmp/

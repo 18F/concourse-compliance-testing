@@ -12,6 +12,4 @@ inputs:
 - name: scripts
 - name: projects-json
 run:
-  path: node
-  args:
-  - ./scripts/tasks/uptime-check.js
+  path: ./scripts/tasks/uptime-check.sh

@@ -1,12 +1,18 @@
+// usage:
+//
+//   PROJECT_JSON=path/to/projects.json node tasks/uptime-check.js
+
 'use strict';
 
 const fs = require('fs');
-const url = require('url');
-const http = require('http');
-const https = require('https');
+const needle = require('needle');
 
-const content = fs.readFileSync('./projects-json/projects.json');
-const json = JSON.parse(content);
+
+const getProjectJson = () => {
+  const jsonPath = process.env.PROJECT_JSON || './projects-json/projects.json';
+  const content = fs.readFileSync(jsonPath);
+  return JSON.parse(content);
+};
 
 const getUrl = (linkObj) => {
   if (typeof linkObj == 'string') {
@@ -16,21 +22,11 @@ const getUrl = (linkObj) => {
   }
 };
 
-const getReqModule = (protocol) => {
-  if (protocol === 'https:') {
-    return https;
-  } else {
-    return http;
-  }
-};
-
 const headReq = (uri, callback) => {
-  let opts = url.parse(uri);
-  opts.method = 'HEAD';
-  const req = getReqModule(opts.protocol).request(opts, (res) => {
-    callback(null, res);
-  }).on('error', callback);
-  req.end();
+  const opts = {
+    follow_max: 2
+  };
+  needle.head(uri, opts, callback).on('error', callback);
 };
 
 const isSuccess = (res) => {
@@ -47,6 +43,8 @@ const checkIfUp = (uri, callback) => {
   });
 };
 
+
+const json = getProjectJson();
 json.results.forEach((project) => {
   if (project.links) {
     project.links.forEach((linkObj) => {
