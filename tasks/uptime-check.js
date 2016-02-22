@@ -5,7 +5,7 @@
 'use strict';
 
 const fs = require('fs');
-const needle = require('needle');
+const request = require('request');
 
 
 const getProjectJson = () => {
@@ -23,10 +23,7 @@ const getUrl = (linkObj) => {
 };
 
 const headReq = (uri, callback) => {
-  const opts = {
-    follow_max: 2
-  };
-  needle.head(uri, opts, callback).on('error', callback);
+  request.head(uri, callback);
 };
 
 const isSuccess = (res) => {
@@ -34,7 +31,7 @@ const isSuccess = (res) => {
 };
 
 const checkIfUp = (uri, callback) => {
-  headReq(uri, (err, res) => {
+  headReq(uri, (err, res, body) => {
     if (err) {
       callback(err)
     } else {
