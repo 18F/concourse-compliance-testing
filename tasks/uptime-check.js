@@ -40,21 +40,27 @@ const checkIfUp = (uri, callback) => {
   });
 };
 
+const checkLink = (link) => {
+  checkIfUp(link, (err, isUp) => {
+    if (err || !isUp) {
+      console.error(`${link} is NOT up`);
+    }
+  });
+};
+
+const checkLinkObj = (linkObj) => {
+  const link = getUrl(linkObj);
+  if (link) {
+    checkLink(link);
+  } else {
+    console.error(`Malformed \`links\` for ${project.name}`);
+  }
+};
+
 
 const json = getProjectJson();
 json.results.forEach((project) => {
   if (project.links) {
-    project.links.forEach((linkObj) => {
-      const link = getUrl(linkObj);
-      if (link) {
-        checkIfUp(link, (err, isUp) => {
-          if (err || !isUp) {
-            console.error(`${link} is NOT up`);
-          }
-        });
-      } else {
-        console.error(`Malformed \`links\` for ${project.name}`);
-      }
-    });
+    project.links.forEach(checkLinkObj);
   }
 });
