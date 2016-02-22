@@ -5,5 +5,5 @@ outputs:
 platform: linux
 image: "docker:///owasp/zap2docker-stable"
 run:
-  path: ./scripts/test-owasp.sh
+  path: ./scripts/scripts/test-zap.sh
  
