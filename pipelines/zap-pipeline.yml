@@ -2,7 +2,7 @@ resources:
 - name: scripts 
   type: git
   source:
-    uri: https://github.com/18F/concourse-compliance-testing.git 
+    uri: {{script-repo}} 
     branch: {{script-branch}}
 - name: after-midnight
   type: time
