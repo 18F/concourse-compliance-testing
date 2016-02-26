@@ -23,13 +23,13 @@ Once your individual tasks are functional, you will need to string them together
 
 Pipelines can not be executed directly. Instead, you must upload the pipeline to the Concourse server, enable it, and (optionally) kick it off.
 
+Sensitive and/or configuration information should not be stored in the pipelines themselves. Instead, variables should be replaced by `{{parameter}}` in the pipeline and the values should be put into a `credentials.yml` file. The `credentials.example.yml` file in this repository can be used as a base. That example contains the fields required for the `zap-*` pipelines. **This file should never be checked in to source control.**
+
 Uploading a pipeline is done via the `fly set-pipeline` command. For example, to upload the `zap-ondemand` pipeline, you'd use the following command:
 
 ```
-fly set-pipeline -p zap-ondemand -c pipelines/zap-ondemand.yml --load-vars-from credentials.yml
+fly set-pipeline --pipeline zap-ondemand --config pipelines/zap-ondemand.yml --load-vars-from credentials.yml
 ```
-
-The `--load-vars-from` option specifies the source for all the secret and/or configurable parameters (enclosed in `{{parameter}}`) used in the pipeline.
 
 Running `fly unpause-pipeline -p zap-ondemand` will allow the pipeline to be run.
 
