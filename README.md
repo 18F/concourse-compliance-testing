@@ -1,7 +1,7 @@
 Concourse CI Compliance Testing
 =========
 
-This is a location for scripts, tasks, and pipelines for the [Compliance Toolkit project](https://github.com/18f/compliance-toolkit/)
+This is a location for scripts, tasks, and pipelines for the [Compliance Toolkit project](https://github.com/18f/compliance-toolkit/).
 
 ## Running
 
