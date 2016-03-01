@@ -27,23 +27,23 @@ const headReq = (uri, callback) => {
 };
 
 const isSuccess = (res) => {
-  return (res.statusCode >= 200 && res.statusCode < 300) || res.statusCode === 403;
+  return res.statusCode >= 200 && res.statusCode < 300;
+};
+
+const isUp = (res) => {
+  return !!res && (isSuccess(res) || res.statusCode === 403);
 };
 
 const checkIfUp = (uri, callback) => {
   headReq(uri, (err, res, body) => {
-    if (err) {
-      callback(err)
-    } else {
-      callback(null, isSuccess(res))
-    }
+    callback(err, isUp(res));
   });
 };
 
 const checkLink = (link) => {
   checkIfUp(link, (err, isUp) => {
     if (err || !isUp) {
-      console.error(`${link} is NOT up`);
+      console.error(`${link} is NOT up.`);
     }
   });
 };
@@ -53,14 +53,17 @@ const checkLinkObj = (linkObj) => {
   if (link) {
     checkLink(link);
   } else {
-    console.error(`Malformed \`links\` for ${project.name}`);
+    console.error(`Malformed \`links\` for ${project.name}.`);
   }
 };
 
 
 const json = getProjectJson();
 json.results.forEach((project) => {
-  if (project.links) {
-    project.links.forEach(checkLinkObj);
+  const links = project.links || [];
+  if (links.length === 0) {
+    console.error(`No \`links\` for ${project.name}.`);
+  } else {
+    links.forEach(checkLinkObj);
   }
 });
