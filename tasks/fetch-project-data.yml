@@ -1,0 +1,17 @@
+# usage:
+#
+#   fly execute -c tasks/fetch-project-data.yml --output projects-json=tmp
+#
+platform: linux
+image_resource:
+  type: docker-image
+  source:
+    repository: tutum/curl
+outputs:
+- name: projects-json
+run:
+  path: curl
+  args:
+  - -o
+  - projects-json/projects.json
+  - https://team-api.18f.gov/public/api/projects/

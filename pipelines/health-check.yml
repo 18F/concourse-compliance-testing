@@ -1,0 +1,18 @@
+# usage:
+#
+#   fly set-pipeline -n -c pipelines/health-check.yml -p health-check -v script-branch=master
+#
+resources:
+- name: scripts
+  type: git
+  source:
+    uri: https://github.com/18F/concourse-compliance-testing.git
+    branch: {{script-branch}}
+jobs:
+- name: health-check
+  plan:
+  - get: scripts
+  - task: fetch-project-data
+    file: scripts/tasks/fetch-project-data.yml
+  - task: uptime-check
+    file: scripts/tasks/uptime-check.yml
