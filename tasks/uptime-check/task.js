@@ -1,6 +1,6 @@
 // usage:
 //
-//   PROJECT_JSON=path/to/projects.json node tasks/uptime-check.js
+//   PROJECT_JSON=path/to/projects.json node tasks/uptime-check/task.js
 
 'use strict';
 

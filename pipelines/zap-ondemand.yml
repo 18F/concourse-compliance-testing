@@ -1,20 +1,20 @@
 resources:
-- name: scripts 
+- name: scripts
   type: git
   source:
     uri: {{script-repo}}
-    branch: {{script-branch}} 
+    branch: {{script-branch}}
 - name: slack
   type: slack-notification
   source:
-    url: {{slack-hook}} 
+    url: {{slack-hook}}
 
 jobs:
-- name: zap-scan 
+- name: zap-scan
   plan:
-  - get: scripts 
+  - get: scripts
   - task: scan-zap
-    file: scripts/tasks/task-zap.yml
+    file: scripts/tasks/run-zap/task.yml
     config:
       params:
         S3_ACCESS_KEY: {{aws-access-key}}
@@ -23,8 +23,8 @@ jobs:
   - put: slack
     params:
       channel: {{slack-channel}}
-      icon_url: {{slack-icon}} 
+      icon_url: {{slack-icon}}
       text: |
         :white_check_mark: Completed scan of configured properties.
         <https://compliance-viewer.18f.gov/results|View results>
-      username: {{slack-user}} 
+      username: {{slack-user}}

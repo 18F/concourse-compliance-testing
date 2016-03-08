@@ -22,7 +22,7 @@ jobs:
     trigger: true
   - get: scripts 
   - task: scan-zap
-    file: scripts/tasks/task-zap.yml
+    file: scripts/tasks/run-zap/task.yml
     config:
       params:
         S3_ACCESS_KEY: {{aws-access-key}}

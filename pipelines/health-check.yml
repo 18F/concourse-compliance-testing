@@ -15,4 +15,4 @@ jobs:
   - task: fetch-project-data
     file: scripts/tasks/fetch-project-data.yml
   - task: uptime-check
-    file: scripts/tasks/uptime-check.yml
+    file: scripts/tasks/uptime-check/task.yml
