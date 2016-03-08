@@ -1,6 +1,6 @@
-# usage:
+# local usage:
 #
-#   fly set-pipeline -n -c pipelines/health-check.yml -p health-check -v script-branch=master
+#   fly set-pipeline -t lite -n -c pipelines/health-check.yml -p health-check -v script-branch=master
 #
 resources:
 - name: scripts

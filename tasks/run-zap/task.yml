@@ -1,3 +1,7 @@
+# local usage:
+#
+#   fly execute -t lite -c tasks/run-zap/task.yml -i scripts=.
+#
 inputs:
 -  name: scripts
 outputs:
@@ -6,4 +10,3 @@ platform: linux
 image: "docker:///owasp/zap2docker-stable"
 run:
   path: ./scripts/scripts/test-zap.sh
- 

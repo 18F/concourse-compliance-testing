@@ -1,8 +1,8 @@
 resources:
-- name: scripts 
+- name: scripts
   type: git
   source:
-    uri: {{script-repo}} 
+    uri: https://github.com/18F/concourse-compliance-testing.git
     branch: {{script-branch}}
 - name: after-midnight
   type: time
@@ -16,11 +16,11 @@ resources:
     url: {{slack-hook}}
 
 jobs:
-- name: zap-scan 
+- name: zap-scan
   plan:
   - get: after-midnight
     trigger: true
-  - get: scripts 
+  - get: scripts
   - task: scan-zap
     file: scripts/tasks/run-zap/task.yml
     config:
@@ -35,4 +35,4 @@ jobs:
       text: |
         :white_check_mark: Completed scan of configured properties.
         <https://compliance-viewer.18f.gov/results|View results>
-      username: {{slack-user}} 
+      username: {{slack-user}}

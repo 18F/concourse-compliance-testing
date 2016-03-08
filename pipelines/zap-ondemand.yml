@@ -1,8 +1,12 @@
+# local usage:
+#
+#   fly set-pipeline -t lite -n -c pipelines/zap-ondemand.yml -p zap-ondemand -v script-branch=master
+#
 resources:
 - name: scripts
   type: git
   source:
-    uri: {{script-repo}}
+    uri: https://github.com/18F/concourse-compliance-testing.git
     branch: {{script-branch}}
 - name: slack
   type: slack-notification
