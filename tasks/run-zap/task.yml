@@ -1,6 +1,6 @@
 # local usage:
 #
-#   fly execute -t lite -c tasks/run-zap/task.yml -i scripts=.
+#   AWS_ACCESS_KEY_ID=... AWS_SECRET_ACCESS_KEY=... S3_BUCKET=... fly execute -t lite -c tasks/run-zap/task.yml -i scripts=.
 #
 inputs:
 -  name: scripts
@@ -8,5 +8,9 @@ outputs:
 -  name: results
 platform: linux
 image: "docker:///owasp/zap2docker-stable"
+params:
+  AWS_ACCESS_KEY_ID:
+  AWS_SECRET_ACCESS_KEY:
+  S3_BUCKET:
 run:
   path: ./scripts/tasks/run-zap/task.sh

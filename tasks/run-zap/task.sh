@@ -1,9 +1,10 @@
 #!/bin/bash
 
-apt-get install jq
-pip install tinys3
+set -e
+set -x
 
-pip install --upgrade zapcli 
+apt-get install jq
+pip install --upgrade awscli zapcli
 
 COUNTER=0
 COUNT=$(cat scripts/targets.json | jq '.targets[] .url' | wc -l)
@@ -25,5 +26,6 @@ done
 zap-cli shutdown
 
 echo Uploading files...
-python scripts/tools/s3upload.py
-
+# credentials are provided via environment variables
+# http://docs.aws.amazon.com/cli/latest/userguide/cli-chap-getting-started.html#cli-environment
+aws s3 sync results "s3://$S3_BUCKET/results"
