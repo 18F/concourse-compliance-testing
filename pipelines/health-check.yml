@@ -1,6 +1,6 @@
-# usage:
+# local usage:
 #
-#   fly set-pipeline -n -c pipelines/health-check.yml -p health-check -v script-branch=master
+#   fly set-pipeline -t lite -n -c pipelines/health-check.yml -p health-check -v script-branch=master
 #
 resources:
 - name: scripts
@@ -15,4 +15,4 @@ jobs:
   - task: fetch-project-data
     file: scripts/tasks/fetch-project-data.yml
   - task: uptime-check
-    file: scripts/tasks/uptime-check.yml
+    file: scripts/tasks/uptime-check/task.yml
