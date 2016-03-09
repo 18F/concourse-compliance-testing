@@ -1,6 +1,8 @@
 // usage:
 //
-//   PROJECT_JSON=path/to/projects.json node tasks/uptime-check/task.js
+//   # run fetch-project-data first
+//   npm install request@^2.69.0
+//   PROJECT_JSON=tmp/projects.json node tasks/uptime-check/task.js
 
 'use strict';
 
@@ -48,12 +50,12 @@ const checkLink = (link) => {
   });
 };
 
-const checkLinkObj = (linkObj) => {
+const checkLinkObj = (projectName, linkObj) => {
   const link = getUrl(linkObj);
   if (link) {
     checkLink(link);
   } else {
-    console.error(`Malformed \`links\` for ${project.name}.`);
+    console.error(`Malformed \`links\` for ${projectName}.`);
   }
 };
 
@@ -64,6 +66,8 @@ json.results.forEach((project) => {
   if (links.length === 0) {
     console.error(`No \`links\` for ${project.name}.`);
   } else {
-    links.forEach(checkLinkObj);
+    links.forEach((linkObj) => {
+      checkLinkObj(project.name, linkObj);
+    });
   }
 });
