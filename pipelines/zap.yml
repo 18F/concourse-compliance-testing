@@ -1,6 +1,6 @@
 # local usage:
 #
-#   fly set-pipeline -t lite -n -c pipelines/zap.yml -p zap --load-vars-from credentials.yml -v script-branch=`git rev-parse --abbrev-ref HEAD`
+#   fly set-pipeline -t lite -n -c pipelines/zap.yml -p zap --load-vars-from config/local.yml -v script-branch=`git rev-parse --abbrev-ref HEAD`
 #
 resource_types:
 - name: slack-notification

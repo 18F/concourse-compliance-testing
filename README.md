@@ -23,7 +23,7 @@ Once your individual tasks are functional, you will need to string them together
 
 Pipelines can not be executed directly. Instead, you must upload the pipeline to the Concourse server, enable it, and (optionally) kick it off.
 
-Sensitive and/or configuration information should not be stored in the pipelines themselves. Instead, variables should be replaced by `{{parameter}}` in the pipeline and the values should be put into a `credentials.yml` file. The `credentials.example.yml` file in this repository can be used as a base. That example contains the fields required for the `zap-*` pipelines. **This file should never be checked in to source control.**
+Sensitive and/or configuration information should not be stored in the pipelines themselves. Instead, variables should be replaced by `{{parameter}}` in the pipeline and the values should be put into a `config/local.yml` file. The `config/local.example.yml` file in this repository can be used as a base. That example contains the fields required for the `zap-*` pipelines. **This file should never be checked in to source control.**
 
 Uploading a pipeline is done via the `fly set-pipeline` command, which is included in a comment in [each pipeline file](pipelines/). Running `fly unpause-pipeline -p <pipeline name>` will allow the pipeline to be run.
 
@@ -33,9 +33,9 @@ Running pipelines on ci.cloud.gov is identical to running pipelines locally, wit
 
 ```bash
 fly -t cloud login —c https://ci.cloud.gov
-cp credentials.18F.example.yml credentials.18F.yml
-# modify credentials.18F.yml
-fly set-pipeline -t cloud -n -c pipelines/zap.yml -p zap --load-vars-from credentials.18F.yml
+cp config/prod.example.yml config/prod.yml
+# modify config/prod.yml
+fly set-pipeline -t cloud -n -c pipelines/zap.yml -p zap --load-vars-from config/prod.yml
 ```
 
 Note that you may need to re-download `fly` from [ci.cloud.gov](https://ci.cloud.gov) to ensure the versions match.
