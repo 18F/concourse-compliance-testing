@@ -23,13 +23,13 @@ Once your individual tasks are functional, you will need to string them together
 
 Pipelines can not be executed directly. Instead, you must upload the pipeline to the Concourse server, enable it, and (optionally) kick it off.
 
-Sensitive and/or configuration information should not be stored in the pipelines themselves. Instead, variables should be replaced by `{{parameter}}` in the pipeline and the values should be put into a `config/local.yml` file. The `config/local.example.yml` file in this repository can be used as a base. That example contains the fields required for the `zap-*` pipelines. **This file should never be checked in to source control.**
+Sensitive and/or configuration information should not be stored in the pipelines themselves. Instead, variables should be replaced by `{{parameter}}` in the pipeline and the values should be put into a `config/local.yml` file. The `config/local.example.yml` file in this repository can be used as a base. **This file should never be checked in to source control.**
 
 Uploading a pipeline is done via the `fly set-pipeline` command, which is included in a comment in [each pipeline file](pipelines/). Running `fly unpause-pipeline -p <pipeline name>` will allow the pipeline to be run.
 
 ### ci.cloud.gov
 
-Running pipelines on ci.cloud.gov is identical to running pipelines locally, with the exception that you will need to log into ci.cloud.gov. Assuming you have permissions, you can log in with:
+Running pipelines on ci.cloud.gov is identical to running pipelines locally, with the exception that you will need to log in to ci.cloud.gov. Assuming you have permissions, run:
 
 ```bash
 fly -t cloud login —c https://ci.cloud.gov
