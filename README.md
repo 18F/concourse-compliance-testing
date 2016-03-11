@@ -11,7 +11,7 @@ The Concourse.ci site provides solid information for [Getting Started](http://co
 
 After getting a local instance of Concourse up and running in Vagrant (by following the [Getting Started Guide](http://concourse.ci/getting-started.html)) and installing the Fly CLI, you will be set up for testing Concourse.
 
-Individual [tasks](http://concourse.ci/tasks.html) are run via the `fly execute` command. For example, you can run `zap-task` via the following:
+Individual [tasks](http://concourse.ci/tasks.html) are run via the `fly execute` command, documented at the top of each `task.yml`. For example, you can run `zap-task` via the following:
 
 ```
 fly execute --config tasks/zap-task.yml --input scripts=. --output results=results
@@ -25,13 +25,7 @@ Pipelines can not be executed directly. Instead, you must upload the pipeline to
 
 Sensitive and/or configuration information should not be stored in the pipelines themselves. Instead, variables should be replaced by `{{parameter}}` in the pipeline and the values should be put into a `credentials.yml` file. The `credentials.example.yml` file in this repository can be used as a base. That example contains the fields required for the `zap-*` pipelines. **This file should never be checked in to source control.**
 
-Uploading a pipeline is done via the `fly set-pipeline` command. For example, to upload the `zap-ondemand` pipeline, you'd use the following command:
-
-```
-fly set-pipeline --pipeline zap-ondemand --config pipelines/zap-ondemand.yml --load-vars-from credentials.yml
-```
-
-Running `fly unpause-pipeline -p zap-ondemand` will allow the pipeline to be run.
+Uploading a pipeline is done via the `fly set-pipeline` command, which is included in a comment in [each pipeline file](pipelines/). Running `fly unpause-pipeline -p <pipeline name>` will allow the pipeline to be run.
 
 ### ci.cloud.gov
 
