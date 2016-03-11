@@ -17,7 +17,8 @@ while [ $COUNTER -lt $COUNT ]; do
 
   echo Scanning $NAME: $TARGET
   zap-cli -v quick-scan --spider --ajax-spider --scanners all $TARGET
-  zap-cli alerts -l Informational -f json > results/${NAME}.json
+  # `zap-cli alerts` returns an error code if there are any warnings - ignore them so the script doesn't fail
+  zap-cli alerts -l Informational -f json > results/${NAME}.json || true
   zap-cli session new
 
   let COUNTER+=1
