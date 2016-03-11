@@ -5,7 +5,7 @@ This is a location for scripts, tasks, and pipelines for the [Compliance Toolkit
 
 ## Running
 
-The Concourse.ci site provides solid information for [Getting Started](http://concourse.ci/getting-started.html) with Concourse. [The Fly CLI](http://concourse.ci/fly-cli.html) is your primary tool for working with the platform.
+The Concourse.ci site provides solid information for [Getting Started](http://concourse.ci/getting-started.html) with Concourse. [The Fly CLI](http://concourse.ci/fly-cli.html) is your primary tool for working with the platform. Requires Concourse v0.74.0+.
 
 ### Locally
 
@@ -29,12 +29,20 @@ Uploading a pipeline is done via the `fly set-pipeline` command, which is includ
 
 ### ci.cloud.gov
 
-Running pipelines on ci.cloud.gov is identical to running pipelines locally, with the exception that you will need to log into ci.cloud.gov. Assuming you have permissions, you can log in with the `fly login` command.
+Running pipelines on ci.cloud.gov is identical to running pipelines locally, with the exception that you will need to log into ci.cloud.gov. Assuming you have permissions, you can log in with:
+
+```bash
+fly -t cloud login —c https://ci.cloud.gov
+cp credentials.18F.example.yml credentials.18F.yml
+# modify credentials.18F.yml
+fly set-pipeline -t cloud -n -c pipelines/zap.yml -p zap --load-vars-from credentials.18F.yml
+```
+
+Note that you may need to re-download `fly` from [ci.cloud.gov](https://ci.cloud.gov) to ensure the versions match.
 
 ## Feedback
 
 Give us your feedback! We'd love to hear it. [Open an issue and tell us what you think.](https://github.com/18f/concourse-compliance-testing/issues/new)
-
 
 ### Public domain
 
