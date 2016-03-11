@@ -4,7 +4,7 @@ set -e
 set -x
 
 apt-get install jq
-pip install --upgrade awscli zapcli
+pip install --upgrade zapcli
 
 COUNTER=0
 COUNT=$(cat scripts/targets.json | jq '.targets[] .url' | wc -l)
@@ -24,8 +24,3 @@ while [ $COUNTER -lt $COUNT ]; do
 done
 
 zap-cli shutdown
-
-echo Uploading files...
-# credentials are provided via environment variables
-# http://docs.aws.amazon.com/cli/latest/userguide/cli-chap-getting-started.html#cli-environment
-aws s3 sync results "s3://$S3_BUCKET/results"

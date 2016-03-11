@@ -2,6 +2,11 @@
 #
 #   fly set-pipeline -t lite -n -c pipelines/zap.yml -p zap --load-vars-from credentials.yml -v script-branch=`git rev-parse --abbrev-ref HEAD`
 #
+resource_types:
+- name: s3-upload
+  type: docker-image
+  source:
+    repository: 18fgsa/s3-resource-simple
 resources:
 - name: scripts
   type: git
@@ -18,7 +23,12 @@ resources:
   type: slack-notification
   source:
     url: {{slack-hook}}
-
+- name: s3-bucket
+  type: s3-upload
+  source:
+    access_key_id: {{aws-access-key}}
+    secret_access_key: {{aws-secret-key}}
+    bucket: {{aws-bucket}}
 jobs:
 - name: zap-scheduled
   plan:
@@ -27,11 +37,6 @@ jobs:
   - get: scripts
   - task: scan-zap
     file: scripts/tasks/run-zap/task.yml
-    config:
-      params:
-        AWS_ACCESS_KEY_ID: {{aws-access-key}}
-        AWS_SECRET_ACCESS_KEY: {{aws-secret-key}}
-        S3_BUCKET: {{aws-bucket}}
   - put: slack
     params:
       channel: {{slack-channel}}
@@ -40,13 +45,10 @@ jobs:
         :white_check_mark: Completed scan of configured properties.
         <https://compliance-viewer.18f.gov/results|View results>
       username: {{slack-user}}
+  - put: s3-bucket
 - name: zap-ondemand
   plan:
   - get: scripts
   - task: scan-zap
     file: scripts/tasks/run-zap/task.yml
-    config:
-      params:
-        AWS_ACCESS_KEY_ID: {{aws-access-key}}
-        AWS_SECRET_ACCESS_KEY: {{aws-secret-key}}
-        S3_BUCKET: {{aws-bucket}}
+  - put: s3-bucket
