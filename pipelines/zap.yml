@@ -1,6 +1,6 @@
 # local usage:
 #
-#   fly set-pipeline -t lite -n -c pipelines/zap-pipeline.yml -p zap-pipeline --load-vars-from credentials.yml -v script-branch=`git rev-parse --abbrev-ref HEAD`
+#   fly set-pipeline -t lite -n -c pipelines/zap.yml -p zap --load-vars-from credentials.yml -v script-branch=`git rev-parse --abbrev-ref HEAD`
 #
 resources:
 - name: scripts
@@ -20,7 +20,7 @@ resources:
     url: {{slack-hook}}
 
 jobs:
-- name: zap-scan
+- name: zap-scheduled
   plan:
   - get: after-midnight
     trigger: true
@@ -40,3 +40,13 @@ jobs:
         :white_check_mark: Completed scan of configured properties.
         <https://compliance-viewer.18f.gov/results|View results>
       username: {{slack-user}}
+- name: zap-ondemand
+  plan:
+  - get: scripts
+  - task: scan-zap
+    file: scripts/tasks/run-zap/task.yml
+    config:
+      params:
+        AWS_ACCESS_KEY_ID: {{aws-access-key}}
+        AWS_SECRET_ACCESS_KEY: {{aws-secret-key}}
+        S3_BUCKET: {{aws-bucket}}
