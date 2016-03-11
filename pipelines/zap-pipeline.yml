@@ -1,3 +1,7 @@
+# local usage:
+#
+#   fly set-pipeline -t lite -n -c pipelines/zap-pipeline.yml -p zap-pipeline --load-vars-from credentials.yml -v script-branch=`git rev-parse --abbrev-ref HEAD`
+#
 resources:
 - name: scripts
   type: git

@@ -1,6 +1,6 @@
 # local usage:
 #
-#   fly set-pipeline -t lite -n -c pipelines/zap-ondemand.yml -p zap-ondemand -v script-branch=master
+#   fly set-pipeline -t lite -n -c pipelines/zap-ondemand.yml -p zap-ondemand --load-vars-from credentials.yml -v script-branch=`git rev-parse --abbrev-ref HEAD`
 #
 resources:
 - name: scripts
