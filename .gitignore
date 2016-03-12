@@ -6,6 +6,9 @@ env/
 results/
 Vagrantfile
 
+config/local.yml
+config/prod.yml
+# legacy
 credentials.yml
 credentials.18F.yml
 
