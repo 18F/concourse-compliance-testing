@@ -11,10 +11,10 @@ The Concourse.ci site provides solid information for [Getting Started](http://co
 
 After getting a local instance of Concourse up and running in Vagrant (by following the [Getting Started Guide](http://concourse.ci/getting-started.html)) and installing the Fly CLI, you will be set up for testing Concourse.
 
-Individual [tasks](http://concourse.ci/tasks.html) are run via the `fly execute` command, documented at the top of each `task.yml`. For example, you can run `zap-task` via the following:
+Individual [tasks](http://concourse.ci/tasks.html) are run via the `fly execute` command, documented at the top of each `task.yml`. For example, you can run Zap via the following:
 
 ```
-fly execute --config tasks/zap-task.yml --input scripts=. --output results=results
+fly execute --config tasks/run-zap/task.yml --input scripts=. --output results=results
 ```
 
 This will use the current folder as the `scripts` input, and put the output designated by `results` to the folder of the same name.
