@@ -3,10 +3,6 @@
 #   fly set-pipeline -t lite -n -c pipelines/zap.yml -p zap --load-vars-from config/local.yml -v script-branch=`git rev-parse --abbrev-ref HEAD`
 #
 resource_types:
-- name: slack-notification
-  type: docker-image
-  source:
-    repository: nopik/slack-notification-resource
 - name: s3-upload
   type: docker-image
   source:
@@ -41,6 +37,7 @@ jobs:
   - get: scripts
   - task: scan-zap
     file: scripts/tasks/run-zap/task.yml
+  - put: s3-bucket
   - put: slack
     params:
       channel: {{slack-channel}}
@@ -49,10 +46,17 @@ jobs:
         :white_check_mark: Completed scan of configured properties.
         <https://compliance-viewer.18f.gov/results|View results>
       username: {{slack-user}}
-  - put: s3-bucket
 - name: zap-ondemand
   plan:
   - get: scripts
   - task: scan-zap
     file: scripts/tasks/run-zap/task.yml
   - put: s3-bucket
+  - put: slack
+    params:
+      channel: {{slack-channel}}
+      icon_url: {{slack-icon}}
+      text: |
+        :white_check_mark: Completed scan of configured properties.
+        <https://compliance-viewer.18f.gov/results|View results>
+      username: {{slack-user}}
