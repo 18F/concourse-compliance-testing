@@ -6,7 +6,7 @@ const request = require('request');
 
 const lib = {
   getProjectJson() {
-    const jsonPath = process.env.PROJECT_JSON || './projects-json/projects.json';
+    const jsonPath = process.env.PROJECT_JSON || '../projects-json/projects.json';
     const content = fs.readFileSync(jsonPath);
     return JSON.parse(content);
   },
