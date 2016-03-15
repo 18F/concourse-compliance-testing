@@ -4,7 +4,7 @@
       "wascid": "0",
       "risk": "Low",
       "reference": "https://www.owasp.org/index.php/Session_Management_Cheat_Sheet#Web_Content_Caching",
-      "url": "https://openopps-staging.18f.gov/js/vendor/respond.js",
+      "url": "https://openopps-staging.18f.gov/js/vendor/respond",
       "solution": "Whenever possible ensure the cache-control HTTP header is set with no-cache, no-store, must-revalidate, private; and that the pragma HTTP header is set with no-cache.",
       "param": "",
       "evidence": "public, max-age=31557600",
