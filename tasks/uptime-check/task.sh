@@ -3,7 +3,8 @@
 set -e
 set -x
 
-npm install request@^2.69.0
-node ./scripts/tasks/uptime-check/task.js
+cd scripts
+npm install --production
+node ./tasks/uptime-check/task.js
 
 echo "TASK COMPLETE"

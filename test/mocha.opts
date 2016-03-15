@@ -1,0 +1,2 @@
+--recursive
+--require ./test/test_helpers.js
