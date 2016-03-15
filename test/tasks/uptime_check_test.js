@@ -6,16 +6,33 @@ const lib = require('../../tasks/uptime-check/lib');
 
 describe("uptime-check lib", () => {
   describe('.checkIfUp()', () => {
-    it("returns `true` for a 200", (done) => {
-      const uri = 'https://example.com';
+    [200, 201, 403].forEach((status) => {
+      it("returns `true` for a " + status, (done) => {
+        const uri = 'https://example.com';
 
-      nock(uri)
-        .head('/')
-        .reply(200, {});
+        nock(uri)
+          .head('/')
+          .reply(status, '');
 
-      lib.checkIfUp(uri, (err, isUp) => {
-        assert(isUp);
-        done(err);
+        lib.checkIfUp(uri, (err, isUp) => {
+          assert(isUp);
+          done(err);
+        });
+      });
+    });
+
+    [404, 500].forEach((status) => {
+      it("returns `false` for a " + status, (done) => {
+        const uri = 'https://example.com';
+
+        nock(uri)
+          .head('/')
+          .reply(status, '');
+
+        lib.checkIfUp(uri, (err, isUp) => {
+          assert(!isUp);
+          done(err);
+        });
       });
     });
   });
