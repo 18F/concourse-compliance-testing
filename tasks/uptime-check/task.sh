@@ -5,6 +5,6 @@ set -x
 
 cd scripts/tasks/uptime-check
 npm install --production
-node task.js
+PROJECT_JSON=../../../projects-json/projects.json node task.js
 
 echo "TASK COMPLETE"
