@@ -4,6 +4,8 @@ const assert = require('assert');
 const nock = require('nock');
 const lib = require('../lib');
 
+nock.disableNetConnect();
+
 describe("uptime-check lib", () => {
   describe('.checkIfUp()', () => {
     [200, 201, 403].forEach((status) => {
