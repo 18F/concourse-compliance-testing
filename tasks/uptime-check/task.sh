@@ -3,8 +3,8 @@
 set -e
 set -x
 
-cd scripts
+cd scripts/tasks/uptime-check
 npm install --production
-node tasks/uptime-check/task.js
+node task.js
 
 echo "TASK COMPLETE"

@@ -2,7 +2,7 @@
 
 const assert = require('assert');
 const nock = require('nock');
-const lib = require('../../tasks/uptime-check/lib');
+const lib = require('../lib');
 
 describe("uptime-check lib", () => {
   describe('.checkIfUp()', () => {

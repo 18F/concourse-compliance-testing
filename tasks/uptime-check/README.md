@@ -1,6 +1,6 @@
 # Uptime Check task
 
-To run the tests, execute the following from the top level of the repository:
+To run the tests, execute the following from this directory:
 
 ```bash
 npm install
