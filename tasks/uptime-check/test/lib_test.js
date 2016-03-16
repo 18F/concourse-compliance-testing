@@ -16,10 +16,7 @@ describe("uptime-check lib", () => {
           .head('/')
           .reply(status, '');
 
-        lib.checkIfUp(uri, (err, isUp) => {
-          assert(isUp);
-          done(err);
-        });
+        lib.checkIfUp(uri).then(done, done);
       });
     });
 
@@ -31,10 +28,14 @@ describe("uptime-check lib", () => {
           .head('/')
           .reply(status, '');
 
-        lib.checkIfUp(uri, (err, isUp) => {
-          assert(!isUp);
-          done(err);
-        });
+        lib.checkIfUp(uri).then(
+          () => {
+            done("request should not succeed");
+          },
+          (err) => {
+            done();
+          }
+        );
       });
     });
   });

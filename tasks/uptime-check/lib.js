@@ -34,17 +34,23 @@ const lib = {
     return !!res && (lib.isSuccess(res) || res.statusCode === 403);
   },
 
-  checkIfUp(uri, callback) {
-    lib.headReq(uri, (err, res, body) => {
-      callback(err, lib.isUp(res));
+  checkIfUp(uri) {
+    return new Promise((resolve, reject) => {
+      lib.headReq(uri, (err, res, body) => {
+        if (err) {
+          reject(err);
+        } else if (!lib.isUp(res)) {
+          reject("URL gives a status of " + res.statusCode);
+        } else {
+          resolve();
+        }
+      });
     });
   },
 
   checkLink(link) {
-    lib.checkIfUp(link, (err, isUp) => {
-      if (err || !isUp) {
-        console.error(`${link} is NOT up.`);
-      }
+    lib.checkIfUp(link).catch((err) => {
+      console.error(`${link} is NOT up.`);
     });
   },
 
