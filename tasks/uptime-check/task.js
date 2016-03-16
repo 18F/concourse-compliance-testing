@@ -1,8 +1,8 @@
 // usage:
 //
-//   # run fetch-project-data first
+//   # run fetch-project-data first, then run the following from this directory
 //   npm install
-//   PROJECT_JSON=tmp/projects.json node tasks/uptime-check/task.js
+//   PROJECT_JSON=../../tmp/projects.json node task.js
 
 'use strict';
 
