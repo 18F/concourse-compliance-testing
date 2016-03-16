@@ -13,6 +13,8 @@ module ZAPResult
       return Dir["#{path}/*.json"]
     end
 
+    # Previous or Current json files could be missing. It's useful to think
+    #  of a missing file producing an empty Result set, i.e. `[]` below.
     def read_json(path)
       return File.exists?(path) ? JSON.parse(File.read(path)) : []
     end
@@ -34,6 +36,10 @@ module ZAPResult
 
     def project_name_from_path(path)
       return File.basename(path, ".json")
+    end
+
+    def projects_count(run_dir)
+      json_files_from_dir(run_dir).size
     end
 
     def all_project_names(last_path, curr_path)

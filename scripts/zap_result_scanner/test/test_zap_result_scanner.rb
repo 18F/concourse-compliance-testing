@@ -16,20 +16,20 @@ class TestZAPResultScanner < MiniTest::Test
   end
 
   def test_a_full_result_set
-    Dir.mktmpdir do |dir|
-      ZAPResultComparator.write_summary("#{__dir__}/fixtures/last_full_mp", "#{__dir__}/fixtures/current_full_mp", dir)
-      summary_txt = File.read("#{dir}/summary.txt")
-      summary_json = ZAPResult.read_json("#{dir}/summary.json")
+    Dir.mktmpdir do |results_dir|
+      ZAPResultComparator.write_summary("#{__dir__}/fixtures/last_full_mp", "#{__dir__}/fixtures/current_full_mp", results_dir)
+      summary_txt = File.read("#{results_dir}/summary.txt")
+      summary_json = ZAPResult.read_json("#{results_dir}/summary.json")
       assert_match "micropurchase: (0/1/105/0) NO CHANGE", summary_txt
       assert_equal 105, summary_json["micropurchase"]["low"]
     end
   end
 
   def test_simple_integration
-    Dir.mktmpdir do |dir|
-      ZAPResultComparator.write_summary(@last_run_path, @curr_run_path, dir)
-      summary_txt = File.read("#{dir}/summary.txt")
-      summary_json = ZAPResult.read_json("#{dir}/summary.json")
+    Dir.mktmpdir do |results_dir|
+      ZAPResultComparator.write_summary(@last_run_path, @curr_run_path, results_dir)
+      summary_txt = File.read("#{results_dir}/summary.txt")
+      summary_json = ZAPResult.read_json("#{results_dir}/summary.json")
 
       assert_match "Completed scan of 2 properties", summary_txt
       assert_match "fake-site-1: (2/0/1/1) has", summary_txt

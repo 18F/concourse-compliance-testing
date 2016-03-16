@@ -5,26 +5,47 @@ module ZAPResultComparator
 
     def write_summary(last_run_dir, curr_run_dir, output_dir)
       final_json_out = {}
-      final_text_out = "Completed scan of #{ZAPResult.json_files_from_dir(curr_run_dir).size} properties:"
+      final_text_out = "Completed scan of #{ZAPResult.projects_count(curr_run_dir)} properties:"
 
       ZAPResult.all_project_names(last_run_dir, curr_run_dir).each do |proj|
-        last_results = ZAPResult.project_results(proj, last_run_dir)
-        curr_results = ZAPResult.project_results(proj, curr_run_dir)
-        curr_risk_levels = count_risk_levels(curr_results)
+        curr_results = project_results(proj, curr_run_dir)
+        deltas = project_deltas(proj, last_run_dir, curr_run_dir)
+        status = project_status(proj, deltas, last_run_dir, curr_run_dir)
 
-        project_deltas = compute_risk_level_deltas(last_results, curr_results)
-        missing_last = ZAPResult.missing_project_json?(proj, last_run_dir)
-        missing_curr = ZAPResult.missing_project_json?(proj, curr_run_dir)
-
-        project_status = risk_level_delta_status_messages(project_deltas, missing_last, missing_curr)
-        project_summary = curr_risk_levels.merge(status: project_status)
-
-        final_json_out.merge!({ proj => project_summary })
-        final_text_out << "\n#{proj}: #{paren_status_count(curr_results)} #{project_status}"
+        final_json_out.merge!(project_json(proj, curr_results, status))
+        final_text_out << project_text(proj, curr_results, status)
       end
 
       File.write("#{output_dir}/summary.json", final_json_out.to_json)
       File.write("#{output_dir}/summary.txt", final_text_out)
+    end
+
+    def project_results(proj, run_dir)
+      return ZAPResult.project_results(proj, run_dir)
+    end
+
+    def project_deltas(proj, last_run_dir, curr_run_dir)
+      return compute_risk_level_deltas(
+        project_results(proj, last_run_dir),
+        project_results(proj, curr_run_dir)
+      )
+    end
+
+    def project_json(proj, results, proj_status)
+      risk_levels = count_risk_levels(results)
+      proj_summary = risk_levels.merge(status: proj_status)
+      return { proj => proj_summary }
+    end
+
+    def project_status(proj, deltas, last_run_dir, curr_run_dir)
+      return risk_level_delta_status_messages(deltas,
+        ZAPResult.missing_project_json?(proj, last_run_dir),
+        ZAPResult.missing_project_json?(proj, curr_run_dir)
+      )
+    end
+
+    def project_text(proj, curr_results, proj_status)
+      return "\n#{proj}: #{paren_status_count(curr_results)} #{proj_status}"
     end
 
     def count_risk_levels(results)
