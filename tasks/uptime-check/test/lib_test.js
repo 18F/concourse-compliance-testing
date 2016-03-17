@@ -42,7 +42,7 @@ describe("uptime-check lib", () => {
     });
   });
 
-  // TODO check link object
+  // TODO test checkLinkObj
 
   describe('.checkProjects()', () => {
     it("returns an empty Array when no projects are passed", () => {

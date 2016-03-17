@@ -59,24 +59,24 @@ const lib = {
     }
   },
 
-  // returns an Array of Promises
-  checkProjects(projects) {
-    const promises = [];
-    projects.forEach((project) => {
-      const links = project.links || [];
-      let projectPromise;
-      if (links.length === 0) {
-        projectPromise = Promise.reject(`No \`links\` for ${project.name}.`);
-      } else {
-        const linkPromises = links.map((linkObj) => {
-          return lib.checkLinkObj(project.name, linkObj);
-        });
-        projectPromise = Promise.all(linkPromises);
-      }
-      promises.push(projectPromise);
-    });
+  // returns a Promise, which resolves if it has links and they all respond successfully
+  checkProject(project) {
+    const links = project.links || [];
+    let projectPromise;
+    if (links.length === 0) {
+      projectPromise = Promise.reject(`No \`links\` for ${project.name}.`);
+    } else {
+      const linkPromises = links.map((linkObj) => {
+        return lib.checkLinkObj(project.name, linkObj);
+      });
+      projectPromise = Promise.all(linkPromises);
+    }
+    return projectPromise;
+  },
 
-    return promises;
+  // returns an Array of Promises, one for each project
+  checkProjects(projects) {
+    return projects.map(lib.checkProject);
   },
 
   printLinkStatuses(projects) {
