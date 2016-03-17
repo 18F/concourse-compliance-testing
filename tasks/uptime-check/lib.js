@@ -1,7 +1,7 @@
 'use strict';
 
 const fs = require('fs');
-const request = require('request');
+const rp = require('request-promise');
 
 
 const lib = {
@@ -22,30 +22,20 @@ const lib = {
     }
   },
 
-  headReq(uri, callback) {
-    request.head(uri, callback);
-  },
-
-  isSuccess(res) {
-    return res.statusCode >= 200 && res.statusCode < 300;
-  },
-
-  isUp(res) {
-    return !!res && (lib.isSuccess(res) || res.statusCode === 403);
-  },
-
-  // Returns a Promise. The rejection handler receives a string with the reason.
+  // Returns a Promise that resolves for 2xx or 403 status codes. The rejection handler receives a string with the reason.
   checkIfUp(uri) {
-    return new Promise((resolve, reject) => {
-      lib.headReq(uri, (err, res, body) => {
-        if (err) {
-          reject(`FAIL: ${uri} responds with ${err.toString()}.`);
-        } else if (!lib.isUp(res)) {
-          reject(`FAIL: ${uri} gives a status of ${res.statusCode}.`);
-        } else {
-          resolve();
-        }
-      });
+    const promise = rp({
+      uri: uri,
+      method: 'HEAD'
+    });
+
+    // swallow 403 errors
+    return promise.catch((reason) => {
+      if (reason.response && reason.response.statusCode === 403) {
+        return '';
+      } else {
+        throw new Error(`FAIL: ${uri} responds with "${reason.error.toString()}".`);
+      }
     });
   },
 

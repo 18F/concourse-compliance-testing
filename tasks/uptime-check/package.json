@@ -2,7 +2,7 @@
   "name": "concourse-compliance-testing",
   "private": true,
   "dependencies": {
-    "request": "^2.69.0"
+    "request-promise": "^2.0.1"
   },
   "devDependencies": {
     "mocha": "^2.4.5",
