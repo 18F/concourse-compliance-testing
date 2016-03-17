@@ -39,7 +39,7 @@ const lib = {
     return new Promise((resolve, reject) => {
       lib.headReq(uri, (err, res, body) => {
         if (err) {
-          reject(`FAIL: ${uri} responds with ${err.code}.`);
+          reject(`FAIL: ${uri} responds with ${err.toString()}.`);
         } else if (!lib.isUp(res)) {
           reject(`FAIL: ${uri} gives a status of ${res.statusCode}.`);
         } else {

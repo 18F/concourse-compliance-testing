@@ -42,9 +42,39 @@ describe("uptime-check lib", () => {
     });
   });
 
+  // TODO check link object
+
   describe('.checkProjects()', () => {
     it("returns an empty Array when no projects are passed", () => {
       assert.deepStrictEqual(lib.checkProjects([]), []);
+    });
+
+    it("returns a Promise for each project", () => {
+      const projects = [
+        {
+          name: "foo",
+          links: [
+            "https://foo.com"
+          ]
+        },
+        {
+          name: "bar",
+          links: [
+            "https://bar.com"
+          ]
+        }
+      ];
+
+      nock("https://foo.com")
+        .head('/')
+        .reply(200, '');
+      nock("https://bar.com")
+        .head('/')
+        .reply(200, '');
+
+      const promises = lib.checkProjects(projects);
+      assert.strictEqual(promises.length, 2);
+      return Promise.all(promises);
     });
   });
 });
