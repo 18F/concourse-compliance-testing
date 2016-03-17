@@ -34,13 +34,14 @@ const lib = {
     return !!res && (lib.isSuccess(res) || res.statusCode === 403);
   },
 
+  // Returns a Promise. The rejection handler receives a string with the reason.
   checkIfUp(uri) {
     return new Promise((resolve, reject) => {
       lib.headReq(uri, (err, res, body) => {
         if (err) {
-          reject(err);
+          reject(`FAIL: ${uri} responds with ${err.code}.`);
         } else if (!lib.isUp(res)) {
-          reject("URL gives a status of " + res.statusCode);
+          reject(`FAIL: ${uri} gives a status of ${res.statusCode}.`);
         } else {
           resolve();
         }
@@ -48,31 +49,38 @@ const lib = {
     });
   },
 
-  checkLink(link) {
-    lib.checkIfUp(link).catch((err) => {
-      console.error(`${link} is NOT up.`);
-    });
-  },
-
+  // returns a Promise
   checkLinkObj(projectName, linkObj) {
     const link = lib.getUrl(linkObj);
     if (link) {
-      lib.checkLink(link);
+      return lib.checkIfUp(link);
     } else {
-      console.error(`Malformed \`links\` for ${projectName}.`);
+      return Promise.reject(`Malformed \`links\` for ${projectName}.`);
     }
   },
 
+  // returns an Array of Promises
   checkProjects(projects) {
+    const promises = [];
     projects.forEach((project) => {
       const links = project.links || [];
       if (links.length === 0) {
-        console.error(`No \`links\` for ${project.name}.`);
+        const promise = Promise.reject(`No \`links\` for ${project.name}.`);
+        promises.push(promise);
       } else {
         links.forEach((linkObj) => {
-          lib.checkLinkObj(project.name, linkObj);
+          const promise = lib.checkLinkObj(project.name, linkObj);
+          promises.push(promise);
         });
       }
+    });
+
+    return promises;
+  },
+
+  printLinkStatuses(projects) {
+    lib.checkProjects(projects).forEach((promise) => {
+      promise.then(null, console.error);
     });
   }
 };

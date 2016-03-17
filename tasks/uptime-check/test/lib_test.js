@@ -9,34 +9,42 @@ nock.disableNetConnect();
 describe("uptime-check lib", () => {
   describe('.checkIfUp()', () => {
     [200, 201, 403].forEach((status) => {
-      it("returns `true` for a " + status, (done) => {
+      it("returns a Promise that resolves for a " + status, () => {
         const uri = 'https://example.com';
 
         nock(uri)
           .head('/')
           .reply(status, '');
 
-        lib.checkIfUp(uri).then(done, done);
+        return lib.checkIfUp(uri);
       });
     });
 
     [404, 500].forEach((status) => {
-      it("returns `false` for a " + status, (done) => {
+      it("returns a Promise that rejects for " + status, () => {
         const uri = 'https://example.com';
 
         nock(uri)
           .head('/')
           .reply(status, '');
 
-        lib.checkIfUp(uri).then(
+        // reverse the Promise
+        // http://stackoverflow.com/a/28706900/358804
+        return lib.checkIfUp(uri).then(
           () => {
-            done("request should not succeed");
+            throw new Error("request should not succeed");
           },
           (err) => {
-            done();
+            return "request failed (as expected)";
           }
         );
       });
+    });
+  });
+
+  describe('.checkProjects()', () => {
+    it("returns an empty Array when no projects are passed", () => {
+      assert.deepStrictEqual(lib.checkProjects([]), []);
     });
   });
 });
