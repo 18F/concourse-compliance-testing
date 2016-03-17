@@ -3,7 +3,8 @@
 set -e
 set -x
 
-npm install request@^2.69.0
-node ./scripts/tasks/uptime-check/task.js
+cd scripts/tasks/uptime-check
+npm install --production
+PROJECT_JSON=../../../projects-json/projects.json node task.js
 
 echo "TASK COMPLETE"
