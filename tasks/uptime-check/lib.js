@@ -64,15 +64,16 @@ const lib = {
     const promises = [];
     projects.forEach((project) => {
       const links = project.links || [];
+      let projectPromise;
       if (links.length === 0) {
-        const promise = Promise.reject(`No \`links\` for ${project.name}.`);
-        promises.push(promise);
+        projectPromise = Promise.reject(`No \`links\` for ${project.name}.`);
       } else {
-        links.forEach((linkObj) => {
-          const promise = lib.checkLinkObj(project.name, linkObj);
-          promises.push(promise);
+        const linkPromises = links.map((linkObj) => {
+          return lib.checkLinkObj(project.name, linkObj);
         });
+        projectPromise = Promise.all(linkPromises);
       }
+      promises.push(projectPromise);
     });
 
     return promises;

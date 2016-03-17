@@ -49,7 +49,7 @@ describe("uptime-check lib", () => {
       assert.deepStrictEqual(lib.checkProjects([]), []);
     });
 
-    it("returns a Promise for each project", () => {
+    it("returns a Promise for each link", () => {
       const projects = [
         {
           name: "foo",
@@ -75,6 +75,29 @@ describe("uptime-check lib", () => {
       const promises = lib.checkProjects(projects);
       assert.strictEqual(promises.length, 2);
       return Promise.all(promises);
+    });
+
+    it("returns only one Promise for each project", () => {
+      const projects = [
+        {
+          name: "foo",
+          links: [
+            "https://foo.com",
+            "https://bar.com"
+          ]
+        }
+      ];
+
+      nock("https://foo.com")
+        .head('/')
+        .reply(200, '');
+      nock("https://bar.com")
+        .head('/')
+        .reply(200, '');
+
+      const promises = lib.checkProjects(projects);
+      assert.strictEqual(promises.length, 1);
+      return promises[0];
     });
   });
 });
