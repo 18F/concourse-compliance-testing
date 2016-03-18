@@ -1,7 +1,4 @@
-# local usage:
-#
-#   fly execute -t lite -c tasks/run-zap/task.yml -i scripts=.
-#
+---
 inputs:
 -  name: scripts
 outputs:

@@ -1,9 +1,4 @@
-# local usage:
-#
-#   # run fetch-project-data task first
-#   mkdir -p tmp
-#   fly execute -t lite -c tasks/uptime-check/task.yml -i scripts=. -i projects-json=tmp
-#
+---
 platform: linux
 image_resource:
   type: docker-image
