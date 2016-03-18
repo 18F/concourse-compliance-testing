@@ -4,13 +4,7 @@ env:
   mocha: true
   node: true
 rules:
-  indent:
-    - error
-    - 2
-  linebreak-style:
-    - error
-    - unix
+  indent: [2, 2]
+  linebreak-style: [2, "unix"]
   no-console: 0
-  semi:
-    - error
-    - always
+  semi: [2, "always"]
