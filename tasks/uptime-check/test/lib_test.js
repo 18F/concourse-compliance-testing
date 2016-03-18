@@ -17,7 +17,7 @@ const reversePromise = (promise) => {
       return "request failed (as expected)";
     }
   );
-}
+};
 
 describe("uptime-check lib", () => {
   const stubAllRequests = (urls) => {
