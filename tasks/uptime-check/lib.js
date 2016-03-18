@@ -15,7 +15,7 @@ const lib = {
   },
 
   getUrl(linkObj) {
-    if (typeof linkObj == 'string') {
+    if (typeof linkObj === 'string') {
       return linkObj;
     } else {
       return linkObj.url;

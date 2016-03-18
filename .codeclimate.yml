@@ -9,15 +9,13 @@ engines:
     enabled: true
   fixme:
     enabled: true
-  markdownlint:
-    enabled: true
-  nodesecurity:
-    enabled: true
   shellcheck:
     enabled: true
 ratings:
   paths:
   - "**.js"
 exclude_paths:
+- .vagrant/
 - config/
+- tmp/
 - "**/node_modules/**"

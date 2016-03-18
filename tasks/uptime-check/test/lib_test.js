@@ -54,7 +54,15 @@ describe("uptime-check lib", () => {
     });
   });
 
-  // TODO test checkLinkObj
+  describe('.getUrl()', () => {
+    it("handles strings", () => {
+      assert.strictEqual(lib.getUrl('https://foo.com'), 'https://foo.com');
+    });
+
+    it("handles objects", () => {
+      assert.strictEqual(lib.getUrl({url: 'https://foo.com'}), 'https://foo.com');
+    });
+  });
 
   describe('.checkProject()', () => {
     it("returns only one Promise when there are multiple links", () => {
