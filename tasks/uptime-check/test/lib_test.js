@@ -6,6 +6,19 @@ const lib = require('../lib');
 
 nock.disableNetConnect();
 
+// Returns a new Promise that resolves when the given `promise` rejects, and vice versa. Useful for tests that want to check for a rejected Promise.
+const reversePromise = (promise) => {
+  // http://stackoverflow.com/a/28706900/358804
+  return promise.then(
+    () => {
+      throw new Error("request should not succeed");
+    },
+    () => {
+      return "request failed (as expected)";
+    }
+  );
+}
+
 describe("uptime-check lib", () => {
   const stubAllRequests = (urls) => {
     urls.forEach((url) => {
@@ -36,16 +49,7 @@ describe("uptime-check lib", () => {
           .head('/')
           .reply(status, '');
 
-        // reverse the Promise
-        // http://stackoverflow.com/a/28706900/358804
-        return lib.checkIfUp(uri).then(
-          () => {
-            throw new Error("request should not succeed");
-          },
-          (err) => {
-            return "request failed (as expected)";
-          }
-        );
+        return reversePromise(lib.checkIfUp(uri));
       });
     });
   });
