@@ -1,0 +1,29 @@
+---
+engines:
+  duplication:
+    enabled: true
+    config:
+      languages:
+      - javascript
+      - ruby
+  eslint:
+    enabled: true
+  fixme:
+    enabled: true
+  reek:
+    enabled: true
+  rubocop:
+    enabled: true
+  shellcheck:
+    enabled: true
+ratings:
+  paths:
+  - "**.js"
+  - "**.rb"
+  - "**.sh"
+exclude_paths:
+- .vagrant/
+- "**/node_modules/**"
+- config/
+- tmp/
+- Vagrantfile
