@@ -9,10 +9,26 @@ module TeamDataFilterer
       results
     end
 
+    def transform_links(links)
+      links.map do |link|
+        case link
+        when Hash
+          link
+        when String
+          { "url" => link }
+        else
+          STDERR.puts "WARN: unknown link format: `#{link.inspect}`."
+        end
+      end
+    end
+
     # copy in overridden attributes from the target
     def transform_project(project, target)
       result = project.merge(target)
-      result['links'] ||= []
+
+      links = result['links'] || []
+      result['links'] = self.transform_links(links)
+
       result
     end
 

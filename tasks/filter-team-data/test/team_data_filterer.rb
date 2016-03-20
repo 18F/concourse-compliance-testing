@@ -2,6 +2,29 @@ require 'minitest/autorun'
 require_relative '../team_data_filterer'
 
 describe TeamDataFilterer do
+  describe '.transform_links' do
+    it "converts String `links` to the Hash format" do
+      links = [
+        "https://example1.com",
+        {
+          "url" => "https://example2.com",
+          "text" => "example2"
+        }
+      ]
+
+      results = TeamDataFilterer.transform_links(links)
+      expect(results).must_equal([
+        {
+          "url" => "https://example1.com"
+        },
+        {
+          "url" => "https://example2.com",
+          "text" => "example2"
+        }
+      ])
+    end
+  end
+
   describe '.transform_project' do
     it "merges in attributes from the target" do
       project = {
