@@ -52,6 +52,7 @@ const lib = {
   },
 
   printLinkStatuses(projects) {
+    console.log(`Checking ${projects.length} projects...`);
     lib.checkProjects(projects).forEach((promise) => {
       promise.then(null, console.error);
     });

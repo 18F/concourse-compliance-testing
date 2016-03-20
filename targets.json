@@ -3,6 +3,11 @@
     "name": "openopps"
   },
   {
-    "name": "micropurchase"
+    "name": "micropurchase",
+    "links": [
+      {
+        "url": "https://micropurchase.18f.gov"
+      }
+    ]
   }
 ]

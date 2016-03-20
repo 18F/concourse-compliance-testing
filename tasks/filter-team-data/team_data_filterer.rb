@@ -39,18 +39,17 @@ module TeamDataFilterer
     def filtered_projects(projects, targets)
       p_by_name = projects_by_name(projects)
 
-      results = []
-      targets.each do |target|
+      targets.map do |target|
         name = target['name']
         project = p_by_name[name]
-        if project
-          results << transform_project(project, target)
-        else
-          STDERR.puts "WARN: `#{name}` is missing from Team API data."
-        end
-      end
 
-      results
+        unless project
+          STDERR.puts "WARN: `#{name}` is missing from Team API data."
+          project = {}
+        end
+
+        transform_project(project, target)
+      end
     end
 
     def read_json(path)

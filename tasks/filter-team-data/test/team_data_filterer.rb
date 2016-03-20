@@ -89,7 +89,12 @@ describe TeamDataFilterer do
       ]
 
       results = TeamDataFilterer.filtered_projects([], targets)
-      expect(results).must_equal []
+      expect(results).must_equal [
+        {
+          "name" => "foo",
+          "links" => [],
+        }
+      ]
     end
   end
 end
