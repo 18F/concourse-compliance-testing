@@ -11,7 +11,9 @@ module TeamDataFilterer
 
     # copy in overridden attributes from the target
     def transform_project(project, target)
-      project.merge(target)
+      result = project.merge(target)
+      result['links'] ||= []
+      result
     end
 
     def filtered_projects(projects, targets)
