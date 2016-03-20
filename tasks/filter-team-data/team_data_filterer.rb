@@ -12,8 +12,11 @@ module TeamDataFilterer
     def transform_links(links)
       links.map do |link|
         case link
+        # the new about.yml format
+        # https://github.com/18F/about_yml#aboutyml-cheat-sheet
         when Hash
           link
+        # the old about.yml format
         when String
           { "url" => link }
         else
@@ -26,14 +29,15 @@ module TeamDataFilterer
     def transform_project(project, target)
       result = project.merge(target)
 
+      # not always present in about.yml
       links = result['links'] || []
-      result['links'] = self.transform_links(links)
+      result['links'] = transform_links(links)
 
       result
     end
 
     def filtered_projects(projects, targets)
-      p_by_name = self.projects_by_name(projects)
+      p_by_name = projects_by_name(projects)
 
       results = []
       targets.each do |target|
