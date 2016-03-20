@@ -1,14 +1,6 @@
+# helper methods for filter-team-data
 module TeamDataFilterer
   class << self
-    def projects_by_name(projects)
-      results = {}
-      projects.each do |project|
-        name = project['name']
-        results[name] = project
-      end
-      results
-    end
-
     def transform_links(links)
       links.map do |link|
         case link
@@ -40,15 +32,7 @@ module TeamDataFilterer
       p_by_name = projects_by_name(projects)
 
       targets.map do |target|
-        name = target['name']
-        project = p_by_name[name]
-
-        unless project
-          STDERR.puts "WARN: `#{name}` is missing from Team API data."
-          project = {}
-        end
-
-        transform_project(project, target)
+        build_target(target, p_by_name)
       end
     end
 
@@ -58,6 +42,29 @@ module TeamDataFilterer
 
     def write_json(data, path)
       JSON.dump(data, File.new(path, 'w'))
+    end
+
+    private
+
+    def projects_by_name(projects)
+      results = {}
+      projects.each do |project|
+        name = project['name']
+        results[name] = project
+      end
+      results
+    end
+
+    def build_target(target, p_by_name)
+      name = target['name']
+      project = p_by_name[name]
+
+      unless project
+        STDERR.puts "WARN: `#{name}` is missing from Team API data."
+        project = {}
+      end
+
+      transform_project(project, target)
     end
   end
 end

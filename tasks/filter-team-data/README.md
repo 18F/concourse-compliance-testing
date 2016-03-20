@@ -46,5 +46,5 @@ This assumes a [Concourse](http://concourse.ci/) target named `lite`.
 ## Running tests
 
 ```bash
-ruby test/team_data_filterer.rb
+ruby test/test_team_data_filterer.rb
 ```

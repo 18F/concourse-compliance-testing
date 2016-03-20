@@ -37,11 +37,11 @@ describe TeamDataFilterer do
       }
 
       result = TeamDataFilterer.transform_project(project, target)
-      expect(result).must_equal({
+      expect(result).must_equal(
         "name" => "foo",
         "links" => [],
         "something" => 7
-      })
+      )
     end
 
     it "sets `links` if not present" do
@@ -49,10 +49,10 @@ describe TeamDataFilterer do
       target = { "name" => "foo" }
 
       result = TeamDataFilterer.transform_project(project, target)
-      expect(result).must_equal({
+      expect(result).must_equal(
         "name" => "foo",
         "links" => []
-      })
+      )
     end
   end
 
@@ -61,7 +61,7 @@ describe TeamDataFilterer do
       projects = [
         {
           "name" => "foo",
-          "links" => [],
+          "links" => []
         },
         {
           "name" => "bar",
@@ -92,7 +92,7 @@ describe TeamDataFilterer do
       expect(results).must_equal [
         {
           "name" => "foo",
-          "links" => [],
+          "links" => []
         }
       ]
     end
