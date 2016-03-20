@@ -2,7 +2,7 @@ module TeamDataFilterer
   class << self
     def projects_by_name(projects)
       results = {}
-      projects['results'].each do |project|
+      projects.each do |project|
         name = project['name']
         results[name] = project
       end

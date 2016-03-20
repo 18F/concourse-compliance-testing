@@ -13,3 +13,9 @@ This assumes a [Concourse](http://concourse.ci/) target named `lite`. Do the fol
     mkdir -p out
     fly execute -t lite -c tasks/filter-team-data/task.yml -i scripts=. -i projects-json=tmp --output results=out
     ```
+
+## Tests
+
+```bash
+ruby test/team_data_filterer.rb
+```
