@@ -5,11 +5,10 @@ PROJECT_JSON = ENV['PROJECT_JSON'] || File.expand_path('../../../../projects-jso
 TARGETS = File.expand_path('../../../targets.json', __FILE__)
 RESULTS = ENV['RESULTS'] || File.expand_path('../../../../results/projects.json', __FILE__)
 
-projects = JSON.load(File.new(PROJECT_JSON))['results']
-targets = JSON.load(File.new(TARGETS))
+projects = TeamDataFilterer.read_json(PROJECT_JSON)['results']
+targets = TeamDataFilterer.read_json(TARGETS)
 
 filtered_projects = TeamDataFilterer.filtered_projects(projects, targets)
-
-JSON.dump(filtered_projects, File.new(RESULTS, 'w'))
+TeamDataFilterer.write_json(filtered_projects, RESULTS)
 
 puts "TASK COMPLETE"

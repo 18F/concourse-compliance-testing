@@ -30,5 +30,13 @@ module TeamDataFilterer
 
       results
     end
+
+    def read_json(path)
+      JSON.load(File.new(path))
+    end
+
+    def write_json(data, path)
+      JSON.dump(data, File.new(path, 'w'))
+    end
   end
 end
