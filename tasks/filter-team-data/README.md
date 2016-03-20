@@ -11,7 +11,7 @@ This assumes a [Concourse](http://concourse.ci/) target named `lite`. Do the fol
 
     ```bash
     mkdir -p out
-    fly execute -t lite -c tasks/filter-team-data/task.yml -i scripts=. -i projects-json=tmp --output results=out
+    fly execute -t lite -c tasks/filter-team-data/task.yml -i scripts=. -i projects-json=tmp --output filtered-projects=out
     ```
 
 ## Tests

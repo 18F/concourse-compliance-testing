@@ -14,14 +14,6 @@ const lib = {
     return JSON.parse(content);
   },
 
-  getUrl(linkObj) {
-    if (typeof linkObj === 'string') {
-      return linkObj;
-    } else {
-      return linkObj.url;
-    }
-  },
-
   // Returns a Promise that resolves for 2xx or 403 status codes. The rejection handler receives a string with the reason.
   checkIfUp(uri) {
     const promise = rp({
@@ -39,25 +31,15 @@ const lib = {
     });
   },
 
-  // returns a Promise
-  checkLinkObj(projectName, linkObj) {
-    const link = lib.getUrl(linkObj);
-    if (link) {
-      return lib.checkIfUp(link);
-    } else {
-      return Promise.reject(`Malformed \`links\` for ${projectName}.`);
-    }
-  },
-
   // returns a Promise, which resolves if it has links and they all respond successfully
   checkProject(project) {
-    const links = project.links || [];
+    const links = project.links;
     let projectPromise;
     if (links.length === 0) {
       projectPromise = Promise.reject(`No \`links\` for ${project.name}.`);
     } else {
       const linkPromises = links.map((linkObj) => {
-        return lib.checkLinkObj(project.name, linkObj);
+        return lib.checkIfUp(linkObj.url);
       });
       projectPromise = Promise.all(linkPromises);
     }

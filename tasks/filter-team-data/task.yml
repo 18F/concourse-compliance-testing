@@ -3,7 +3,7 @@ inputs:
 - name: projects-json
 - name: scripts
 outputs:
-- name: results
+- name: filtered-projects
 platform: linux
 image_resource:
   type: docker-image

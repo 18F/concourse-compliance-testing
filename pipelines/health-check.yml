@@ -14,5 +14,7 @@ jobs:
   - get: scripts
   - task: fetch-project-data
     file: scripts/tasks/fetch-project-data.yml
+  - task: filter-team-data
+    file: scripts/tasks/filter-team-data/task.yml
   - task: uptime-check
     file: scripts/tasks/uptime-check/task.yml

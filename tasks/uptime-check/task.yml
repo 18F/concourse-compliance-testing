@@ -7,6 +7,6 @@ image_resource:
     tag: '5.6-slim'
 inputs:
 - name: scripts
-- name: projects-json
+- name: filtered-projects
 run:
   path: ./scripts/tasks/uptime-check/task.sh
