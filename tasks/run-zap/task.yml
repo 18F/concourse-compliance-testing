@@ -1,8 +1,8 @@
 ---
 inputs:
--  name: scripts
+- name: scripts
 outputs:
--  name: results
+- name: results
 platform: linux
 image_resource:
   type: docker-image
