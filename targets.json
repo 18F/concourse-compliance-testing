@@ -1,6 +1,11 @@
 [
   {
-    "name": "openopps"
+    "name": "openopps",
+    "links": [
+      {
+        "url": "https://openopps-staging.18f.gov/"
+      }
+    ]
   },
   {
     "name": "micropurchase",

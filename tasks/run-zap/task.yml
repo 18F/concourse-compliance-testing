@@ -1,6 +1,7 @@
 ---
 inputs:
 - name: scripts
+- name: filtered-projects
 outputs:
 - name: results
 platform: linux

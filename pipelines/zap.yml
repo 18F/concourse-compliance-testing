@@ -40,6 +40,10 @@ jobs:
   - get: after-midnight
     trigger: true
   - get: scripts
+  - task: fetch-project-data
+    file: scripts/tasks/fetch-project-data.yml
+  - task: filter-team-data
+    file: scripts/tasks/filter-team-data/task.yml
   - task: scan-zap
     file: scripts/tasks/run-zap/task.yml
   - put: s3-bucket
@@ -54,6 +58,10 @@ jobs:
 - name: zap-ondemand
   plan:
   - get: scripts
+  - task: fetch-project-data
+    file: scripts/tasks/fetch-project-data.yml
+  - task: filter-team-data
+    file: scripts/tasks/filter-team-data/task.yml
   - task: scan-zap
     file: scripts/tasks/run-zap/task.yml
   - put: s3-bucket

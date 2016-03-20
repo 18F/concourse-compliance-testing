@@ -7,13 +7,14 @@ apt-get install jq
 pip install --upgrade zapcli
 
 COUNTER=0
-COUNT=$(jq '.targets[] .url' < scripts/targets.json | wc -l)
+COUNT=$(jq length < filtered-projects/projects.json)
 
 zap-cli start --start-options '-config api.disablekey=true'
 
 while [ "$COUNTER" -lt "$COUNT" ]; do
-  NAME=$(jq ".targets[${COUNTER}] .name" -r < scripts/targets.json)
-  TARGET=$(jq ".targets[${COUNTER}] .url" -r < scripts/targets.json)
+  NAME=$(jq -r ".[${COUNTER}] .name" < filtered-projects/projects.json)
+  # TODO scan all links
+  TARGET=$(jq -r ".[${COUNTER}] .links | .[0] | .url" < filtered-projects/projects.json)
 
   echo "Scanning $NAME: $TARGET"
   zap-cli -v quick-scan --spider --ajax-spider --scanners all "$TARGET"
