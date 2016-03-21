@@ -9,4 +9,4 @@
 const lib = require('./lib');
 
 const json = lib.getProjectJson();
-lib.printLinkStatuses(json.results);
+lib.printLinkStatuses(json);

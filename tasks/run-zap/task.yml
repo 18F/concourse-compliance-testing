@@ -1,11 +1,9 @@
-# local usage:
-#
-#   fly execute -t lite -c tasks/run-zap/task.yml -i scripts=.
-#
+---
 inputs:
--  name: scripts
+- name: scripts
+- name: filtered-projects
 outputs:
--  name: results
+- name: results
 platform: linux
 image_resource:
   type: docker-image
