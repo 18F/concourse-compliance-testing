@@ -34,6 +34,9 @@ resources:
     access_key_id: {{aws-access-key}}
     secret_access_key: {{aws-secret-key}}
     bucket: {{aws-bucket}}
+    options:
+      - "--exclude '*'"
+      - "--include 'results/*'"
 jobs:
 - name: zap-scheduled
   plan:
