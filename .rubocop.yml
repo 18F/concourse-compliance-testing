@@ -1,0 +1,24 @@
+# based on https://github.com/18F/C2/blob/2032fcb4de80ad23d9b81885be20985e99052b35/.rubocop.yml
+Metrics/LineLength:
+  Enabled: false
+Style/CommentAnnotation:
+  Enabled: false
+Style/Documentation:
+  Enabled: false
+Style/DotPosition:
+  Enabled: false
+Style/EmptyElse:
+  Enabled: false
+Style/GuardClause:
+  Enabled: false
+Style/IfUnlessModifier:
+  # inline conditionals don't get picked up by simplecov, so preferable to avoid them
+  Enabled: false
+Style/IndentArray:
+  Enabled: false
+Style/RedundantBegin:
+  Enabled: false
+Style/SignalException:
+  Enabled: false
+Style/StringLiterals:
+  Enabled: false
