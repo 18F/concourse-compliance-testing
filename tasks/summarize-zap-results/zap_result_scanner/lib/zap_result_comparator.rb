@@ -1,5 +1,6 @@
 require_relative 'zap_result'
 
+# Compares two sets of ZAPResults
 module ZAPResultComparator
   class << self
 
@@ -21,11 +22,11 @@ module ZAPResultComparator
     end
 
     def project_results(proj, run_dir)
-      return ZAPResult.project_results(proj, run_dir)
+      ZAPResult.project_results(proj, run_dir)
     end
 
     def project_deltas(proj, last_run_dir, curr_run_dir)
-      return compute_risk_level_deltas(
+      compute_risk_level_deltas(
         project_results(proj, last_run_dir),
         project_results(proj, curr_run_dir)
       )
@@ -34,24 +35,25 @@ module ZAPResultComparator
     def project_json(proj, results, proj_status)
       risk_levels = count_risk_levels(results)
       proj_summary = risk_levels.merge(status: proj_status)
-      return { proj => proj_summary }
+      { proj => proj_summary }
     end
 
     def project_status(proj, deltas, last_run_dir, curr_run_dir)
-      return risk_level_delta_status_messages(deltas,
+      risk_level_delta_status_messages(
+        deltas,
         ZAPResult.missing_project_json?(proj, last_run_dir),
         ZAPResult.missing_project_json?(proj, curr_run_dir)
       )
     end
 
     def project_text(proj, curr_results, proj_status)
-      return "\n#{proj}: #{paren_status_count(curr_results)} #{proj_status}"
+      "\n#{proj}: #{paren_status_count(curr_results)} #{proj_status}"
     end
 
     def count_risk_levels(results)
-      statuses = { high: 0, medium: 0, low: 0, informational: 0}
-      results.each{ |r| statuses[r.risk.downcase.to_sym] += 1 }
-      return statuses
+      statuses = { high: 0, medium: 0, low: 0, informational: 0 }
+      results.each { |r| statuses[r.risk.downcase.to_sym] += 1 }
+      statuses
     end
 
     def compute_risk_level_deltas(old_results, new_results)
@@ -80,8 +82,7 @@ module ZAPResultComparator
 
     def paren_status_count(results)
       counts = count_risk_levels(results)
-      return "(#{counts[:high]}/#{counts[:medium]}/#{counts[:low]}/#{counts[:informational]})"
+      "(#{counts[:high]}/#{counts[:medium]}/#{counts[:low]}/#{counts[:informational]})"
     end
-
   end
 end

@@ -4,7 +4,6 @@ require_relative '../lib/zap_result_comparator'
 # For now, you should just be able to `ruby test_result_scanner.rb`
 
 class TestZAPResultScanner < MiniTest::Test
-
   def setup
     @last_run_path = "#{__dir__}/fixtures/last_run"
     @curr_run_path = "#{__dir__}/fixtures/current_run"
@@ -48,7 +47,7 @@ class TestZAPResultScanner < MiniTest::Test
 
   def test_read_json_returns_json
     assert @last_json.is_a?(Array)
-    assert @last_json.length > 0
+    refute @last_json.empty?
   end
 
   def test_project_name_from_path
@@ -130,5 +129,4 @@ class TestZAPResultScanner < MiniTest::Test
     message = ZAPResultComparator.risk_level_delta_status_messages(deltas, false, false)
     assert_match "NO CHANGE", message
   end
-
 end
