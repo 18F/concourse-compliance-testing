@@ -1,6 +1,6 @@
 # local usage:
 #
-#   fly set-pipeline -t lite -n -c pipelines/zap.yml -p zap --load-vars-from config/local.yml -v script-branch=`git rev-parse --abbrev-ref HEAD`
+#   fly set-pipeline -t lite -n -c pipelines/zap.yml -p zap --load-vars-from config/local.yml
 #
 resource_types:
 - name: slack-notification
@@ -8,14 +8,15 @@ resource_types:
   source:
     repository: cfcommunity/slack-notification-resource
     tag: v1.0.0
-- name: s3-upload
+- name: s3-resource
   type: docker-image
   source:
-    repository: 18fgsa/s3-resource-simple
+    repository: ctro18f/s3-resource-simple
 - name: http-resource
   type: docker-image
   source:
     repository: 18fgsa/http-resource
+
 resources:
 - name: scripts
   type: git
@@ -33,7 +34,7 @@ resources:
   source:
     url: {{slack-hook}}
 - name: s3-bucket
-  type: s3-upload
+  type: s3-resource
   source:
     access_key_id: {{aws-access-key}}
     secret_access_key: {{aws-secret-key}}
@@ -48,6 +49,7 @@ resources:
     filename: projects.json
     index: https://team-api.18f.gov/public/api/projects/
     etag: true
+
 jobs:
 - name: zap-scheduled
   plan:
@@ -74,7 +76,7 @@ jobs:
       put: slack
       params:
         text: |
-          :x: FAILED to scan properties. 
+          :x: FAILED to scan properties.
           <https://ci.cloud.gov/pipelines/$BUILD_PIPELINE_NAME/jobs/$BUILD_JOB_NAME/builds/$BUILD_NAME|View build details>
         channel: {{slack-channel}}
         username: {{slack-user}}
@@ -84,11 +86,22 @@ jobs:
   - get: scripts
   - get: projects-json
     resource: fetch-project-data
+  - get: s3-bucket
+
+  - task: fetch-project-data
+    file: scripts/tasks/fetch-project-data.yml
   - task: filter-team-data
     file: scripts/tasks/filter-team-data/task.yml
+
+  - task: fetch-last-zap-results
+    file: scripts/tasks/fetch-last-zap-results.yml
+
   - task: scan-zap
     file: scripts/tasks/run-zap/task.yml
   - put: s3-bucket
+  - task: summarize-zap-results
+    file: scripts/tasks/summarize-zap-results/task.yml
+
     on_success:
       put: slack
       params:
@@ -102,7 +115,7 @@ jobs:
       put: slack
       params:
         text: |
-          :x: FAILED to scan properties. 
+          :x: FAILED to scan properties.
           <https://ci.cloud.gov/pipelines/$BUILD_PIPELINE_NAME/jobs/$BUILD_JOB_NAME/builds/$BUILD_NAME|View build details>
         channel: {{slack-channel}}
         username: {{slack-user}}

@@ -1,0 +1,17 @@
+---
+inputs:
+- name: scripts
+- name: last-results
+- name: results
+outputs:
+- name: zap-summary
+platform: linux
+image_resource:
+  type: docker-image
+  source:
+    repository: ruby
+    tag: '2.3-alpine'
+run:
+  path: ruby
+  args:
+  - ./scripts/tasks/summarize-zap-results/task.rb
