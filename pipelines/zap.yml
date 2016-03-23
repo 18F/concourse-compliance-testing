@@ -2,12 +2,12 @@
 #
 #   fly set-pipeline -t lite -n -c pipelines/zap.yml -p zap --load-vars-from config/local.yml -v script-branch=`git rev-parse --abbrev-ref HEAD`
 #
-
-# Previously we defined the slack notification as a resource, but the one on
-# docker hub (https://hub.docker.com/r/nopik/slack-notification-resource/) is
-# outdated. Instead, we ae using cloud.gov's built-in version
-# (https://github.com/18F/slack-notification-resource-boshrelease).
 resource_types:
+- name: slack-notification
+  type: docker-image
+  source:
+    repository: cfcommunity/slack-notification-resource
+    tag: v1.0.0
 - name: s3-upload
   type: docker-image
   source:
