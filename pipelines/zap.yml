@@ -74,7 +74,7 @@ jobs:
       put: slack
       params:
         text: |
-          :x: FAILED to deploy monitoring on production
+          :x: FAILED to scan properties. 
           <https://ci.cloud.gov/pipelines/$BUILD_PIPELINE_NAME/jobs/$BUILD_JOB_NAME/builds/$BUILD_NAME|View build details>
         channel: {{slack-channel}}
         username: {{slack-user}}
@@ -102,7 +102,7 @@ jobs:
       put: slack
       params:
         text: |
-          :x: FAILED to deploy monitoring on production
+          :x: FAILED to scan properties. 
           <https://ci.cloud.gov/pipelines/$BUILD_PIPELINE_NAME/jobs/$BUILD_JOB_NAME/builds/$BUILD_NAME|View build details>
         channel: {{slack-channel}}
         username: {{slack-user}}
