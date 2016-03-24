@@ -3,7 +3,15 @@
     "name": "openopps",
     "links": [
       {
-        "url": "http://192.168.99.100:32769/"
+        "url": "https://openopps-staging.18f.gov/"
+      }
+    ]
+  },
+  {
+    "name": "micropurchase",
+    "links": [
+      {
+        "url": "https://micropurchase.18f.gov"
       }
     ]
   }
