@@ -12,6 +12,10 @@ resource_types:
   type: docker-image
   source:
     repository: 18fgsa/s3-resource-simple
+- name: http-resource
+  type: docker-image
+  source:
+    repository: 18fgsa/http-resource
 resources:
 - name: scripts
   type: git
@@ -37,14 +41,21 @@ resources:
     options:
       - "--exclude '*'"
       - "--include 'results/*'"
+- name: fetch-project-data
+  type: http-resource
+  source:
+    uri: https://team-api.18f.gov/public/api/projects/
+    filename: projects.json
+    index: https://team-api.18f.gov/public/api/projects/
+    etag: true
 jobs:
 - name: zap-scheduled
   plan:
   - get: after-midnight
     trigger: true
   - get: scripts
-  - task: fetch-project-data
-    file: scripts/tasks/fetch-project-data.yml
+  - get: projects-json
+    resource: fetch-project-data
   - task: filter-team-data
     file: scripts/tasks/filter-team-data/task.yml
   - task: scan-zap
@@ -61,8 +72,8 @@ jobs:
 - name: zap-ondemand
   plan:
   - get: scripts
-  - task: fetch-project-data
-    file: scripts/tasks/fetch-project-data.yml
+  - get: projects-json
+    resource: fetch-project-data
   - task: filter-team-data
     file: scripts/tasks/filter-team-data/task.yml
   - task: scan-zap
