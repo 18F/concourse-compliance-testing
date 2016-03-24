@@ -50,6 +50,8 @@ resources:
     etag: true
 jobs:
 - name: zap-scheduled
+  # use of the `time` Resource blocks manual triggering, so might as well remove the option
+  disable_manual_trigger: true
   plan:
   - get: after-midnight
     trigger: true
@@ -74,7 +76,7 @@ jobs:
       put: slack
       params:
         text: |
-          :x: FAILED to scan properties. 
+          :x: FAILED to scan properties.
           <https://ci.cloud.gov/pipelines/$BUILD_PIPELINE_NAME/jobs/$BUILD_JOB_NAME/builds/$BUILD_NAME|View build details>
         channel: {{slack-channel}}
         username: {{slack-user}}
@@ -102,7 +104,7 @@ jobs:
       put: slack
       params:
         text: |
-          :x: FAILED to scan properties. 
+          :x: FAILED to scan properties.
           <https://ci.cloud.gov/pipelines/$BUILD_PIPELINE_NAME/jobs/$BUILD_JOB_NAME/builds/$BUILD_NAME|View build details>
         channel: {{slack-channel}}
         username: {{slack-user}}
