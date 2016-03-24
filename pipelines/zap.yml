@@ -61,14 +61,24 @@ jobs:
   - task: scan-zap
     file: scripts/tasks/run-zap/task.yml
   - put: s3-bucket
-  - put: slack
-    params:
-      channel: {{slack-channel}}
-      icon_url: {{slack-icon}}
-      text: |
-        :white_check_mark: Completed scan of configured properties.
-        <https://compliance-viewer.18f.gov/results|View results>
-      username: {{slack-user}}
+    on_success:
+      put: slack
+      params:
+        channel: {{slack-channel}}
+        icon_url: {{slack-icon}}
+        text: |
+          :white_check_mark: Completed scan of configured properties.
+          <https://compliance-viewer.18f.gov/results|View results>
+        username: {{slack-user}}
+    on_failure:
+      put: slack
+      params:
+        text: |
+          :x: FAILED to scan properties. 
+          <https://ci.cloud.gov/pipelines/$BUILD_PIPELINE_NAME/jobs/$BUILD_JOB_NAME/builds/$BUILD_NAME|View build details>
+        channel: {{slack-channel}}
+        username: {{slack-user}}
+        icon_url: {{slack-icon}}
 - name: zap-ondemand
   plan:
   - get: scripts
@@ -79,11 +89,21 @@ jobs:
   - task: scan-zap
     file: scripts/tasks/run-zap/task.yml
   - put: s3-bucket
-  - put: slack
-    params:
-      channel: {{slack-channel}}
-      icon_url: {{slack-icon}}
-      text: |
-        :white_check_mark: Completed scan of configured properties.
-        <https://compliance-viewer.18f.gov/results|View results>
-      username: {{slack-user}}
+    on_success:
+      put: slack
+      params:
+        channel: {{slack-channel}}
+        icon_url: {{slack-icon}}
+        text: |
+          :white_check_mark: Completed scan of configured properties.
+          <https://compliance-viewer.18f.gov/results|View results>
+        username: {{slack-user}}
+    on_failure:
+      put: slack
+      params:
+        text: |
+          :x: FAILED to scan properties. 
+          <https://ci.cloud.gov/pipelines/$BUILD_PIPELINE_NAME/jobs/$BUILD_JOB_NAME/builds/$BUILD_NAME|View build details>
+        channel: {{slack-channel}}
+        username: {{slack-user}}
+        icon_url: {{slack-icon}}
