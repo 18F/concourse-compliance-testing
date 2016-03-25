@@ -20,6 +20,7 @@ module ZAPResultSetComparator
         status_message = project_text(proj, last_run_dir, curr_run_dir)
         summary << "\n#{proj}: #{status_count} #{status_message}"
       end
+      summary << "\n<https://compliance-viewer.18f.gov/results|View results>"
       summary
     end
 
