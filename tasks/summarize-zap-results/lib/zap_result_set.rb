@@ -36,12 +36,12 @@ module ZAPResultSet
     def json_to_results(project, json)
       json.map do |jr|
         Result.new(project, jr['confidence'], jr['risk'], jr['url'], jr['param'], jr['evidence'], jr['alert'])
-      end.compact
+      end
     end
 
     # We leave JS and CSS urls out of ZAP Results.
     def strip_js_and_css(json)
-      json.delete_if { |record| record['url'].match(/.js|.css/) }
+      json.reject { |record| record['url'].match(/.js|.css/) }
     end
   end
 end
