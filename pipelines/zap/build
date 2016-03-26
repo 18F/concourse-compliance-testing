@@ -1,0 +1,38 @@
+#!/usr/bin/env ruby
+
+require 'erb'
+require_relative '../../tasks/filter-team-data/team_data_filterer'
+
+# roundabout way of passing template variables
+# http://www.stuartellis.eu/articles/erb/#using-the-erb-library
+class PipelineData
+  attr_accessor :projects
+
+  def initialize(projects)
+    self.projects = projects
+  end
+
+  # needed for ERB
+  def get_binding
+    binding
+  end
+end
+
+def template
+  template_path = File.expand_path('../pipeline.yml', __FILE__)
+  contents = File.read(template_path)
+  # support removal of trailing newlines
+  ERB.new(contents, nil, '-')
+end
+
+def projects
+  results = TeamDataFilterer.targets
+  results.sort_by { |project| project['name'] }
+end
+
+def pipeline
+  data = PipelineData.new(projects)
+  template.result(data.get_binding)
+end
+
+puts pipeline

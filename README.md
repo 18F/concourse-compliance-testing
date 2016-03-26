@@ -33,10 +33,11 @@ Running pipelines on ci.cloud.gov is identical to running pipelines locally, wit
 fly -t cloud login —c https://ci.cloud.gov
 cp config/prod.example.yml config/prod.yml
 # modify config/prod.yml
-fly set-pipeline -t cloud -n -c pipelines/zap.yml -p zap --load-vars-from config/prod.yml
+# build the ZAP pipeline
+fly set-pipeline -t cloud -n -c tmp/zap-pipeline.yml -p zap --load-vars-from config/prod.yml
 ```
 
-Note that you may need to re-download `fly` from [ci.cloud.gov](https://ci.cloud.gov) to ensure the versions match.
+Note that you may need to run `fly -t cloud sync` to ensure the versions match.
 
 ## Feedback
 

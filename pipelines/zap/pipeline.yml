@@ -1,7 +1,12 @@
-# local usage:
-#
-#   fly set-pipeline -t lite -n -c pipelines/zap.yml -p zap --load-vars-from config/local.yml -v script-branch=`git rev-parse --abbrev-ref HEAD`
-#
+# note that this pipeline file is actually a template, and thus shouldn't be used with `fly` directly
+groups:
+<% projects.each do |project| -%>
+- name: <%= project['name'] %>
+  jobs:
+  - zap-scheduled-<%= project['name'] %>
+  - zap-ondemand-<%= project['name'] %>
+<% end -%>
+
 resource_types:
 - name: slack-notification
   type: docker-image
@@ -52,27 +57,28 @@ resources:
     options:
       - "--exclude '*'"
       - "--include 'zap-summary/summary.json'"
-- name: fetch-project-data
+<% projects.each do |project| -%>
+- name: fetch-project-data-<%= project['name'] %>
   type: http-resource
   source:
-    uri: https://team-api.18f.gov/public/api/projects/
-    filename: projects.json
-    index: https://team-api.18f.gov/public/api/projects/
+    uri: https://team-api.18f.gov/public/api/projects/<%= project['name'].downcase %>/
+    filename: project.json
+    index: https://team-api.18f.gov/public/api/projects/<%= project['name'].downcase %>/
     etag: true
+<% end -%>
 
 jobs:
-- name: zap-scheduled
+<% projects.each do |project| -%>
+- name: zap-scheduled-<%= project['name'] %>
   # use of the `time` Resource blocks manual triggering, so might as well remove the option
   disable_manual_trigger: true
   plan:
   - get: after-midnight
     trigger: true
   - get: scripts
-  - get: projects-json
-    resource: fetch-project-data
+  - get: project-data
+    resource: fetch-project-data-<%= project['name'] %>
   - get: s3-bucket-results
-  - task: filter-team-data
-    file: scripts/tasks/filter-team-data/task.yml
   - task: fetch-last-zap-results
     file: scripts/tasks/fetch-last-zap-results.yml
   - task: scan-zap
@@ -98,14 +104,12 @@ jobs:
         username: {{slack-user}}
         icon_url: {{slack-icon}}
 
-- name: zap-ondemand
+- name: zap-ondemand-<%= project['name'] %>
   plan:
   - get: scripts
-  - get: projects-json
-    resource: fetch-project-data
+  - get: project-data
+    resource: fetch-project-data-<%= project['name'] %>
   - get: s3-bucket-results
-  - task: filter-team-data
-    file: scripts/tasks/filter-team-data/task.yml
   - task: fetch-last-zap-results
     file: scripts/tasks/fetch-last-zap-results.yml
   - task: scan-zap
@@ -130,3 +134,4 @@ jobs:
         channel: {{slack-channel}}
         username: {{slack-user}}
         icon_url: {{slack-icon}}
+<% end -%>
