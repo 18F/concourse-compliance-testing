@@ -1,7 +1,8 @@
 # local usage:
 #
-#   fly set-pipeline -t lite -n -c pipelines/zap.yml -p zap --load-vars-from config/local.yml -v script-branch=`git rev-parse --abbrev-ref HEAD`
+#   fly set-pipeline -t lite -n -c pipelines/zap.yml -p zap --load-vars-from config/local.yml -v script-branch=`git rev-parse --abbrev-ref HEAD` -v project-data-url=URL
 #
+# where URL is of the form `https://team-api.18f.gov/public/api/projects/<name>/`.
 resource_types:
 - name: slack-notification
   type: docker-image
@@ -24,12 +25,6 @@ resources:
   source:
     uri: https://github.com/18F/concourse-compliance-testing.git
     branch: {{script-branch}}
-- name: after-midnight
-  type: time
-  source:
-    interval: 1h
-    start: 12:00 AM -0500
-    stop: 12:30 AM -0500
 - name: slack
   type: slack-notification
   source:
@@ -55,57 +50,18 @@ resources:
 - name: fetch-project-data
   type: http-resource
   source:
-    uri: https://team-api.18f.gov/public/api/projects/
-    filename: projects.json
-    index: https://team-api.18f.gov/public/api/projects/
+    uri: {{project-data-url}}
+    filename: project.json
+    index: {{project-data-url}}
     etag: true
 
 jobs:
-- name: zap-scheduled
-  # use of the `time` Resource blocks manual triggering, so might as well remove the option
-  disable_manual_trigger: true
-  plan:
-  - get: after-midnight
-    trigger: true
-  - get: scripts
-  - get: projects-json
-    resource: fetch-project-data
-  - get: s3-bucket-results
-  - task: filter-team-data
-    file: scripts/tasks/filter-team-data/task.yml
-  - task: fetch-last-zap-results
-    file: scripts/tasks/fetch-last-zap-results.yml
-  - task: scan-zap
-    file: scripts/tasks/run-zap/task.yml
-  - put: s3-bucket-results
-  - task: summarize-zap-results
-    file: scripts/tasks/summarize-zap-results/task.yml
-  - put: s3-bucket-summary
-    on_success:
-      put: slack
-      params:
-        channel: {{slack-channel}}
-        icon_url: {{slack-icon}}
-        text_file: zap-summary/summary.txt
-        username: {{slack-user}}
-    on_failure:
-      put: slack
-      params:
-        text: |
-          :x: FAILED to scan properties.
-          <https://ci.cloud.gov/pipelines/$BUILD_PIPELINE_NAME/jobs/$BUILD_JOB_NAME/builds/$BUILD_NAME|View build details>
-        channel: {{slack-channel}}
-        username: {{slack-user}}
-        icon_url: {{slack-icon}}
-
-- name: zap-ondemand
+- name: zap-single
   plan:
   - get: scripts
-  - get: projects-json
+  - get: project-data
     resource: fetch-project-data
   - get: s3-bucket-results
-  - task: filter-team-data
-    file: scripts/tasks/filter-team-data/task.yml
   - task: fetch-last-zap-results
     file: scripts/tasks/fetch-last-zap-results.yml
   - task: scan-zap
