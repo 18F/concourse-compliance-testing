@@ -8,14 +8,16 @@ resource_types:
   source:
     repository: cfcommunity/slack-notification-resource
     tag: v1.0.0
-- name: s3-upload
+- name: s3-resource
   type: docker-image
   source:
     repository: 18fgsa/s3-resource-simple
+    tag: 1.1.1
 - name: http-resource
   type: docker-image
   source:
     repository: 18fgsa/http-resource
+
 resources:
 - name: scripts
   type: git
@@ -32,8 +34,8 @@ resources:
   type: slack-notification
   source:
     url: {{slack-hook}}
-- name: s3-bucket
-  type: s3-upload
+- name: s3-bucket-results
+  type: s3-resource
   source:
     access_key_id: {{aws-access-key}}
     secret_access_key: {{aws-secret-key}}
@@ -41,6 +43,15 @@ resources:
     options:
       - "--exclude '*'"
       - "--include 'results/*'"
+- name: s3-bucket-summary
+  type: s3-resource
+  source:
+    access_key_id: {{aws-access-key}}
+    secret_access_key: {{aws-secret-key}}
+    bucket: {{aws-bucket}}
+    options:
+      - "--exclude '*'"
+      - "--include 'zap-summary/summary.json'"
 - name: fetch-project-data
   type: http-resource
   source:
@@ -48,6 +59,7 @@ resources:
     filename: projects.json
     index: https://team-api.18f.gov/public/api/projects/
     etag: true
+
 jobs:
 - name: zap-scheduled
   # use of the `time` Resource blocks manual triggering, so might as well remove the option
@@ -58,19 +70,23 @@ jobs:
   - get: scripts
   - get: projects-json
     resource: fetch-project-data
+  - get: s3-bucket-results
   - task: filter-team-data
     file: scripts/tasks/filter-team-data/task.yml
+  - task: fetch-last-zap-results
+    file: scripts/tasks/fetch-last-zap-results.yml
   - task: scan-zap
     file: scripts/tasks/run-zap/task.yml
-  - put: s3-bucket
+  - put: s3-bucket-results
+  - task: summarize-zap-results
+    file: scripts/tasks/summarize-zap-results/task.yml
+  - put: s3-bucket-summary
     on_success:
       put: slack
       params:
         channel: {{slack-channel}}
         icon_url: {{slack-icon}}
-        text: |
-          :white_check_mark: Completed scan of configured properties.
-          <https://compliance-viewer.18f.gov/results|View results>
+        text_file: zap-summary/summary.txt
         username: {{slack-user}}
     on_failure:
       put: slack
@@ -81,24 +97,29 @@ jobs:
         channel: {{slack-channel}}
         username: {{slack-user}}
         icon_url: {{slack-icon}}
+
 - name: zap-ondemand
   plan:
   - get: scripts
   - get: projects-json
     resource: fetch-project-data
+  - get: s3-bucket-results
   - task: filter-team-data
     file: scripts/tasks/filter-team-data/task.yml
+  - task: fetch-last-zap-results
+    file: scripts/tasks/fetch-last-zap-results.yml
   - task: scan-zap
     file: scripts/tasks/run-zap/task.yml
-  - put: s3-bucket
+  - put: s3-bucket-results
+  - task: summarize-zap-results
+    file: scripts/tasks/summarize-zap-results/task.yml
+  - put: s3-bucket-summary
     on_success:
       put: slack
       params:
         channel: {{slack-channel}}
         icon_url: {{slack-icon}}
-        text: |
-          :white_check_mark: Completed scan of configured properties.
-          <https://compliance-viewer.18f.gov/results|View results>
+        text_file: zap-summary/summary.txt
         username: {{slack-user}}
     on_failure:
       put: slack
