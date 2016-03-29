@@ -14,5 +14,69 @@
         "url": "https://micropurchase.18f.gov"
       }
     ]
+  },
+  {
+    "name": "api-data-gov",
+    "links": [
+      {
+        "url": "https://api.data.gov/"
+      }
+    ]
+  },
+  {
+    "name": "dap",
+    "links": [
+      {
+        "url": "https://analytics.usa.gov/"
+      }
+    ]
+  },
+  {
+    "name": "pulse",
+    "links": [
+      {
+        "url": "https://pulse.cio.gov/"
+      }
+    ]
+  },
+  {
+    "name": "confidential-survey",
+    "links": [
+      {
+        "url": "https://survey.apps.cloud.gov/"
+      }
+    ]
+  },
+  {
+    "name": "c2",
+    "links": [
+      {
+        "url": "https://cap.18f.gov/"
+      }
+    ]
+  },
+  {
+    "name": "atf-eregs",
+    "links": [
+      {
+        "url": "https://atf-eregs-demo.apps.cloud.gov/"
+      }
+    ]
+  },
+  {
+    "name": "federalist",
+    "links": [
+      {
+        "url": "https://federalist.18f.gov/"
+      }
+    ]
+  },
+  {
+    "name": "uscis",
+    "links": [
+      {
+        "url": "https://save-ferris-dev.18f.gov/"
+      }
+    ]
   }
 ]
