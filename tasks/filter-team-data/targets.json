@@ -62,5 +62,21 @@
         "url": "https://atf-eregs-demo.apps.cloud.gov/"
       }
     ]
+  },
+  {
+    "name": "federalist",
+    "links": [
+      {
+        "url": "https://federalist.18f.gov/"
+      }
+    ]
+  },
+  {
+    "name": "uscis",
+    "links": [
+      {
+        "url": "https://save-ferris-dev.18f.gov/"
+      }
+    ]
   }
 ]
