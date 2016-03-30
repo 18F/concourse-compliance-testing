@@ -48,12 +48,7 @@
     ]
   },
   {
-    "name": "c2",
-    "links": [
-      {
-        "url": "https://cap.18f.gov/"
-      }
-    ]
+    "name": "c2"
   },
   {
     "name": "atf-eregs",
@@ -64,19 +59,6 @@
     ]
   },
   {
-    "name": "federalist",
-    "links": [
-      {
-        "url": "https://federalist.18f.gov/"
-      }
-    ]
-  },
-  {
-    "name": "uscis",
-    "links": [
-      {
-        "url": "https://save-ferris-dev.18f.gov/"
-      }
-    ]
+    "name": "federalist"
   }
 ]
