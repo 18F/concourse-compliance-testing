@@ -4,6 +4,9 @@
     "links": [
       {
         "url": "https://openopps-staging.18f.gov/"
+      },
+      {
+        "url": "https://openopps.digitalgov.gov/"
       }
     ]
   },
@@ -12,49 +15,6 @@
     "links": [
       {
         "url": "https://micropurchase.18f.gov"
-      }
-    ]
-  },
-  {
-    "name": "api-data-gov",
-    "links": [
-      {
-        "url": "https://api.data.gov/"
-      }
-    ]
-  },
-  {
-    "name": "dap",
-    "links": [
-      {
-        "url": "https://analytics.usa.gov/"
-      }
-    ]
-  },
-  {
-    "name": "pulse",
-    "links": [
-      {
-        "url": "https://pulse.cio.gov/"
-      }
-    ]
-  },
-  {
-    "name": "confidential-survey",
-    "links": [
-      {
-        "url": "https://survey.apps.cloud.gov/"
-      }
-    ]
-  },
-  {
-    "name": "c2"
-  },
-  {
-    "name": "atf-eregs",
-    "links": [
-      {
-        "url": "https://atf-eregs-demo.apps.cloud.gov/"
       }
     ]
   },
