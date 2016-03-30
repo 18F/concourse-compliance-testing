@@ -17,7 +17,7 @@ while [ "$COUNTER" -lt "$COUNT" ]; do
   TARGET=$(jq -r ".[${COUNTER}] .links | .[0] | .url" < filtered-projects/projects.json)
 
   echo "Scanning $NAME: $TARGET"
-  zap-cli -v quick-scan --spider --ajax-spider --scanners all "$TARGET"
+  zap-cli -v quick-scan --spider --ajax-spider --scanners all "$TARGET" || true
   # `zap-cli alerts` returns an error code if there are any warnings - ignore them so the script doesn't fail
   zap-cli alerts -l Informational -f json > "results/${NAME}.json" || true
   zap-cli session new
