@@ -1,6 +1,12 @@
 require 'minitest/autorun'
 require_relative '../team_data_filterer'
 
+def simple_project(name = "foo", options = {})
+  {
+    "name" => name
+  }.merge options
+end
+
 describe TeamDataFilterer do
   describe '.transform_links' do
     it "converts String `links` to the Hash format" do
@@ -45,8 +51,8 @@ describe TeamDataFilterer do
     end
 
     it "sets `links` if not present" do
-      project = { "name" => "foo" }
-      target = { "name" => "foo" }
+      project = simple_project("foo")
+      target = simple_project("foo")
 
       result = TeamDataFilterer.transform_project(project, target)
       expect(result).must_equal(
@@ -69,9 +75,7 @@ describe TeamDataFilterer do
           "something" => 7
         }
       ]
-      targets = [
-        { "name" => "bar" }
-      ]
+      targets = [simple_project("bar")]
 
       results = TeamDataFilterer.filtered_projects(projects, targets)
       expect(results).must_equal [
@@ -84,11 +88,33 @@ describe TeamDataFilterer do
     end
 
     it "handles a target not present in the projects" do
-      targets = [
-        { "name" => "foo" }
-      ]
+      targets = [simple_project("foo")]
 
       results = TeamDataFilterer.filtered_projects([], targets)
+      expect(results).must_equal [
+        {
+          "name" => "foo",
+          "links" => []
+        }
+      ]
+    end
+
+    it "downcases target names when filtering projects" do
+      results = TeamDataFilterer.filtered_projects(
+        [simple_project("foo")], [simple_project("FOO")]
+      )
+      expect(results).must_equal [
+        {
+          "name" => "foo",
+          "links" => []
+        }
+      ]
+    end
+
+    it "downcases project names when filtering projects" do
+      results = TeamDataFilterer.filtered_projects(
+        [simple_project("FOO")], [simple_project("foo")]
+      )
       expect(results).must_equal [
         {
           "name" => "foo",

@@ -21,6 +21,8 @@ module TeamDataFilterer
     def transform_project(project, target)
       result = project.merge(target)
 
+      result['name'] = result['name'].downcase
+
       # not always present in about.yml
       links = result['links'] || []
       result['links'] = transform_links(links)
@@ -49,14 +51,14 @@ module TeamDataFilterer
     def projects_by_name(projects)
       results = {}
       projects.each do |project|
-        name = project['name']
+        name = project['name'].downcase
         results[name] = project
       end
       results
     end
 
     def build_target(target, p_by_name)
-      name = target['name']
+      name = target['name'].downcase
       project = p_by_name[name]
 
       unless project
