@@ -1,4 +1,4 @@
-# note that this pipeline file is actually a template, and thus shouldn't be used with `fly` directly
+<%# note that this pipeline file is actually an ERB template, and thus shouldn't be used with `fly` directly -%>
 groups:
 <% projects.each do |project| -%>
 - name: <%= project['name'] %>
