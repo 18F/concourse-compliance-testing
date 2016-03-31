@@ -1,7 +1,7 @@
 #!/usr/bin/env ruby
 
 require 'erb'
-require_relative '../../tasks/filter-team-data/team_data_filterer'
+require_relative '../../lib/team_data_filterer'
 
 # roundabout way of passing template variables
 # http://www.stuartellis.eu/articles/erb/#using-the-erb-library

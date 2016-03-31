@@ -49,7 +49,7 @@ module TeamDataFilterer
     end
 
     def targets
-      path = File.expand_path('../targets.json', __FILE__)
+      path = File.expand_path('../../config/targets.json', __FILE__)
       read_json(path)
     end
 

@@ -1,5 +1,5 @@
 require 'minitest/autorun'
-require_relative '../team_data_filterer'
+require_relative '../lib/team_data_filterer'
 
 describe TeamDataFilterer do
   describe '.transform_links' do

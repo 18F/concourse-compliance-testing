@@ -1,6 +1,6 @@
 # OWASP ZAP scanning pipeline
 
-This pipeline scans the projects listed in [`targets.json`](../../tasks/filter-team-data/targets.json) for vulnerabilities, using [OWASP ZAP](https://www.owasp.org/index.php/OWASP_Zed_Attack_Proxy_Project).
+This pipeline scans the projects listed in [`targets.json`](../../config/targets.json) for vulnerabilities, using [OWASP ZAP](https://www.owasp.org/index.php/OWASP_Zed_Attack_Proxy_Project).
 
 ## Local usage
 
