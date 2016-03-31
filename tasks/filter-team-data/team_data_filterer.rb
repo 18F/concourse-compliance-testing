@@ -49,13 +49,14 @@ module TeamDataFilterer
     def projects_by_name(projects)
       results = {}
       projects.each do |project|
-        name = project['name']
+        name = project['name'].downcase
         results[name] = project
       end
       results
     end
 
     def build_target(target, p_by_name)
+      target['name'].downcase!
       name = target['name']
       project = p_by_name[name]
 
