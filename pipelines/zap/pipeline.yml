@@ -69,12 +69,17 @@ resources:
 
 jobs:
 <% projects.each do |project| -%>
-- name: zap-scheduled-<%= project['name'] %>
+<% %w(scheduled ondemand).each do |job| -%>
+- name: zap-<%= job %>-<%= project['name'] %>
+<% if job == 'scheduled' -%>
   # use of the `time` Resource blocks manual triggering, so might as well remove the option
   disable_manual_trigger: true
+<% end -%>
   plan:
+<% if job == 'scheduled' -%>
   - get: after-midnight
     trigger: true
+<% end -%>
   - get: scripts
   - get: project-data
     resource: fetch-project-data-<%= project['name'] %>
@@ -103,35 +108,5 @@ jobs:
         channel: {{slack-channel}}
         username: {{slack-user}}
         icon_url: {{slack-icon}}
-
-- name: zap-ondemand-<%= project['name'] %>
-  plan:
-  - get: scripts
-  - get: project-data
-    resource: fetch-project-data-<%= project['name'] %>
-  - get: s3-bucket-results
-  - task: fetch-last-zap-results
-    file: scripts/tasks/fetch-last-zap-results.yml
-  - task: scan-zap
-    file: scripts/tasks/run-zap/task.yml
-  - put: s3-bucket-results
-  - task: summarize-zap-results
-    file: scripts/tasks/summarize-zap-results/task.yml
-  - put: s3-bucket-summary
-    on_success:
-      put: slack
-      params:
-        channel: {{slack-channel}}
-        icon_url: {{slack-icon}}
-        text_file: zap-summary/summary.txt
-        username: {{slack-user}}
-    on_failure:
-      put: slack
-      params:
-        text: |
-          :x: FAILED to scan properties.
-          <https://ci.cloud.gov/pipelines/$BUILD_PIPELINE_NAME/jobs/$BUILD_JOB_NAME/builds/$BUILD_NAME|View build details>
-        channel: {{slack-channel}}
-        username: {{slack-user}}
-        icon_url: {{slack-icon}}
+<% end -%>
 <% end -%>

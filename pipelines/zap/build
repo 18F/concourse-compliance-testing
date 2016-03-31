@@ -13,7 +13,7 @@ class PipelineData
   end
 
   # needed for ERB
-  def get_binding
+  def internal_binding
     binding
   end
 end
@@ -32,7 +32,7 @@ end
 
 def pipeline
   data = PipelineData.new(projects)
-  template.result(data.get_binding)
+  template.result(data.internal_binding)
 end
 
 puts pipeline
