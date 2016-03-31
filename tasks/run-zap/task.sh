@@ -28,7 +28,7 @@ while [ "$COUNTER" -lt "$COUNT" ]; do
     zap-cli session new
     let LINK_COUNTER+=1
   done
-  jq --slurp '[.[] | .[]]' tmp/${NAME}.*.json > results/${NAME}.json
+  jq --slurp '[.[] | .[]]' "tmp/${NAME}.*.json" > "results/${NAME}.json"
   let COUNTER+=1
 done
 
