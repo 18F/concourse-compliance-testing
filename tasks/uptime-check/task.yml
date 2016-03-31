@@ -9,4 +9,10 @@ inputs:
 - name: scripts
 - name: filtered-projects
 run:
-  path: ./scripts/tasks/uptime-check/task.sh
+  path: sh
+  args:
+  - -exc
+  - |
+    cd scripts/tasks/uptime-check
+    npm install --production
+    PROJECT_JSON=../../../filtered-projects/projects.json node task.js
