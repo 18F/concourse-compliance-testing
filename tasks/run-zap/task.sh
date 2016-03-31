@@ -22,13 +22,19 @@ while [ "$COUNTER" -lt "$COUNT" ]; do
     TARGET=$(jq -r ".[${COUNTER}] .links | .[${LINK_COUNTER}] | .url" < filtered-projects/projects.json)
 
     echo "Scanning $NAME: $TARGET"
+    # zap-cli `quick-scan` and `alerts` return an error code if there are any warnings - ignore them so the script doesn't fail
     zap-cli -v quick-scan --spider --ajax-spider --scanners all "$TARGET" || true
-    # `zap-cli alerts` returns an error code if there are any warnings - ignore them so the script doesn't fail
     zap-cli alerts -l Informational -f json > "tmp/${NAME}.${LINK_COUNTER}.json" || true
     zap-cli session new
     let LINK_COUNTER+=1
   done
-  jq --slurp '[.[] | .[]]' "tmp/${NAME}.*.json" > "results/${NAME}.json"
+
+  # only build results if we should have results
+  if [ "$LINK_COUNT" -gt 0 ]
+  then
+    jq --slurp '[.[] | .[]]' tmp/"${NAME}".*.json > "results/${NAME}.json"
+  fi
+
   let COUNTER+=1
 done
 
