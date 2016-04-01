@@ -1,12 +1,6 @@
 require 'minitest/autorun'
 require_relative '../team_data_filterer'
 
-def simple_project(name = "foo", options = {})
-  {
-    "name" => name
-  }.merge options
-end
-
 describe TeamDataFilterer do
   describe '.transform_links' do
     it "converts String `links` to the Hash format" do
@@ -51,8 +45,8 @@ describe TeamDataFilterer do
     end
 
     it "sets `links` if not present" do
-      project = simple_project("foo")
-      target = simple_project("foo")
+      project = { "name" => "foo" }
+      target = { "name" => "foo" }
 
       result = TeamDataFilterer.transform_project(project, target)
       expect(result).must_equal(
@@ -75,7 +69,9 @@ describe TeamDataFilterer do
           "something" => 7
         }
       ]
-      targets = [simple_project("bar")]
+      targets = [
+        { "name" => "bar" }
+      ]
 
       results = TeamDataFilterer.filtered_projects(projects, targets)
       expect(results).must_equal [
@@ -88,7 +84,9 @@ describe TeamDataFilterer do
     end
 
     it "handles a target not present in the projects" do
-      targets = [simple_project("foo")]
+      targets = [
+        { "name" => "foo" }
+      ]
 
       results = TeamDataFilterer.filtered_projects([], targets)
       expect(results).must_equal [
@@ -100,9 +98,17 @@ describe TeamDataFilterer do
     end
 
     it "downcases target names when filtering projects" do
-      results = TeamDataFilterer.filtered_projects(
-        [simple_project("foo")], [simple_project("FOO")]
-      )
+      projects = [
+        {
+          "name" => "foo",
+          "links" => []
+        }
+      ]
+      targets = [
+        { "name" => "FOO" }
+      ]
+
+      results = TeamDataFilterer.filtered_projects(projects, targets)
       expect(results).must_equal [
         {
           "name" => "foo",
@@ -112,9 +118,17 @@ describe TeamDataFilterer do
     end
 
     it "downcases project names when filtering projects" do
-      results = TeamDataFilterer.filtered_projects(
-        [simple_project("FOO")], [simple_project("foo")]
-      )
+      projects = [
+        {
+          "name" => "FOO",
+          "links" => []
+        }
+      ]
+      targets = [
+        { "name" => "foo" }
+      ]
+
+      results = TeamDataFilterer.filtered_projects(projects, targets)
       expect(results).must_equal [
         {
           "name" => "foo",
