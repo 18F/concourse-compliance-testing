@@ -10,11 +10,11 @@ pip install --upgrade zapcli
 
 zap-cli start --start-options '-config api.disablekey=true'
 
-NAME=$(jq -r .name < project-data/project.json)
+NAME=$(jq -r .name < filtered-project-data/project.json)
 LINK_COUNTER=0
-LINK_COUNT=$(jq ".links | length" < project-data/project.json)
+LINK_COUNT=$(jq ".links | length" < filtered-project-data/project.json)
 while [ "$LINK_COUNTER" -lt "$LINK_COUNT" ]; do
-  TARGET=$(jq -r ".links | .[${LINK_COUNTER}] | .url" < project-data/project.json)
+  TARGET=$(jq -r ".links | .[${LINK_COUNTER}] | .url" < filtered-project-data/project.json)
 
   echo "Scanning $NAME: $TARGET"
   # zap-cli `quick-scan` and `alerts` return an error code if there are any warnings - ignore them so the script doesn't fail

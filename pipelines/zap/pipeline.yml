@@ -84,6 +84,8 @@ jobs:
   - get: project-data
     resource: fetch-project-data-<%= project['name'] %>
   - get: s3-bucket-results
+  - task: filter-project-data
+    file: scripts/tasks/filter-project-data/task.yml
   - task: fetch-last-zap-results
     file: scripts/tasks/fetch-last-zap-results.yml
   - task: scan-zap

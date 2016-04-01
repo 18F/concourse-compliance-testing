@@ -1,0 +1,16 @@
+---
+inputs:
+- name: project-data
+- name: scripts
+outputs:
+- name: filtered-project-data
+platform: linux
+image_resource:
+  type: docker-image
+  source:
+    repository: ruby
+    tag: '2.3-alpine'
+run:
+  path: ruby
+  args:
+  - ./scripts/tasks/filter-project-data/task.rb
