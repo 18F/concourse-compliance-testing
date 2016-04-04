@@ -4,11 +4,14 @@ Concourse task to merge data for a particular project from [`targets.json`](../.
 
 ## Configuring projects
 
-Any keys in [`targets.json`](../../config/targets.json) will override the corresponding values in the input (`project-data/project.json`). For example, having the following in `project.json`:
+Any keys in [`targets.json`](../../config/targets.json) will override the corresponding values in the input (`project-data/project.json`) with a matching `name`. For example, having the following in `project.json`:
 
 ```javascript
 {
   "name": "someproject",
+  "links": [
+    "https://staging.someproject.com"
+  ],
   "otherfield": "something"
   // ...
 }
@@ -20,9 +23,7 @@ and the following in `targets.json`:
 [
   {
     "name": "someproject",
-    "links": [
-      "https://staging.someproject.com"
-    ]
+    "otherfield": "somethingelse"
   },
   // ...
 ]
@@ -36,7 +37,7 @@ will result in an output of
   "links": [
     "https://staging.someproject.com"
   ],
-  "otherfield": "something"
+  "otherfield": "somethingelse"
   // ...
 }
 ```
