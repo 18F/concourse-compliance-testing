@@ -7,7 +7,7 @@ project = TeamDataFilterer.read_json(PROJECT_JSON)
 targets = TeamDataFilterer.targets
 
 # TODO move into TeamDataFilterer
-target = targets.find {|t| t['name'] == project['name'] } || {}
+target = targets.find { |t| t['name'] == project['name'] } || {}
 
 filtered_project = TeamDataFilterer.transform_project(project, target)
 TeamDataFilterer.write_json(filtered_project, RESULTS)

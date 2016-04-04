@@ -4,22 +4,18 @@ require_relative 'zap_result_set'
 # Compares two sets of ZAPResultSet::Results and writes summaries.
 module ZAPResultSetComparator
   class << self
-    def write_summaries(last_run_dir, curr_run_dir, output_dir)
-      txt = summary_text(last_run_dir, curr_run_dir)
+    def write_summary(last_run_dir, curr_run_dir, output_dir, project_name)
+      summary = project_summmary(project_name, last_run_dir, curr_run_dir)
+      txt = "Completed scan of #{summary}\n<https://compliance-viewer.18f.gov/results/#{project_name}/current|View results>"
       File.write("#{output_dir}/summary.txt", txt)
     end
 
     private
 
-    def summary_text(last_run_dir, curr_run_dir)
-      summary = "Completed scan of #{ZAPProject.count(curr_run_dir)} properties:"
-      all_projects(last_run_dir, curr_run_dir).each do |proj|
-        status_count = ZAPResultSet.paren_status_count(proj, curr_run_dir)
-        status_message = project_text(proj, last_run_dir, curr_run_dir)
-        summary << "\n#{proj}: #{status_count} #{status_message}"
-      end
-      summary << "\n<https://compliance-viewer.18f.gov/results|View results>"
-      summary
+    def project_summmary(proj, last_run_dir, curr_run_dir)
+      status_count = ZAPResultSet.paren_status_count(proj, curr_run_dir)
+      status_message = project_text(proj, last_run_dir, curr_run_dir)
+      "#{proj}: #{status_count} #{status_message}"
     end
 
     def project_text(proj, last_run_dir, curr_run_dir)
@@ -46,10 +42,6 @@ module ZAPResultSetComparator
         statuses << "#{dec[level]} less #{level.upcase}" if dec[level] > 0
       end
       statuses
-    end
-
-    def all_projects(last_run_dir, curr_run_dir)
-      (ZAPProject.names(last_run_dir) + ZAPProject.names(curr_run_dir)).uniq
     end
 
     def project_deltas(proj, last_run_dir, curr_run_dir)
