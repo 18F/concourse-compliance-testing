@@ -5,7 +5,8 @@
       {
         "url": "https://openopps-staging.18f.gov/"
       }
-    ]
+    ],
+    "slack_channel": "openopps-platform"
   },
   {
     "name": "micropurchase",
@@ -13,7 +14,8 @@
       {
         "url": "https://micropurchase.18f.gov"
       }
-    ]
+    ],
+    "slack_channel": "micropurchase"
   },
   {
     "name": "api-data-gov",
@@ -21,7 +23,8 @@
       {
         "url": "https://api.data.gov/"
       }
-    ]
+    ],
+    "slack_channel": "wg-api"
   },
   {
     "name": "dap",
@@ -29,7 +32,8 @@
       {
         "url": "https://analytics.usa.gov/"
       }
-    ]
+    ],
+    "slack_channel": "dap"
   },
   {
     "name": "pulse",
@@ -37,7 +41,8 @@
       {
         "url": "https://pulse.cio.gov/"
       }
-    ]
+    ],
+    "slack_channel": "pulse"
   },
   {
     "name": "confidential-survey",
@@ -45,10 +50,12 @@
       {
         "url": "https://survey.apps.cloud.gov/"
       }
-    ]
+    ],
+    "slack_channel": "wg-diversity"
   },
   {
-    "name": "c2"
+    "name": "c2",
+    "slack_channel": "cap"
   },
   {
     "name": "atf-eregs",
@@ -59,9 +66,11 @@
       {
         "url": "https://eregsnc-demo.apps.cloud.gov/"
       }
-    ]
+    ],
+    "slack_channel": "atf-eregs"
   },
   {
-    "name": "federalist"
+    "name": "federalist",
+    "slack_channel": "federalist"
   }
 ]
