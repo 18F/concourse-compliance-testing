@@ -2,38 +2,9 @@
 
 require 'erb'
 require_relative '../../lib/team_data_filterer'
+require_relative 'lib/pipeline_builder'
 
-# roundabout way of passing template variables
-# http://www.stuartellis.eu/articles/erb/#using-the-erb-library
-class PipelineData
-  attr_accessor :projects
-
-  def initialize(projects)
-    self.projects = projects
-  end
-
-  # needed for ERB
-  def internal_binding
-    binding
-  end
-end
-
-def template
-  template_path = File.expand_path('../pipeline.yml', __FILE__)
-  contents = File.read(template_path)
-  # support removal of trailing newlines
-  ERB.new(contents, nil, '-')
-end
-
-def projects
-  results = TeamDataFilterer.targets
-  results.sort_by { |project| project['name'] }
-end
-
-def pipeline
-  data = PipelineData.new(projects)
-  template.result(data.internal_binding)
-end
+builder = PipelineBuilder.new(TeamDataFilterer.targets)
 
 puts "# this file was generated, and therefore should not be edited directly"
-puts pipeline
+puts builder.build
