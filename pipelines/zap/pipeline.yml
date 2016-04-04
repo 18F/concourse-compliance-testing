@@ -48,15 +48,6 @@ resources:
     options:
       - "--exclude '*'"
       - "--include 'results/*'"
-- name: s3-bucket-summary
-  type: s3-resource
-  source:
-    access_key_id: {{aws-access-key}}
-    secret_access_key: {{aws-secret-key}}
-    bucket: {{aws-bucket}}
-    options:
-      - "--exclude '*'"
-      - "--include 'zap-summary/summary.json'"
 <% projects.each do |project| -%>
 - name: fetch-project-data-<%= project['name'] %>
   type: http-resource
@@ -93,7 +84,6 @@ jobs:
   - put: s3-bucket-results
   - task: summarize-zap-results
     file: scripts/tasks/summarize-zap-results/task.yml
-  - put: s3-bucket-summary
     on_success:
       put: slack
       params:

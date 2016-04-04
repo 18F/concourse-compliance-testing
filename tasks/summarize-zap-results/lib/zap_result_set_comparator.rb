@@ -5,10 +5,8 @@ require_relative 'zap_result_set'
 module ZAPResultSetComparator
   class << self
     def write_summaries(last_run_dir, curr_run_dir, output_dir)
-      json = summary_json(last_run_dir, curr_run_dir)
       txt = summary_text(last_run_dir, curr_run_dir)
       File.write("#{output_dir}/summary.txt", txt)
-      File.write("#{output_dir}/summary.json", json.to_json)
     end
 
     private
@@ -22,22 +20,6 @@ module ZAPResultSetComparator
       end
       summary << "\n<https://compliance-viewer.18f.gov/results|View results>"
       summary
-    end
-
-    def summary_json(last_run_dir, curr_run_dir)
-      summary = {}
-      all_projects(last_run_dir, curr_run_dir).each do |proj|
-        summary.merge!(project_json(proj, last_run_dir, curr_run_dir))
-      end
-      summary
-    end
-
-    def project_json(proj, last_run_dir, curr_run_dir)
-      results = ZAPResultSet.project_results(proj, curr_run_dir)
-      risk_levels = ZAPResultSet.count_risk_levels(results)
-      status_message = project_text(proj, last_run_dir, curr_run_dir)
-      proj_summary = risk_levels.merge(status: status_message)
-      { proj => proj_summary }
     end
 
     def project_text(proj, last_run_dir, curr_run_dir)

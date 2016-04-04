@@ -8,7 +8,5 @@ puts "Comparing last results to current results..."
 ZAPResultSetComparator.write_summaries(last_run_dir, current_run_dir, output_dir)
 puts "Done."
 
-puts "Generated summary.json:"
-puts `cat #{output_dir}/summary.json`
 puts "Generated summary.txt:"
 puts `cat #{output_dir}/summary.txt`

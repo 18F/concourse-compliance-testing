@@ -7,19 +7,6 @@ class TestZAPResultSetComparator < MiniTest::Test
     curr_results_dir = "#{__dir__}/current_run"
 
     describe '.write_summaries' do
-      it "should write correct json to output dir" do
-        Dir.mktmpdir do |output_dir|
-          ZAPResultSetComparator.write_summaries(last_results_dir, curr_results_dir, output_dir)
-          summary_json = JSON.parse(File.read("#{output_dir}/summary.json"))
-          expected = {
-            "fake-site-1" => { "high" => 2, "medium" => 0, "low" => 1, "informational" => 1, "status" => "has 2 new HIGH, 1 less MEDIUM, 1 less LOW, 1 new INFORMATIONAL, 1 less INFORMATIONAL" },
-            "fake-site-3" => { "high" => 0, "medium" => 0, "low" => 0, "informational" => 0, "status" => "MISSING CURRENT DATA" },
-            "fake-site-2" => { "high" => 0, "medium" => 1, "low" => 0, "informational" => 0, "status" => "NEW SITE" }
-          }
-          assert_equal expected, summary_json
-        end
-      end
-
       it "should write correct text file to output dir" do
         Dir.mktmpdir do |output_dir|
           ZAPResultSetComparator.write_summaries(last_results_dir, curr_results_dir, output_dir)

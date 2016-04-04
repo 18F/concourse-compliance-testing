@@ -1,7 +1,7 @@
 # Summarize ZAP Results Task
 
 Concourse task to summarize differences between Last and Current ZAP result sets.
-Differences are summarized and output as `summary.txt` and `summary.json`.
+Differences are summarized and output as `summary.txt`.
 
 ## Use
 
