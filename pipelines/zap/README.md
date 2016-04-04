@@ -9,7 +9,5 @@ The ZAP pipeline is templatized, so it needs to be built before it can be upload
 The following assumes a Concourse target named `lite`. Run the following from the top level of this repository:
 
 ```bash
-mkdir -p tmp
-./pipelines/zap/build > tmp/zap-pipeline.yml
-fly set-pipeline -t lite -n -c tmp/zap-pipeline.yml -p zap --load-vars-from config/local.yml -v script-branch=`git rev-parse --abbrev-ref HEAD`
+./pipelines/zap/update
 ```
