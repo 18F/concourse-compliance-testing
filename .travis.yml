@@ -1,8 +1,10 @@
-install:
-  - (cd tasks/uptime-check && npm install)
+before_install:
+  - nvm install node
 language: ruby
 rvm:
  - 2.2
 script:
   - rake test
-  - mocha tasks/uptime-check/test
+  - cd tasks/uptime-check
+  - npm install
+  - mocha
