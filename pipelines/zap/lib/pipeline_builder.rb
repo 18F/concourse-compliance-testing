@@ -1,10 +1,11 @@
 require_relative 'pipeline_data'
 
+# Renders the ERB template with the provided list of projects.
 class PipelineBuilder
-  attr_accessor :projects
+  attr_reader :projects
 
   def initialize(projects)
-    self.projects = projects.sort_by { |project| project['name'] }
+    @projects = projects.sort_by { |project| project['name'] }
   end
 
   def build

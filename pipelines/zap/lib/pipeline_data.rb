@@ -1,10 +1,10 @@
 # roundabout way of passing template variables
 # http://www.stuartellis.eu/articles/erb/#using-the-erb-library
 class PipelineData
-  attr_accessor :projects
+  attr_reader :projects
 
   def initialize(projects)
-    self.projects = projects
+    @projects = projects
   end
 
   # needed for ERB

@@ -53,6 +53,10 @@ module TeamDataFilterer
       read_json(path)
     end
 
+    def target(project_name)
+      targets.find { |t| t['name'] == project_name }
+    end
+
     private
 
     def projects_by_name(projects)
