@@ -54,23 +54,13 @@ describe("uptime-check lib", () => {
     });
   });
 
-  describe('.getUrl()', () => {
-    it("handles strings", () => {
-      assert.strictEqual(lib.getUrl('https://foo.com'), 'https://foo.com');
-    });
-
-    it("handles objects", () => {
-      assert.strictEqual(lib.getUrl({url: 'https://foo.com'}), 'https://foo.com');
-    });
-  });
-
   describe('.checkProject()', () => {
     it("returns only one Promise when there are multiple links", () => {
       const project = {
-        name: "foo",
-        links: [
-          "https://foo.com",
-          "https://bar.com"
+        "name": "foo",
+        "links": [
+          { "url": "https://foo.com" },
+          { "url": "https://bar.com" }
         ]
       };
 
@@ -93,16 +83,16 @@ describe("uptime-check lib", () => {
     it("returns a Promise for each project", () => {
       const projects = [
         {
-          name: "foo",
-          links: [
-            "https://foo.com"
+          "name": "foo",
+          "links": [
+            { "url": "https://foo.com" }
           ]
         },
         {
-          name: "bar",
-          links: [
-            "https://bar.com",
-            "https://baz.com"
+          "name": "bar",
+          "links": [
+            { "url": "https://bar.com" },
+            { "url": "https://baz.com" }
           ]
         }
       ];
