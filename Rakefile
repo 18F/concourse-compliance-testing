@@ -6,7 +6,7 @@ Rake::TestTask.new do |t|
 end
 
 # Javascript tests
-Rake::TestTask.new do |t|
+Rake::TestTask.new do
   puts `cd tasks/uptime-check && mocha`
 end
 
