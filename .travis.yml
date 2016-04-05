@@ -1,0 +1,8 @@
+install:
+  - (cd tasks/uptime-check && npm install)
+language: ruby
+rvm:
+ - 2.2
+script:
+  - rake test
+  - mocha tasks/uptime-check/test
