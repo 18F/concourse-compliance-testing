@@ -13,7 +13,7 @@ describe TeamDataFilterer do
       ]
 
       results = TeamDataFilterer.transform_links(links)
-      expect(results).must_equal([
+      results.must_equal([
         {
           "url" => "https://example1.com"
         },
@@ -37,7 +37,7 @@ describe TeamDataFilterer do
       }
 
       result = TeamDataFilterer.transform_project(project, target)
-      expect(result).must_equal(
+      result.must_equal(
         "name" => "foo",
         "links" => [],
         "something" => 7
@@ -49,7 +49,7 @@ describe TeamDataFilterer do
       target = { "name" => "foo" }
 
       result = TeamDataFilterer.transform_project(project, target)
-      expect(result).must_equal(
+      result.must_equal(
         "name" => "foo",
         "links" => []
       )
@@ -74,7 +74,7 @@ describe TeamDataFilterer do
       ]
 
       results = TeamDataFilterer.filtered_projects(projects, targets)
-      expect(results).must_equal [
+      results.must_equal [
         {
           "name" => "bar",
           "links" => [],
@@ -89,7 +89,7 @@ describe TeamDataFilterer do
       ]
 
       results = TeamDataFilterer.filtered_projects([], targets)
-      expect(results).must_equal [
+      results.must_equal [
         {
           "name" => "foo",
           "links" => []
@@ -109,7 +109,7 @@ describe TeamDataFilterer do
       ]
 
       results = TeamDataFilterer.filtered_projects(projects, targets)
-      expect(results).must_equal [
+      results.must_equal [
         {
           "name" => "foo",
           "links" => []
@@ -129,7 +129,7 @@ describe TeamDataFilterer do
       ]
 
       results = TeamDataFilterer.filtered_projects(projects, targets)
-      expect(results).must_equal [
+      results.must_equal [
         {
           "name" => "foo",
           "links" => []
