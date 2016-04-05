@@ -23,8 +23,9 @@ while [ "$COUNTER" -lt "$COUNT" ]; do
 
     echo "Scanning $NAME: $TARGET"
     # zap-cli `quick-scan` and `alerts` return an error code if there are any warnings - ignore them so the script doesn't fail
-    zap-cli -v quick-scan --spider --ajax-spider --scanners all "$TARGET" || true
+    zap-cli -v quick-scan --scanners xss "$TARGET" || true
     zap-cli alerts -l Informational -f json > "tmp/${NAME}.${LINK_COUNTER}.json" || true
+    #touch "tmp/${NAME}.${LINK_COUNTER}.json"
     zap-cli session new
     let LINK_COUNTER+=1
   done
