@@ -1,3 +1,4 @@
+require 'erb'
 require_relative 'pipeline_data'
 
 # Renders the ERB template with the provided list of projects.

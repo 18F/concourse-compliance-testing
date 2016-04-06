@@ -1,6 +1,5 @@
 #!/usr/bin/env ruby
 
-require 'erb'
 require_relative '../../lib/team_data_filterer'
 require_relative 'lib/pipeline_builder'
 
