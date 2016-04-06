@@ -5,9 +5,11 @@ Rake::TestTask.new do |t|
   t.pattern = '**/test_*.rb'
 end
 
-# Javascript tests
-Rake::TestTask.new do
-  puts `cd tasks/uptime-check && mocha`
+desc "Run JavaScript tests"
+task :js_tests do
+  Dir.chdir('tasks/uptime-check') do
+    sh 'mocha'
+  end
 end
 
-task default: :test
+task default: [:test, :js_tests]
