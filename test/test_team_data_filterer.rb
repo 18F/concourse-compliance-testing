@@ -4,24 +4,41 @@ require_relative '../lib/team_data_filterer'
 describe TeamDataFilterer do
   describe '.transform_links' do
     it "converts String `links` to the Hash format" do
-      links = [
-        "https://example1.com",
-        {
-          "url" => "https://example2.com",
-          "text" => "example2"
-        }
-      ]
-
+      links = ["https://example1.gov"]
       results = TeamDataFilterer.transform_links(links)
       results.must_equal([
         {
-          "url" => "https://example1.com"
-        },
-        {
-          "url" => "https://example2.com",
-          "text" => "example2"
+          "url" => "https://example1.gov"
         }
       ])
+    end
+
+    it "passes Hash format links through" do
+      links = [
+        {
+          "url" => "https://example2.gov",
+          "text" => "example2"
+        }
+      ].freeze
+
+      results = TeamDataFilterer.transform_links(links)
+      results.must_equal(links)
+    end
+
+    it "removes links that don't end in .gov" do
+      links = %w(
+        https://example1.com
+        https://example1.com/foo
+        https://example2.gov
+        https://example2.gov/foo
+      )
+
+      results = TeamDataFilterer.transform_links(links)
+      urls = results.map { |link| link['url'] }
+      urls.must_equal(%w(
+        https://example2.gov
+        https://example2.gov/foo
+      ))
     end
   end
 

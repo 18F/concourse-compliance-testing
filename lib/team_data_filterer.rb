@@ -1,22 +1,12 @@
 require 'json'
+require 'uri'
 
 # helper methods for filter-team-data
 module TeamDataFilterer
   class << self
     def transform_links(links)
-      links.map do |link|
-        case link
-        # the new about.yml format
-        # https://github.com/18F/about_yml#aboutyml-cheat-sheet
-        when Hash
-          link
-        # the old about.yml format
-        when String
-          { "url" => link }
-        else
-          STDERR.puts "WARN: unknown link format: `#{link.inspect}`."
-        end
-      end
+      results = normalize_links(links)
+      filter_links(results)
     end
 
     # copy in overridden attributes from the target
@@ -78,6 +68,30 @@ module TeamDataFilterer
       end
 
       transform_project(project, target)
+    end
+
+    def normalize_links(links)
+      links.map do |link|
+        case link
+        # the new about.yml format
+        # https://github.com/18F/about_yml#aboutyml-cheat-sheet
+        when Hash
+          link
+        # the old about.yml format
+        when String
+          { "url" => link }
+        else
+          STDERR.puts "WARN: unknown link format: `#{link.inspect}`."
+        end
+      end
+    end
+
+    # `links` should be in the Hash format
+    def filter_links(links)
+      links.select do |link|
+        uri = URI(link['url'])
+        uri.host.end_with?('.gov')
+      end
     end
   end
 end
