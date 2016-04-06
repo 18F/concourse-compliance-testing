@@ -4,18 +4,21 @@ require_relative '../lib/pipeline_builder'
 
 describe PipelineBuilder do
   describe '#build' do
+    def build_for(projects)
+      builder = PipelineBuilder.new(projects)
+      YAML.load(builder.build)
+    end
+
     it "succeeds for an empty list of projects" do
-      builder = PipelineBuilder.new([])
-      data = YAML.load(builder.build)
+      data = build_for([])
       data['jobs'].must_equal nil
     end
 
     it "adds an ondemand and a scheduled job for each project" do
-      builder = PipelineBuilder.new([
+      data = build_for([
         { 'name' => 'foo' },
         { 'name' => 'bar' }
       ])
-      data = YAML.load(builder.build)
       jobs = data['jobs'].map { |job| job['name'] }.sort
       jobs.must_equal %w(
         zap-ondemand-bar
@@ -23,6 +26,29 @@ describe PipelineBuilder do
         zap-scheduled-bar
         zap-scheduled-foo
       )
+    end
+
+    it "uses the specified Slack channel" do
+      data = build_for([
+        {
+          'name' => 'foo',
+          'slack_channel' => 'bar'
+        }
+      ])
+
+      job = data['jobs'].first
+      step = job['plan'].last
+      step['on_success']['params']['channel'].must_equal '#bar'
+    end
+
+    it "uses the templatized Slack channel when none is specified" do
+      data = build_for([
+        { 'name' => 'foo' }
+      ])
+
+      job = data['jobs'].first
+      step = job['plan'].last
+      step['on_success']['params']['channel'].must_equal '{{slack-channel}}'
     end
   end
 end
