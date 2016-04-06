@@ -28,16 +28,23 @@ Uploading a pipeline is done via the `fly set-pipeline` command, which is includ
 
 ### ci.cloud.gov
 
-Running pipelines on ci.cloud.gov is identical to running pipelines locally, with the exception that you will need to log in to ci.cloud.gov. Assuming you have permissions, run:
+Running pipelines on ci.cloud.gov is identical to running pipelines locally, with the exception that you will need to log in to ci.cloud.gov. Assuming you have permissions:
 
-```bash
-fly -t cloud login —c https://ci.cloud.gov
-cp config/prod.example.yml config/prod.yml
-# modify config/prod.yml
-fly set-pipeline -t cloud -n -c pipelines/zap.yml -p zap --load-vars-from config/prod.yml
-```
+1. Run:
 
-Note that you may need to re-download `fly` from [ci.cloud.gov](https://ci.cloud.gov) to ensure the versions match.
+    ```bash
+    cp config/prod.example.yml config/prod.yml
+    ```
+
+1. Modify `config/prod.yml`.
+1. Run:
+
+    ```bash
+    fly -t cloud login —c https://ci.cloud.gov
+    fly -t cloud sync
+    ./pipelines/zap/build > tmp/zap-pipeline.yml
+    fly set-pipeline -t cloud -n -c tmp/zap-pipeline.yml -p zap --load-vars-from config/prod.yml
+    ```
 
 ## Feedback
 

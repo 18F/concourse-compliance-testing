@@ -1,11 +1,9 @@
 ---
 inputs:
-- name: scripts
 - name: project-data
-- name: last-results
-- name: results
+- name: scripts
 outputs:
-- name: zap-summary
+- name: filtered-project-data
 platform: linux
 image_resource:
   type: docker-image
@@ -15,4 +13,4 @@ image_resource:
 run:
   path: ruby
   args:
-  - ./scripts/tasks/summarize-zap-results/task.rb
+  - ./scripts/tasks/filter-project-data/task.rb

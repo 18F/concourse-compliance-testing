@@ -1,0 +1,14 @@
+#!/bin/bash
+
+set -e
+set -x
+
+mkdir -p tmp
+./pipelines/zap/build > tmp/zap-pipeline.yml
+
+BRANCH=$(git rev-parse --abbrev-ref HEAD)
+
+fly set-pipeline -t lite -n -c tmp/zap-pipeline.yml -p zap --load-vars-from config/local.yml -v script-branch="$BRANCH"
+fly -t lite unpause-pipeline --pipeline zap
+
+open http://192.168.100.4:8080/pipelines/zap

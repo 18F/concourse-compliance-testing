@@ -4,7 +4,7 @@ Concourse task to normalize/filter project data from [the 18F Team API](https://
 
 ## Adding/configuring projects
 
-The projects listed in the [`targets.json`](targets.json) file filter the data returned from the Team API. For example, having the following in `targets.json`:
+The projects listed in the [`targets.json`](../../config/targets.json) file filter the data returned from the Team API. For example, having the following in `targets.json`:
 
 ```javascript
 [

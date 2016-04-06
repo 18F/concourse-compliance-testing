@@ -1,3 +1,5 @@
+require 'json'
+
 # helper methods for filter-team-data
 module TeamDataFilterer
   class << self
@@ -44,6 +46,15 @@ module TeamDataFilterer
 
     def write_json(data, path)
       JSON.dump(data, File.new(path, 'w'))
+    end
+
+    def targets
+      path = File.expand_path('../../config/targets.json', __FILE__)
+      read_json(path)
+    end
+
+    def target(project_name)
+      targets.find { |t| t['name'] == project_name }
     end
 
     private

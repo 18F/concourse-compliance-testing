@@ -1,16 +1,16 @@
 ---
 inputs:
-  - name: s3-bucket-results
+- name: s3-bucket-results
 platform: linux
 image_resource:
   type: docker-image
   source:
     repository: busybox
 outputs:
-  - name: last-results
+- name: last-results
 run:
   path: "cp"
   args:
-  - -rv
+  - -Rv
   - s3-bucket-results
   - last-results
