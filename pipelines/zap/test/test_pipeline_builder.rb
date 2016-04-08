@@ -42,13 +42,12 @@ describe PipelineBuilder do
     end
 
     it "uses the templatized Slack channel when none is specified" do
-      data = build_for([
+      builder = PipelineBuilder.new([
         { 'name' => 'foo' }
       ])
-
-      job = data['jobs'].first
-      step = job['plan'].last
-      step['on_success']['params']['channel'].must_equal '{{slack-channel}}'
+      yaml = builder.build
+      # the Concourse template variable gets interpreted by YAML as a Hash, so check the unparsed version
+      yaml.must_include 'channel: {{slack-channel}}'
     end
   end
 end
