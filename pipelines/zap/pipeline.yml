@@ -87,7 +87,7 @@ jobs:
     on_success:
       put: slack
       params:
-        channel: "<%= project['slack_channel'] ? "##{project['slack_channel']}" : "{{slack-channel}}" %>"
+        channel: <%= project['slack_channel'] ? "'##{project['slack_channel']}'" : "{{slack-channel}}" %>
         icon_url: {{slack-icon}}
         text_file: zap-summary/summary.txt
         username: {{slack-user}}
