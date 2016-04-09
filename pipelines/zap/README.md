@@ -6,8 +6,8 @@ This pipeline scans the projects listed in [`targets.json`](../../config/targets
 
 The ZAP pipeline is templatized, so it needs to be built before it can be uploaded to [Concourse](http://concourse.ci/).
 
-The following assumes a Concourse target named `lite`. Run the following from the top level of this repository:
+The following assumes a Concourse target named `lite`. Run the following from this directory:
 
 ```bash
-./pipelines/zap/update
+rake local deploy
 ```

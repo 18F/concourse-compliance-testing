@@ -28,7 +28,7 @@ Uploading a pipeline is done via the `fly set-pipeline` command, which is includ
 
 ### ci.cloud.gov
 
-Running pipelines on ci.cloud.gov is identical to running pipelines locally, with the exception that you will need to log in to ci.cloud.gov. Assuming you have permissions:
+Running pipelines on ci.cloud.gov is identical to running pipelines locally, with the exception that you will need to log in to ci.cloud.gov. Assuming you have permissions, here is how you would deploy the [ZAP pipeline](pipelines/zap/):
 
 1. Run:
 
@@ -42,8 +42,8 @@ Running pipelines on ci.cloud.gov is identical to running pipelines locally, wit
     ```bash
     fly -t cloud login —c https://ci.cloud.gov
     fly -t cloud sync
-    ./pipelines/zap/build > tmp/zap-pipeline.yml
-    fly set-pipeline -t cloud -n -c tmp/zap-pipeline.yml -p zap --load-vars-from config/prod.yml
+    cd pipelines/zap
+    rake prod deploy
     ```
 
 ## Feedback
