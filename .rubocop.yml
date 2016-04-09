@@ -1,6 +1,8 @@
 # based on https://github.com/18F/C2/blob/2032fcb4de80ad23d9b81885be20985e99052b35/.rubocop.yml
 Metrics/LineLength:
   Enabled: false
+Style/AlignParameters:
+  EnforcedStyle: with_fixed_indentation
 Style/CommentAnnotation:
   Enabled: false
 Style/Documentation:
