@@ -1,8 +1,21 @@
 require_relative '../../lib/team_data_filterer'
 require_relative 'lib/pipeline_builder'
 
+def log(msg)
+  puts "INFO: #{msg}"
+end
+
+def error_and_quit(msg)
+  STDERR.puts "ERROR: #{msg}"
+  exit 1
+end
+
 def branch
-  `git rev-parse --abbrev-ref HEAD`.strip
+  result = ENV['SCRIPT_BRANCH'] || `git rev-parse --abbrev-ref HEAD`.strip
+  if result == 'HEAD'
+    error_and_quit("Must be checked out to a branch, or specify SCRIPT_BRANCH environment variable.")
+  end
+  result
 end
 
 desc "Set the deployment target to be local."
@@ -24,14 +37,13 @@ task :build do
   builder = PipelineBuilder.new(TeamDataFilterer.targets)
   @file = Tempfile.create(['zap-pipeline', '.yml'])
   @file.write(builder.build)
-  puts "INFO: Wrote pipeline to #{@file.path}."
+  log("Wrote pipeline to #{@file.path}.")
 end
 
 task :verify_target do
   unless @config && @origin && @target
     task = Rake.application.top_level_tasks.last
-    STDERR.puts "ERROR: No target set. Usage:\n\n  rake <target> #{task}\n\n"
-    exit 1
+    error_and_quit("No target set. Usage:\n\n  rake <target> #{task}\n\n")
   end
 end
 
@@ -60,6 +72,6 @@ task open: :verify_target do
 end
 
 desc "Build and update the pipeline on the given target."
-task deploy: [:build, :unpause, :open] do
-  puts "INFO: Pipeline updated and unpaused."
+task deploy: [:set, :unpause, :open] do
+  log("Pipeline updated and unpaused.")
 end
