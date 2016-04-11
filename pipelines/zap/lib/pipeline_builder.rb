@@ -11,7 +11,8 @@ class PipelineBuilder
 
   def build
     data = PipelineData.new(projects)
-    template.result(data.internal_binding)
+    output = template.result(data.internal_binding)
+    "# this file was generated, and therefore should not be edited directly\n#{output}"
   end
 
   private

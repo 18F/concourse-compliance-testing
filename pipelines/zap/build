@@ -1,9 +1,0 @@
-#!/usr/bin/env ruby
-
-require_relative '../../lib/team_data_filterer'
-require_relative 'lib/pipeline_builder'
-
-builder = PipelineBuilder.new(TeamDataFilterer.targets)
-
-puts "# this file was generated, and therefore should not be edited directly"
-puts builder.build
