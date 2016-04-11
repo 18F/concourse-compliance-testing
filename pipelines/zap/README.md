@@ -4,7 +4,7 @@ This pipeline scans the projects listed in [`targets.json`](../../config/targets
 
 ## Deployment
 
-The ZAP pipeline is templatized, so it needs to be built before it can be uploaded.
+The ZAP pipeline is templatized, so it needs to be built before it can be uploaded. Make sure that you are checked out to the branch that you wish to deploy.
 
 ### Local
 
