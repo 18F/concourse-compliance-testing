@@ -26,25 +26,9 @@ Sensitive and/or configuration information should not be stored in the pipelines
 
 Uploading a pipeline is done via the `fly set-pipeline` command, which is included in a comment in [each pipeline file](pipelines/). Running `fly unpause-pipeline -p <pipeline name>` will allow the pipeline to be run.
 
-### ci.cloud.gov
+### Production
 
-Running pipelines on ci.cloud.gov is identical to running pipelines locally, with the exception that you will need to log in to ci.cloud.gov. Assuming you have permissions, here is how you would deploy the [ZAP pipeline](pipelines/zap/):
-
-1. Run:
-
-    ```bash
-    cp config/prod.example.yml config/prod.yml
-    ```
-
-1. Modify `config/prod.yml`.
-1. Run:
-
-    ```bash
-    fly -t cloud login —c https://ci.cloud.gov
-    fly -t cloud sync
-    cd pipelines/zap
-    rake prod deploy
-    ```
+See [the ZAP pipeline README](pipelines/zap/#production).
 
 ## Feedback
 
