@@ -35,7 +35,7 @@ The following assumes a Concourse target named `lite`. Run the following from th
 1. Run:
 
     ```bash
-    fly -t cloud login -c https://ci-tooling.cloud.gov
+    fly -t cloud login -c https://ci.cloud.gov
     fly -t cloud sync
     cd pipelines/zap
     rake prod deploy

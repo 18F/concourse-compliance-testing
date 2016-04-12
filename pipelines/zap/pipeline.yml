@@ -96,7 +96,7 @@ jobs:
       params:
         text: |
           :x: FAILED to scan properties.
-          <https://ci-tooling.cloud.gov/pipelines/$BUILD_PIPELINE_NAME/jobs/$BUILD_JOB_NAME/builds/$BUILD_NAME|View build details>
+          <https://ci.cloud.gov/pipelines/$BUILD_PIPELINE_NAME/jobs/$BUILD_JOB_NAME/builds/$BUILD_NAME|View build details>
         channel: {{slack-channel}}
         username: {{slack-user}}
         icon_url: {{slack-icon}}
