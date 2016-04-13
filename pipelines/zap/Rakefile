@@ -25,10 +25,10 @@ task :local do
   @target = 'lite'
 end
 
-desc "Set the deployment target to be ci-tooling.cloud.gov."
+desc "Set the deployment target to be ci.cloud.gov."
 task :prod do
   @config = 'prod'
-  @origin = 'https://ci-tooling.cloud.gov'
+  @origin = 'https://ci.cloud.gov'
   @target = 'cloud'
 end
 
