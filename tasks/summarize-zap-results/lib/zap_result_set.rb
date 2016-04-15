@@ -29,6 +29,7 @@ module ZAPResultSet
     #  of a missing file producing an empty result, i.e. `[]` below.
     def read_json(proj, results_dir)
       path = ZAPProject.project_path(proj, results_dir)
+      puts "Reading #{path}."
       File.exist?(path) ? JSON.parse(File.read(path)) : []
     end
 
