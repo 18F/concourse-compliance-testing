@@ -1,7 +1,7 @@
 require_relative 'lib/zap_result_set_comparator'
 require_relative '../../lib/team_data_filterer'
 
-last_run_dir = "last-results/s3-bucket-results/results"
+last_run_dir = "last-results"
 current_run_dir = "results"
 output_dir = "zap-summary"
 

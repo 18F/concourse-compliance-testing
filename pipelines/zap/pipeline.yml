@@ -13,11 +13,6 @@ resource_types:
   source:
     repository: cfcommunity/slack-notification-resource
     tag: v1.0.0
-- name: s3-resource
-  type: docker-image
-  source:
-    repository: 18fgsa/s3-resource-simple
-    tag: 1.1.1
 - name: http-resource
   type: docker-image
   source:
@@ -39,16 +34,14 @@ resources:
   type: slack-notification
   source:
     url: {{slack-hook}}
-- name: s3-bucket-results
-  type: s3-resource
+<% projects.each do |project| -%>
+- name: s3-result-<%= project['name'] %>
+  type: s3
   source:
+    bucket: {{aws-bucket}}
+    versioned_file: results/<%= project['name'] %>.json
     access_key_id: {{aws-access-key}}
     secret_access_key: {{aws-secret-key}}
-    bucket: {{aws-bucket}}
-    options:
-      - "--exclude '*'"
-      - "--include 'results/*'"
-<% projects.each do |project| -%>
 - name: fetch-project-data-<%= project['name'] %>
   type: http-resource
   source:
@@ -74,14 +67,31 @@ jobs:
   - get: scripts
   - get: project-data
     resource: fetch-project-data-<%= project['name'] %>
-  - get: s3-bucket-results
+  # if it's a new project, the last results won't exist
+  - try:
+      get: last-results
+      resource: s3-result-<%= project['name'] %>
+      on_failure:
+        task: create-last-results
+        config:
+          platform: linux
+          image_resource:
+            type: docker-image
+            source:
+              repository: busybox
+          outputs:
+          - name: last-results
+          run:
+            path: echo
+            args:
+            - Creating empty directory for results from the last scan.
   - task: filter-project-data
     file: scripts/tasks/filter-project-data/task.yml
-  - task: fetch-last-zap-results
-    file: scripts/tasks/fetch-last-zap-results.yml
   - task: scan-zap
     file: scripts/tasks/run-zap/task.yml
-  - put: s3-bucket-results
+  - put: s3-result-<%= project['name'] %>
+    params:
+      file: results/<%= project['name'] %>.json
   - task: summarize-zap-results
     file: scripts/tasks/summarize-zap-results/task.yml
     on_success:
