@@ -49,6 +49,7 @@ class TestZAPResultSet < MiniTest::Test
       it "should return true if the project file is missing" do
         refute ZAPResultSet.new('fake-site-1', curr_results_dir).missing?
         assert ZAPResultSet.new('fake-site-n', curr_results_dir).missing?
+        refute ZAPResultSet.new('fake-site-0', curr_results_dir).missing?
       end
     end
   end
