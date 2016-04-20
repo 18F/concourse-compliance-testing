@@ -27,5 +27,23 @@ class TestZAPResultSetComparator < MiniTest::Test
         assert_equal expected, summary_txt
       end
     end
+
+    describe '.no_change?' do
+      it "should return true if there is no change in status" do
+        zr4 = ZAPResultSetComparator.new('fake-site-4', last_results_dir, curr_results_dir)
+        zr0 = ZAPResultSetComparator.new('fake-site-0', last_results_dir, curr_results_dir)
+        assert zr4.no_change?
+        assert zr0.no_change?
+      end
+
+      it "should return false if there is a change in status" do
+        zr1 = ZAPResultSetComparator.new('fake-site-1', last_results_dir, curr_results_dir)
+        zr2 = ZAPResultSetComparator.new('fake-site-2', last_results_dir, curr_results_dir)
+        zr3 = ZAPResultSetComparator.new('fake-site-3', last_results_dir, curr_results_dir)
+        refute zr1.no_change?
+        refute zr2.no_change?
+        refute zr3.no_change?
+      end
+    end
   end
 end

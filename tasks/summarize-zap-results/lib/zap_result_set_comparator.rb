@@ -17,6 +17,10 @@ class ZAPResultSetComparator
     File.write("#{output_dir}/summary.txt", txt)
   end
 
+  def no_change?
+    project_statuses.empty? && !@curr_result_set.missing?
+  end
+
   private
 
   def project_summary

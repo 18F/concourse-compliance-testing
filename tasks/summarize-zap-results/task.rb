@@ -11,8 +11,15 @@ def project_name
 end
 
 puts "Comparing last results to current results..."
-ZAPResultSetComparator.write_summary(last_run_dir, current_run_dir, output_dir, project_name)
-puts "Done."
+comparator = ZAPResultSetComparator.new(project_name, last_run_dir, current_run_dir)
 
-puts "Generated summary.txt:"
-puts `cat #{output_dir}/summary.txt`
+# If there is no change, do not write a summary. This prevents Slack from notifying.
+# https://github.com/cloudfoundry-community/slack-notification-resource#parameters
+if comparator.no_change?
+  puts "No Change in ZAP results, omitting summary."
+else
+  comparator.write_summary(output_dir)
+  puts "Generated summary.txt:"
+  puts `cat #{output_dir}/summary.txt`
+end
+puts "Done."
