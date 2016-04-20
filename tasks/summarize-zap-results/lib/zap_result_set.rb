@@ -2,47 +2,51 @@ require 'json'
 require_relative 'zap_project'
 
 # Represents ZAP results for one project/run
-module ZAPResultSet
+class ZAPResultSet
   # Represents a single ZAP result
   Result = Struct.new(:name, :confidence, :risk, :url, :param, :evidence, :alert)
-  class << self
-    def project_results(proj, results_dir)
-      json = strip_js_and_css(read_json(proj, results_dir))
-      json_to_results(proj, json)
-    end
 
-    def paren_status_count(proj, results_dir)
-      results = project_results(proj, results_dir)
-      counts = count_risk_levels(results)
-      "(#{counts[:high]}/#{counts[:medium]}/#{counts[:low]}/#{counts[:informational]})"
-    end
+  def initialize(project_name, path)
+    @project = ZAPProject.new(project_name, path)
+  end
 
-    def count_risk_levels(results)
-      statuses = { high: 0, medium: 0, low: 0, informational: 0 }
-      results.each { |result| statuses[result.risk.downcase.to_sym] += 1 }
-      statuses
-    end
+  def project_results
+    json = strip_js_and_css(read_json)
+    json_to_results(json)
+  end
 
-    private
+  def paren_status_count
+    counts = count_risk_levels(project_results)
+    "(#{counts[:high]}/#{counts[:medium]}/#{counts[:low]}/#{counts[:informational]})"
+  end
 
-    # Previous or current result files could be missing. It's useful to think
-    #  of a missing file producing an empty result, i.e. `[]` below.
-    def read_json(proj, results_dir)
-      path = ZAPProject.project_path(proj, results_dir)
-      puts "Reading #{path}."
-      File.exist?(path) ? JSON.parse(File.read(path)) : []
-    end
+  def count_risk_levels(results)
+    statuses = { high: 0, medium: 0, low: 0, informational: 0 }
+    results.each { |result| statuses[result.risk.downcase.to_sym] += 1 }
+    statuses
+  end
 
-    # Transform json to ZAPResultSet::Results
-    def json_to_results(project, json)
-      json.map do |jr|
-        Result.new(project, jr['confidence'], jr['risk'], jr['url'], jr['param'], jr['evidence'], jr['alert'])
-      end
-    end
+  def missing?
+    !@project.source_exists?
+  end
 
-    # We leave JS and CSS urls out of ZAP Results.
-    def strip_js_and_css(json)
-      json.reject { |record| record['url'].match(/.js|.css/) }
+  private
+
+  # Previous or current result files could be missing. It's useful to think
+  #  of a missing file producing an empty result, i.e. `[]` below.
+  def read_json
+    @project.source_exists? ? JSON.parse(File.read(@project.project_path)) : []
+  end
+
+  # Transform json to ZAPResultSet::Results
+  def json_to_results(json)
+    json.map do |jr|
+      Result.new(@project.name, jr['confidence'], jr['risk'], jr['url'], jr['param'], jr['evidence'], jr['alert'])
     end
+  end
+
+  # We leave JS and CSS urls out of ZAP Results.
+  def strip_js_and_css(json)
+    json.reject { |record| record['url'].match(/.js|.css/) }
   end
 end
