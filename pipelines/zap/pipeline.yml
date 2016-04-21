@@ -98,7 +98,7 @@ jobs:
       put: slack
       params:
         channel: <%= project['slack_channel'] ? "'##{project['slack_channel']}'" : "{{slack-channel}}" %>
-        icon_emoji: ':cop'
+        icon_emoji: ':cop:'
         text_file: zap-summary/summary.txt
         username: {{slack-user}}
     on_failure:
@@ -109,6 +109,6 @@ jobs:
           <$ATC_EXTERNAL_URL/pipelines/$BUILD_PIPELINE_NAME/jobs/$BUILD_JOB_NAME/builds/$BUILD_NAME|View build details>
         channel: {{slack-channel}}
         username: {{slack-user}}
-        icon_emoji: ':cop'
+        icon_emoji: ':cop:'
 <% end -%>
 <% end -%>
