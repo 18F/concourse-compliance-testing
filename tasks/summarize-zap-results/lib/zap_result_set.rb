@@ -6,6 +6,8 @@ class ZAPResultSet
   # Represents a single ZAP result
   Result = Struct.new(:name, :confidence, :risk, :url, :param, :evidence, :alert)
 
+  attr_reader :project
+
   def initialize(project_name, path)
     @project = ZAPProject.new(project_name, path)
   end
@@ -27,7 +29,7 @@ class ZAPResultSet
   end
 
   def missing?
-    !@project.source_exists?
+    !project.source_exists?
   end
 
   private
@@ -35,13 +37,17 @@ class ZAPResultSet
   # Previous or current result files could be missing. It's useful to think
   #  of a missing file producing an empty result, i.e. `[]` below.
   def read_json
-    @project.source_exists? ? JSON.parse(File.read(@project.project_path)) : []
+    if project.source_exists?
+      JSON.parse(File.read(project.project_path))
+    else
+      []
+    end
   end
 
   # Transform json to ZAPResultSet::Results
   def json_to_results(json)
     json.map do |jr|
-      Result.new(@project.name, jr['confidence'], jr['risk'], jr['url'], jr['param'], jr['evidence'], jr['alert'])
+      Result.new(project.name, jr['confidence'], jr['risk'], jr['url'], jr['param'], jr['evidence'], jr['alert'])
     end
   end
 

@@ -1,6 +1,6 @@
 # Functions related to a ZAP Project
 class ZAPProject
-  attr_reader :name
+  attr_reader :name, :path
 
   def initialize(name, path)
     @name = name
@@ -8,7 +8,7 @@ class ZAPProject
   end
 
   def project_path
-    "#{@path}/#{@name}.json"
+    "#{path}/#{name}.json"
   end
 
   def source_exists?
