@@ -1,12 +1,17 @@
 # Functions related to a ZAP Project
-module ZAPProject
-  class << self
-    def project_path(project, path)
-      "#{path}/#{project}.json"
-    end
+class ZAPProject
+  attr_reader :name, :path
 
-    def missing_project_json?(proj, results_dir)
-      !File.exist?(project_path(proj, results_dir))
-    end
+  def initialize(name, path)
+    @name = name
+    @path = path
+  end
+
+  def project_path
+    "#{path}/#{name}.json"
+  end
+
+  def source_exists?
+    File.exist?(project_path)
   end
 end
