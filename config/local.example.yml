@@ -9,7 +9,5 @@ script-branch:
 slack-hook:
 # which channel should get notified?
 slack-channel:
-# url to image to use for the Slack user
-slack-icon:
 # name for the slack user
 slack-user:

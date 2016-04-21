@@ -13,7 +13,5 @@ script-branch: master
 slack-hook:
 # which channel should get notified?
 slack-channel: '#compliance-toolkit'
-# url to image to use for the Slack user
-slack-icon: http://cl.ly/image/3e1h0H3H2s0P/concourse-logo.png
 # name for the slack user
 slack-user: concourse
