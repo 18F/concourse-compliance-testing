@@ -6,7 +6,7 @@ current_run_dir = "results"
 output_dir = "zap-summary"
 
 def project_name
-  data = TeamDataFilterer.read_json('project-data/project.json')
+  data = TeamDataFilterer.read_json('filtered-project-data/project.json')
   data['name']
 end
 

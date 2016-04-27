@@ -1,7 +1,7 @@
 ---
 inputs:
 - name: scripts
-- name: project-data
+- name: filtered-project-data
 - name: last-results
 - name: results
 outputs:
