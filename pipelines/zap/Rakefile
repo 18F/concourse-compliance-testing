@@ -69,7 +69,7 @@ end
 
 desc "Open the pipeline in a browser."
 task open: :verify_target do
-  sh 'open', @origin
+  sh 'open', "#{@origin}/pipelines/zap"
 end
 
 desc "Build and update the pipeline on the given target."
