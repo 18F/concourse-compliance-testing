@@ -47,7 +47,10 @@ class ZAPResultSet
   # Transform json to ZAPResultSet::Results
   def json_to_results(json)
     json.map do |jr|
-      Result.new(project.name, jr['confidence'], jr['risk'], jr['url'], jr['param'], jr['evidence'], jr['alert'])
+      uri = URI(jr['url'])
+      # ignore the query string, since it may have some randomness
+      uri.query = nil
+      Result.new(project.name, jr['confidence'], jr['risk'], uri.to_s, jr['param'], jr['evidence'], jr['alert'])
     end
   end
 
