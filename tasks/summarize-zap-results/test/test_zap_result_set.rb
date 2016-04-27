@@ -25,7 +25,7 @@ class TestZAPResultSet < MiniTest::Test
       end
 
       it "strips the query strings from the result URLs" do
-        result_set = ZAPResultSet.new("fake-site-with-query", curr_results_dir)
+        result_set = ZAPResultSet.new("fake-site-with-randomness", curr_results_dir)
         project_results = result_set.project_results
         assert_equal 1, project_results.size
         uri = URI(project_results.first['url'])

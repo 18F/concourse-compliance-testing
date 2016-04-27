@@ -4,7 +4,7 @@ require_relative 'zap_project'
 # Represents ZAP results for one project/run
 class ZAPResultSet
   # Represents a single ZAP result
-  Result = Struct.new(:name, :confidence, :risk, :url, :param, :evidence, :alert)
+  Result = Struct.new(:name, :confidence, :risk, :url, :param, :alert)
 
   attr_reader :project
 
@@ -50,7 +50,7 @@ class ZAPResultSet
       uri = URI(jr['url'])
       # ignore the query string, since it may have some randomness
       uri.query = nil
-      Result.new(project.name, jr['confidence'], jr['risk'], uri.to_s, jr['param'], jr['evidence'], jr['alert'])
+      Result.new(project.name, jr['confidence'], jr['risk'], uri.to_s, jr['param'], jr['alert'])
     end
   end
 
