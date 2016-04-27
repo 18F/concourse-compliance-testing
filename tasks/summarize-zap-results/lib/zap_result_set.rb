@@ -38,8 +38,10 @@ class ZAPResultSet
   #  of a missing file producing an empty result, i.e. `[]` below.
   def read_json
     if project.source_exists?
+      puts "#{project.project_path} found."
       JSON.parse(File.read(project.project_path))
     else
+      puts "#{project.project_path} not found."
       []
     end
   end
