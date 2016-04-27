@@ -30,8 +30,38 @@ Uploading a pipeline is done via the `fly set-pipeline` command, which is includ
 
 See [the ZAP pipeline README](pipelines/zap/#production).
 
-## Feedback
+## Adding a Project
 
+The `targets.json` file in the `config` directory acts as a whitelist against the `team-api` list of projects.
+
+To get a new project added to the scans:
+
+1. Ensure that your project appears in the [team-api](https://team-api.18f.gov/api/projects/). The directions for doing that are [here](https://github.com/18F/team-api.18f.gov#adding-project-data).
+
+1. Submit a PR to this repo after adding an entry in `config/targets.json` like this:
+
+  ```
+    {
+      "name": "PROJECT NAME",
+      "slack_channel": "CHANNEL FOR NOTIFICATIONS",
+      "links": [
+        {
+          "url": "URL TO SCAN"
+        }
+      ]
+    }
+  ```
+`name` - This must match the `name` field from the team api.
+
+`slack_channel` - This should be the channel where you'd like to get alerts for completed scans. If left out, the alerts will be sent to the default channel, currently `#ct-bot-attack`.
+
+`links` - An array of links that should be scanned with ZAP. The results will be concatenated together. If left out, any `.gov` urls in your team api entry will be scanned.
+
+For more information on the functionality available in `targets.json`, view the [filter-project-data README](https://github.com/18F/concourse-compliance-testing/blob/master/tasks/filter-project-data/README.md#configuring-projects)
+
+After the PR is merged, someone with access to the Concourse server will need to redeploy the pipeline to start the scans. You can ask in #compliance-toolkit for assistance.
+
+## Feedback
 Give us your feedback! We'd love to hear it. [Open an issue and tell us what you think.](https://github.com/18f/concourse-compliance-testing/issues/new)
 
 ### Public domain
