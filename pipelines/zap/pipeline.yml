@@ -45,9 +45,9 @@ resources:
 - name: fetch-project-data-<%= project['name'] %>
   type: http-resource
   source:
-    uri: https://team-api.18f.gov/public/api/projects/<%= project['name'].downcase %>/
+    uri: https://team-api.18f.gov/public/api/projects/<%= project['name'] %>/
     filename: project.json
-    index: https://team-api.18f.gov/public/api/projects/<%= project['name'].downcase %>/
+    index: https://team-api.18f.gov/public/api/projects/<%= project['name'] %>/
     etag: true
 <% end -%>
 

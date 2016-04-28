@@ -113,45 +113,5 @@ describe TeamDataFilterer do
         }
       ]
     end
-
-    it "downcases target names when filtering projects" do
-      projects = [
-        {
-          "name" => "foo",
-          "links" => []
-        }
-      ]
-      targets = [
-        { "name" => "FOO" }
-      ]
-
-      results = TeamDataFilterer.filtered_projects(projects, targets)
-      results.must_equal [
-        {
-          "name" => "foo",
-          "links" => []
-        }
-      ]
-    end
-
-    it "downcases project names when filtering projects" do
-      projects = [
-        {
-          "name" => "FOO",
-          "links" => []
-        }
-      ]
-      targets = [
-        { "name" => "foo" }
-      ]
-
-      results = TeamDataFilterer.filtered_projects(projects, targets)
-      results.must_equal [
-        {
-          "name" => "foo",
-          "links" => []
-        }
-      ]
-    end
   end
 end

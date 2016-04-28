@@ -4,7 +4,7 @@ Concourse task to summarize differences between Last and Current ZAP result sets
 
 ## Use
 
-In order to summarize results, this task needs `last-results`, `results`, and `project-data` as `input`. `run-zap` task results are stored in S3. `last-results` are generally downloaded before running ZAP and generating/uploading new `results`.
+In order to summarize results, this task needs `last-results`, `results`, and `filtered-project-data` as `input`. `run-zap` task results are stored in S3. `last-results` are generally downloaded before running ZAP and generating/uploading new `results`.
 
 ## Local usage
 
@@ -12,7 +12,7 @@ In order to summarize results, this task needs `last-results`, `results`, and `p
 1. Run the following from the top level of this repository:
 
     ```bash
-    fly execute -t lite -c tasks/summarize-zap-results/task.yml -i results=<current-results-dir> -i last-results=<last-results-dir> -i scripts=. -i project-data=<project-data-dir>
+    fly execute -t lite -c tasks/summarize-zap-results/task.yml -i results=<current-results-dir> -i last-results=<last-results-dir> -i scripts=. -i filtered-project-data=<filtered-project-data-dir>
     ```
 
 ## Running tests

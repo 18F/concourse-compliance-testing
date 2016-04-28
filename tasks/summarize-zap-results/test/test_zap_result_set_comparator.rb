@@ -44,6 +44,11 @@ class TestZAPResultSetComparator < MiniTest::Test
         refute zr2.no_change?
         refute zr3.no_change?
       end
+
+      it "returns true even if there is randomness in the results" do
+        comparator = ZAPResultSetComparator.new('fake-site-with-randomness', last_results_dir, curr_results_dir)
+        assert comparator.no_change?
+      end
     end
   end
 end
