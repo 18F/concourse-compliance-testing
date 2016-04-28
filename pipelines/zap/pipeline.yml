@@ -1,5 +1,10 @@
 <%# note that this pipeline file is actually an ERB template, and thus shouldn't be used with `fly` directly -%>
 groups:
+- name: all
+  jobs:
+<% projects.each do |project| -%>
+  - zap-scheduled-<%= project['name'] %>
+<% end -%>
 <% projects.each do |project| -%>
 - name: <%= project['name'] %>
   jobs:
