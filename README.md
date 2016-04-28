@@ -40,7 +40,7 @@ To get a new project added to the scans:
 
 1. Submit a PR to this repo after adding an entry in `config/targets.json` like this:
 
-  ```
+    ```json
     {
       "name": "PROJECT NAME",
       "slack_channel": "CHANNEL FOR NOTIFICATIONS",
@@ -50,9 +50,9 @@ To get a new project added to the scans:
         }
       ]
     }
-  ```
+    ```
 
-`name` - This must match the `name` field from the team api.
+`name` - This must match the `name` field from the team api, but should be all lowercase.
 
 `slack_channel` - This should be the channel where you'd like to get alerts for completed scans. If left out, the alerts will be sent to the default channel, currently `#ct-bot-attack`.
 
