@@ -11,7 +11,12 @@ class ZAPResultSetComparator
     @last_result_set = ZAPResultSet.new(project_name, last_run_dir)
   end
 
-  def write_summary(output_dir)
+  def write_json_summary(output_dir)
+    results = curr_result_set.count_risk_levels
+    File.write("#{output_dir}/summary.json", results.to_json)
+  end
+
+  def write_slack_summary(output_dir)
     txt = "Completed scan of #{project_summary}"
     txt += "\n<https://compliance-viewer.18f.gov/results/#{project_name}/current|View results>"
     File.write("#{output_dir}/summary.txt", txt)
@@ -56,9 +61,12 @@ class ZAPResultSetComparator
     old_results = last_result_set.project_results
     new_results = curr_result_set.project_results
 
+    fixes = old_results - new_results
+    regressions = new_results - old_results
+
     {
-      decreased_counts: last_result_set.count_risk_levels(old_results - new_results),
-      increased_counts: last_result_set.count_risk_levels(new_results - old_results)
+      decreased_counts: ZAPResultSet.count_risk_levels(fixes),
+      increased_counts: ZAPResultSet.count_risk_levels(regressions)
     }
   end
 end

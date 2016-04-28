@@ -48,7 +48,7 @@ class TestZAPResultSet < MiniTest::Test
     describe ".count_risk_levels" do
       it "should return correct status counts" do
         result_set = ZAPResultSet.new('fake-site-1', curr_results_dir)
-        counts = result_set.count_risk_levels(result_set.project_results)
+        counts = result_set.count_risk_levels
         assert_equal({ high: 2, medium: 0, low: 1, informational: 1 }, counts)
       end
     end

@@ -42,6 +42,13 @@ resources:
     versioned_file: results/<%= project['name'] %>.json
     access_key_id: {{aws-access-key}}
     secret_access_key: {{aws-secret-key}}
+- name: s3-summary-<%= project['name'] %>
+  type: s3
+  source:
+    bucket: {{aws-bucket}}
+    versioned_file: summaries/<%= project['name'] %>.json
+    access_key_id: {{aws-access-key}}
+    secret_access_key: {{aws-secret-key}}
 - name: fetch-project-data-<%= project['name'] %>
   type: http-resource
   source:
@@ -95,8 +102,8 @@ jobs:
   - task: summarize-zap-results
     file: scripts/tasks/summarize-zap-results/task.yml
     on_success:
-<% if project['slack_channel'] -%>
       aggregate:
+<% if project['slack_channel'] -%>
       - put: slack
         params:
           channel: '#<%= project['slack_channel'] %>'
@@ -113,13 +120,16 @@ jobs:
             <$ATC_EXTERNAL_URL/pipelines/$BUILD_PIPELINE_NAME/jobs/$BUILD_JOB_NAME/builds/$BUILD_NAME|View build details>
           username: {{slack-user}}
 <% else -%>
-      put: slack
-      params:
-        channel: {{slack-channel}}
-        icon_emoji: ':cop:'
-        text_file: zap-summary/summary.txt
-        username: {{slack-user}}
+      - put: slack
+        params:
+          channel: {{slack-channel}}
+          icon_emoji: ':cop:'
+          text_file: zap-summary/summary.txt
+          username: {{slack-user}}
 <% end -%>
+      - put: s3-summary-<%= project['name'] %>
+        params:
+          file: zap-summary/summary.json
     on_failure:
       put: slack
       params:
