@@ -29,16 +29,24 @@ describe PipelineBuilder do
     end
 
     it "uses the specified Slack channel" do
-      data = build_for([
+      builder = PipelineBuilder.new([
         {
           'name' => 'foo',
           'slack_channel' => 'bar'
         }
       ])
 
+      # check the posting to the central channel
+      yaml = builder.build
+      # the Concourse template variable gets interpreted by YAML as a Hash, so check the unparsed version
+      yaml.must_include 'channel: {{slack-channel}}'
+
+      # check the posting to the specified channel
+      data = YAML.load(yaml)
       job = data['jobs'].first
       step = job['plan'].last
-      step['on_success']['params']['channel'].must_equal '#bar'
+      sub_step = step['on_success']['aggregate'].first
+      sub_step['params']['channel'].must_equal '#bar'
     end
 
     it "uses the templatized Slack channel when none is specified" do

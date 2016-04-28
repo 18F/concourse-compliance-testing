@@ -95,12 +95,31 @@ jobs:
   - task: summarize-zap-results
     file: scripts/tasks/summarize-zap-results/task.yml
     on_success:
+<% if project['slack_channel'] -%>
+      aggregate:
+      - put: slack
+        params:
+          channel: '#<%= project['slack_channel'] %>'
+          icon_emoji: ':cop:'
+          text_file: zap-summary/summary.txt
+          username: {{slack-user}}
+      # post to the central Slack channel, just for diagnostics
+      - put: slack
+        params:
+          channel: {{slack-channel}}
+          icon_emoji: ':cop:'
+          text: |
+            :white_check_mark: $BUILD_JOB_NAME completed—posted in #<%= project['slack_channel'] %>.
+            <$ATC_EXTERNAL_URL/pipelines/$BUILD_PIPELINE_NAME/jobs/$BUILD_JOB_NAME/builds/$BUILD_NAME|View build details>
+          username: {{slack-user}}
+<% else -%>
       put: slack
       params:
-        channel: <%= project['slack_channel'] ? "'##{project['slack_channel']}'" : "{{slack-channel}}" %>
+        channel: {{slack-channel}}
         icon_emoji: ':cop:'
         text_file: zap-summary/summary.txt
         username: {{slack-user}}
+<% end -%>
     on_failure:
       put: slack
       params:
