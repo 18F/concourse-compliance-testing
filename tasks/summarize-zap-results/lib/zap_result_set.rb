@@ -18,18 +18,22 @@ class ZAPResultSet
   end
 
   def paren_status_count
-    counts = count_risk_levels(project_results)
+    counts = count_risk_levels
     "(#{counts[:high]}/#{counts[:medium]}/#{counts[:low]}/#{counts[:informational]})"
   end
 
-  def count_risk_levels(results)
-    statuses = { high: 0, medium: 0, low: 0, informational: 0 }
-    results.each { |result| statuses[result.risk.downcase.to_sym] += 1 }
-    statuses
+  def count_risk_levels
+    self.class.count_risk_levels(project_results)
   end
 
   def missing?
     !project.source_exists?
+  end
+
+  def self.count_risk_levels(results)
+    statuses = { high: 0, medium: 0, low: 0, informational: 0 }
+    results.each { |result| statuses[result.risk.downcase.to_sym] += 1 }
+    statuses
   end
 
   private
