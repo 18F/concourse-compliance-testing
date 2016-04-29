@@ -1,14 +1,16 @@
 [
   {
     "name": "openopps",
+    "slack_channel": "openopps-platform",
     "links": [
       {
-        "url": "https://openopps-staging.18f.gov/"
+        "url": "https://openopps-test.18f.gov/"
       }
     ]
   },
   {
     "name": "micropurchase",
+    "slack_channel": "micropurchase-status",
     "links": [
       {
         "url": "https://micropurchase.18f.gov"
@@ -17,6 +19,7 @@
   },
   {
     "name": "api-data-gov",
+    "slack_channel": "wg-api",
     "links": [
       {
         "url": "https://api.data.gov/"
@@ -25,6 +28,7 @@
   },
   {
     "name": "dap",
+    "slack_channel": "dap",
     "links": [
       {
         "url": "https://analytics.usa.gov/"
@@ -33,6 +37,7 @@
   },
   {
     "name": "pulse",
+    "slack_channel": "pulse",
     "links": [
       {
         "url": "https://pulse.cio.gov/"
@@ -52,12 +57,10 @@
   },
   {
     "name": "atf-eregs",
+    "slack_channel": "atf-eregs",
     "links": [
       {
         "url": "https://atf-eregs-demo.apps.cloud.gov/"
-      },
-      {
-        "url": "https://eregsnc-demo.apps.cloud.gov/"
       }
     ]
   },
