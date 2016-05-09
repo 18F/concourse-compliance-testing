@@ -3,4 +3,8 @@ before_install:
   - (cd tasks/uptime-check && npm install)
 language: ruby
 rvm:
- - 2.2
+  - 2.2
+cache:
+  bundler: true
+  directories:
+    - node_modules
