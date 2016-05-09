@@ -52,7 +52,7 @@ The [`config/targets.json`](config/targets.json) file acts as a whitelist agains
 1. Ask someone in #compliance-toolkit to run
 
     ```bash
-    rake prod init_project[<name>]
+    rake prod init_targets
     ```
 
 ### Attributes
