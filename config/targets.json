@@ -57,7 +57,6 @@
   },
   {
     "name": "atf-eregs",
-    "slack_channel": "atf-eregs",
     "links": [
       {
         "url": "https://atf-eregs-demo.apps.cloud.gov/"
