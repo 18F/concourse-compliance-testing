@@ -19,6 +19,10 @@ def branch
   result
 end
 
+def config_path
+  File.expand_path("../../../config/#{@config}.yml", __FILE__)
+end
+
 desc "Set the deployment target to be local."
 task :local do
   @config = 'local'
@@ -50,7 +54,6 @@ end
 
 desc "Updates the pipeline."
 task set: [:verify_target, :build] do
-  config_path = File.expand_path("../../../config/#{@config}.yml", __FILE__)
   sh 'fly', 'set-pipeline',
     '-t', @target,
     '--load-vars-from', config_path,
@@ -75,4 +78,44 @@ end
 desc "Build and update the pipeline on the given target."
 task deploy: [:set, :unpause, :open] do
   log("Pipeline updated and unpaused.")
+end
+
+desc "Initialize a project"
+task :init_project, [:name] => :verify_target do |t, args|
+  name = args[:name]
+  if name
+    name.downcase!
+  else
+    STDERR.puts "FATAL: No project specified. Usage:\n\n\trake init_project[<name>]\n\n"
+    exit 1
+  end
+
+  require 'aws-sdk'
+  require 'yaml'
+
+  config = YAML.load_file(config_path)
+  s3 = Aws::S3::Client.new(
+    access_key_id: config['aws-access-key'],
+    secret_access_key: config['aws-secret-key'],
+    region: 'us-east-1'
+  )
+  bucket = config['aws-bucket']
+  path = "results/#{name}.json"
+
+  # since Concourse resources stall if the file doesn't exist, write an empty list of alerts for the project
+  begin
+    s3.head_object(
+      bucket: bucket,
+      key: path
+    )
+    puts "ZAP results exist."
+  rescue Aws::S3::Errors::NotFound
+    print "ZAP results don't exist. Creating..."
+    s3.put_object(
+      bucket: bucket,
+      key: path,
+      body: '[]'
+    )
+  end
+  puts "DONE"
 end

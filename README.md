@@ -35,7 +35,6 @@ See [the ZAP pipeline README](pipelines/zap/#production).
 The [`config/targets.json`](config/targets.json) file acts as a whitelist against [the Team API list of projects](https://team-api.18f.gov/public/api/projects/). To get a new project added to the scans:
 
 1. Ensure that your project appears in the [team-api](https://team-api.18f.gov/api/projects/). The directions for doing that are [here](https://github.com/18F/team-api.18f.gov#adding-project-data).
-
 1. Submit a PR to this repo after [adding an entry in `config/targets.json`](https://github.com/18F/concourse-compliance-testing/edit/master/config/targets.json) like this:
 
     ```json
@@ -48,6 +47,12 @@ The [`config/targets.json`](config/targets.json) file acts as a whitelist agains
         }
       ]
     }
+    ```
+
+1. Ask someone in #compliance-toolkit to run
+
+    ```bash
+    rake prod init_project[<name>]
     ```
 
 ### Attributes
