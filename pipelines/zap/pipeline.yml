@@ -54,6 +54,7 @@ resources:
     versioned_file: summaries/<%= project['name'] %>.json
     access_key_id: {{aws-access-key}}
     secret_access_key: {{aws-secret-key}}
+<% unless project['skip_team_api'] -%>
 - name: fetch-project-data-<%= project['name'] %>
   type: http-resource
   source:
@@ -61,6 +62,7 @@ resources:
     filename: project.json
     index: https://team-api.18f.gov/public/api/projects/<%= project['name'] %>/
     etag: true
+<% end -%>
 <% end -%>
 
 jobs:
@@ -77,26 +79,26 @@ jobs:
     trigger: true
 <% end -%>
   - get: scripts
+<% if project['skip_team_api'] -%>
+  - task: create-project-data
+    config:
+      platform: linux
+      image_resource:
+        type: docker-image
+        source:
+          repository: busybox
+      outputs:
+      - name: project-data
+      run:
+        path: echo
+        args:
+        - Creating empty directory for project data not being available from the Team API.
+<% else -%>
   - get: project-data
     resource: fetch-project-data-<%= project['name'] %>
-  # if it's a new project, the last results won't exist
-  - try:
-      get: last-results
-      resource: s3-result-<%= project['name'] %>
-      on_failure:
-        task: create-last-results
-        config:
-          platform: linux
-          image_resource:
-            type: docker-image
-            source:
-              repository: busybox
-          outputs:
-          - name: last-results
-          run:
-            path: echo
-            args:
-            - Creating empty directory for results from the last scan.
+<% end -%>
+  - get: last-results
+    resource: s3-result-<%= project['name'] %>
   - task: filter-project-data
     file: scripts/tasks/filter-project-data/task.yml
   - task: scan-zap

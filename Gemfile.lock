@@ -1,6 +1,15 @@
 GEM
   remote: https://rubygems.org/
   specs:
+    aws-sdk (2.3.2)
+      aws-sdk-resources (= 2.3.2)
+    aws-sdk-core (2.3.2)
+      jmespath (~> 1.0)
+    aws-sdk-resources (2.3.2)
+      aws-sdk-core (= 2.3.2)
+    jmespath (1.2.4)
+      json_pure (>= 1.8.1)
+    json_pure (1.8.3)
     minitest (5.8.4)
     power_assert (0.3.0)
     rake (11.1.2)
@@ -11,6 +20,7 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
+  aws-sdk
   minitest
   rake
   test-unit

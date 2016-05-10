@@ -1,6 +1,6 @@
+require 'tempfile'
 require_relative '../../lib/team_data_filterer'
 require_relative 'lib/pipeline_builder'
-require 'tempfile'
 
 def log(msg)
   puts "INFO: #{msg}"
@@ -17,6 +17,10 @@ def branch
     error_and_quit("Must be checked out to a branch, or specify SCRIPT_BRANCH environment variable.")
   end
   result
+end
+
+def config_path
+  File.expand_path("../../../config/#{@config}.yml", __FILE__)
 end
 
 desc "Set the deployment target to be local."
@@ -50,7 +54,6 @@ end
 
 desc "Updates the pipeline."
 task set: [:verify_target, :build] do
-  config_path = File.expand_path("../../../config/#{@config}.yml", __FILE__)
   sh 'fly', 'set-pipeline',
     '-t', @target,
     '--load-vars-from', config_path,
@@ -75,4 +78,17 @@ end
 desc "Build and update the pipeline on the given target."
 task deploy: [:set, :unpause, :open] do
   log("Pipeline updated and unpaused.")
+end
+
+desc "Initialize the projects. This is safe to run repeatedly."
+task init_targets: :verify_target do
+  require 'yaml'
+  require_relative 'lib/target_initializer'
+
+  config = YAML.load_file(config_path)
+  targets = TeamDataFilterer.targets
+  initializer = TargetInitializer.new(config, targets)
+  initializer.run
+
+  puts "All targets initialized."
 end

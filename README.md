@@ -32,13 +32,10 @@ See [the ZAP pipeline README](pipelines/zap/#production).
 
 ## Adding a Project
 
-The `targets.json` file in the `config` directory acts as a whitelist against the `team-api` list of projects.
-
-To get a new project added to the scans:
+The [`config/targets.json`](config/targets.json) file acts as a whitelist against [the Team API list of projects](https://team-api.18f.gov/public/api/projects/). To get a new project added to the scans:
 
 1. Ensure that your project appears in the [team-api](https://team-api.18f.gov/api/projects/). The directions for doing that are [here](https://github.com/18F/team-api.18f.gov#adding-project-data).
-
-1. Submit a PR to this repo after adding an entry in `config/targets.json` like this:
+1. Submit a PR to this repo after [adding an entry in `config/targets.json`](https://github.com/18F/concourse-compliance-testing/edit/master/config/targets.json) like this:
 
     ```json
     {
@@ -52,13 +49,22 @@ To get a new project added to the scans:
     }
     ```
 
-`name` - This must match the `name` field from the team api, but should be all lowercase.
+1. Ask someone in #compliance-toolkit to run
 
-`slack_channel` - This should be the channel where you'd like to get alerts for completed scans. If left out, the alerts will be sent to the default channel, currently `#ct-bot-attack`.
+    ```bash
+    rake prod init_targets
+    ```
 
-`links` - An array of links that should be scanned with ZAP. The results will be concatenated together. If left out, any `.gov` urls in your team api entry will be scanned.
+### Attributes
+
+* `name` - This must match the `name` field from the team api, but should be all lowercase.
+* `slack_channel` (optional) - This should be the channel where you'd like to get alerts for completed scans. If left out, the alerts will be sent to the default channel, currently `#ct-bot-attack`.
+* `skip_team_api` (optional) - Set this to `true` if the project doesn't appear in the Team API.
+* `links` - An array of links that should be scanned with ZAP. The results will be concatenated together. If left out, any `.gov` urls in your team api entry will be scanned.
 
 For more information on the functionality available in `targets.json`, view the [filter-project-data README](https://github.com/18F/concourse-compliance-testing/blob/master/tasks/filter-project-data/README.md#configuring-projects).
+
+### Deployment
 
 After the PR is merged, someone with access to the Concourse server will need to redeploy the pipeline to start the scans. You can ask in #compliance-toolkit for assistance.
 

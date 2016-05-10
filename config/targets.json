@@ -11,6 +11,7 @@
   {
     "name": "micropurchase",
     "slack_channel": "micropurchase-status",
+    "skip_team_api": true,
     "links": [
       {
         "url": "https://micropurchase.18f.gov"
@@ -46,6 +47,7 @@
   },
   {
     "name": "confidential-survey",
+    "skip_team_api": true,
     "links": [
       {
         "url": "https://survey.apps.cloud.gov/"
