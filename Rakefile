@@ -2,7 +2,7 @@ require 'rake/testtask'
 
 # Ruby tests
 Rake::TestTask.new do |t|
-  t.pattern = '**/test_*.rb'
+  t.test_files = FileList['**/test_*.rb'].exclude('vendor/**/*')
 end
 
 desc "Run JavaScript tests"
