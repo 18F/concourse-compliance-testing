@@ -71,7 +71,7 @@
   },
   {
     "name": "compliance-toolkit",
-    "slack_channel": "compliance-toolkit",
+    "slack_channel": "cloud-gov-highbar",
     "links": [
       {
         "url": "https://compliance-viewer.18f.gov/",
