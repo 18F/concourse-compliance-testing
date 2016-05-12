@@ -49,7 +49,7 @@ The [`config/targets.json`](config/targets.json) file acts as a whitelist agains
     }
     ```
 
-1. Ask someone in #compliance-toolkit to run
+1. Ask someone in #cloud-gov-highbar to run
 
     ```bash
     rake prod init_targets
@@ -66,7 +66,7 @@ For more information on the functionality available in `targets.json`, view the 
 
 ### Deployment
 
-After the PR is merged, someone with access to the Concourse server will need to redeploy the pipeline to start the scans. You can ask in #compliance-toolkit for assistance.
+After the PR is merged, someone with access to the Concourse server will need to redeploy the pipeline to start the scans. You can ask in #cloud-gov-highbar for assistance.
 
 ## Process Overview
 
