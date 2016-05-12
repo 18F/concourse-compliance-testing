@@ -69,12 +69,15 @@ For more information on the functionality available in `targets.json`, view the 
 After the PR is merged, someone with access to the Concourse server will need to redeploy the pipeline to start the scans. You can ask in #compliance-toolkit for assistance.
 
 ## Process Overview
+
 ### Inputs
+
 The deployed pipeline depends on a few external systems to function. The [Team API](https://team-api.18f.gov/public/api/) is the source of information for all projects. A project should have a Team API entry, but it is not necessary to be scanned.
 
 The running pipeline depends on [the pipeline repo](https://github.com/18F/concourse-compliance-testing) for [the tasks](https://github.com/18F/concourse-compliance-testing/tree/master/tasks) to be performed and [targets](https://github.com/18F/concourse-compliance-testing/blob/master/config/targets.json) to scan. By default, the pipeline pulls the `master` branch for these tasks, but it can be pointed at a different branch for testing.
 
 ### Outputs
+
 Normal users of Compliance Toolkit do not need access to the Concourse CI. The pipeline publishes output in a few different modes.
 
 Primarily, the pipeline publishes the ZAP scan results as a JSON file to S3. This is the information that is consumed by the user via Compliance Viewer.
@@ -84,19 +87,21 @@ The pipeline also published two types of Slack notifications. The first is a hea
 The second is for the project teams. It is published to the channel defined in `targets.json`, or the central channel (as the above notifications) if no channel is defined. It is only published if there is a change in the results. It also includes a link to the results in Compliance Viewer.
 
 ### Process
+
 For each project, there are two jobs defined, a `scheduled` job, and an `on-demand` job. This is due to an oddity in the way Concourse jobs are triggered. If there is a time-based trigger defined, you can not run it at another time. The scheduled job runs every day at midnight. All the project scans are triggered simultaneously, but there are a limited number of workers available. The scans will be queued until a worker becomes available.
 
 Each scan is a multi-step process:
+
 1. Triggered at 12:00 AM.
 1. Retrieves scripts to run from the GitHub repository.
 1. Retrieves project information from the Team API and merges the `targets.json` information into it.
 1. Retrieves the prior scan results from S3.
 1. Performs some filtering/scrubbing of the prior scan results.
 1. Run the ZAP scan via [zap-cli](https://github.com/Grunny/zap-cli). The ZAP scan has several sub steps of its own:
-   1. Run the spider the current target.
-   1. Run the AJAX spider for the current target.
-   1. Scan the target.
-   1. Output the detected alerts.
+    1. Run the spider the current target.
+    1. Run the AJAX spider for the current target.
+    1. Scan the target.
+    1. Output the detected alerts.
 1. Repeat i-iv for every target defined for the project in targets.json.
 1. Concatenate the results files into a single file.
 1. Upload the results file to S3.
@@ -107,6 +112,7 @@ Each scan is a multi-step process:
 These steps are performed for each project in a parallelized fashion.
 
 ## Feedback
+
 Give us your feedback! We'd love to hear it. [Open an issue and tell us what you think.](https://github.com/18f/concourse-compliance-testing/issues/new)
 
 ### Public domain
