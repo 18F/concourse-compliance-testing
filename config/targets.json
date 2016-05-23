@@ -68,5 +68,15 @@
   {
     "name": "federalist",
     "slack_channel": "federalist"
+  },
+  {
+    "name": "compliance-toolkit",
+    "slack_channel": "cloud-gov-highbar",
+    "links": [
+      {
+        "url": "https://compliance-viewer.18f.gov/",
+        "text": "Compliance Viewer"
+      }
+    ]
   }
 ]
