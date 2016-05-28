@@ -78,5 +78,43 @@
         "text": "Compliance Viewer"
       }
     ]
+  },
+  {
+    "name": "cg-landing",
+    "slack_channel": "cloud-gov-liberator",
+    "links": [
+      {
+        "url": "https://cloud.gov/",
+        "text": "cloud.gov"
+      }
+    ]
+  },
+  {
+    "name": "cg-uaa",
+    "slack_channel": "cloud-gov-atlas",
+    "links": [
+      {
+        "url": "https://login.cloud.gov/",
+        "text": "cloud.gov - UAA"
+      }
+    ]
+  },
+  {
+    "name": "EPA E-manifest",
+    "links": [
+      {
+        "url": "https://e-manifest.epa.gov/",
+        "text": "EPA - E-manifest"
+      }
+    ]
+  },
+  {
+    "name": "College Scorecard",
+    "links": [
+      {
+        "url": "https://collegescorecard.ed.gov/",
+        "text": "ED - College Scorecard"
+      }
+    ]
   }
 ]
