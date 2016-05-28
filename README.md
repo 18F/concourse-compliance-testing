@@ -39,7 +39,7 @@ The [`config/targets.json`](config/targets.json) file acts as a whitelist agains
 
     ```javascript
     {
-      // This should match the `name` in your Team API entry, if you have one.
+      // Needs to be all lower-case. This should match the `name` in your Team API entry, if you have one.
       "name": "NAME",
       // (optional) Channel in the 18F Slack to get notifications in.
       "slack_channel": "CHANNEL",
