@@ -37,13 +37,18 @@ The [`config/targets.json`](config/targets.json) file acts as a whitelist agains
 1. Ensure that your project appears in the [team-api](https://team-api.18f.gov/api/projects/). The directions for doing that are [here](https://github.com/18F/team-api.18f.gov#adding-project-data).
 1. Submit a PR to this repo after [adding an entry in `config/targets.json`](https://github.com/18F/concourse-compliance-testing/edit/master/config/targets.json) like this:
 
-    ```json
+    ```javascript
     {
-      "name": "PROJECT NAME",
-      "slack_channel": "CHANNEL FOR NOTIFICATIONS",
+      // Needs to be all lower-case. This should match the `name` in your Team API entry, if you have one.
+      "name": "NAME",
+      // (optional) Channel in the 18F Slack to get notifications in.
+      "slack_channel": "CHANNEL",
+      // (optional) If your project doesn't appear in the Team API (i.e. it's not an 18F project), set this to `true`. Defaults to `false`.
+      "skip_team_api": true
+      // (optional, unless `skip_team_api` is `true`) Links to scan. Defaults to the values from the Team API.
       "links": [
         {
-          "url": "URL TO SCAN"
+          "url": "URL"
         }
       ]
     }
