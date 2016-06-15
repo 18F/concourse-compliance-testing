@@ -79,36 +79,26 @@
       }
     ]
   },
-  {
-    "name": "cg-landing",
-    "slack_channel": "cloud-gov-liberator",
-    "skip_team_api": true,
-    "links": [
-      {
-        "url": "https://cloud.gov/",
-        "text": "cloud.gov"
-      }
-    ]
-  },
-  {
-    "name": "cg-uaa",
-    "slack_channel": "cloud-gov-atlas",
-    "skip_team_api": true,
-    "links": [
-      {
-        "url": "https://login.cloud.gov/",
-        "text": "cloud.gov - uaa"
-      }
-    ]
-  },
+
   {
     "name": "cg-docs",
     "slack_channel": "cloud-gov-atlas",
     "skip_team_api": true,
     "links": [
       {
-        "url": "https://docs.cloud.gov/",
+        "url": "https://docs.fr.cloud.gov/",
         "text": "cloud.gov - docs"
+      }
+    ]
+  },
+  {
+    "name": "cg-landing",
+    "slack_channel": "cloud-gov-liberator",
+    "skip_team_api": true,
+    "links": [
+      {
+        "url": "https://landing.fr.cloud.gov/",
+        "text": "cloud.gov - landing"
       }
     ]
   },
@@ -118,11 +108,23 @@
     "skip_team_api": true,
     "links": [
       {
-        "url": "https://logs.cloud.gov/",
+        "url": "https://logs.fr.cloud.gov/",
         "text": "cloud.gov - logs"
       }
     ]
   },
+  {
+    "name": "cg-uaa",
+    "slack_channel": "cloud-gov-atlas",
+    "skip_team_api": true,
+    "links": [
+      {
+        "url": "https://login.fr.cloud.gov/",
+        "text": "cloud.gov - uaa/login"
+      }
+    ]
+  },
+
   {
     "name": "epa e-manifest",
     "skip_team_api": true,
