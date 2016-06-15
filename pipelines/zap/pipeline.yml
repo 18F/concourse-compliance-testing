@@ -90,9 +90,12 @@ jobs:
       outputs:
       - name: project-data
       run:
-        path: echo
+        path: sh
         args:
-        - Creating empty directory for project data not being available from the Team API.
+        - -exc
+        - |
+          echo "Creating base project JSON file, since 'skip_team_api' was specified."
+          echo '{"name": <%= project['name'].to_json %>}' > project-data/project.json
 <% else -%>
   - get: project-data
     resource: fetch-project-data-<%= project['name'] %>
