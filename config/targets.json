@@ -81,8 +81,52 @@
   },
 
   {
-    "name": "cg-docs",
+    "name": "cg-api",
     "slack_channel": "cloud-gov-atlas",
+    "skip_team_api": true,
+    "links": [
+      {
+        "url": "https://api.fr.cloud.gov/",
+        "text": "cloud.gov - api"
+      }
+    ]
+  },
+  {
+    "name": "cg-community",
+    "slack_channel": "cloud-gov-liberator",
+    "skip_team_api": true,
+    "links": [
+      {
+        "url": "https://community.fr.cloud.gov/",
+        "text": "cloud.gov - community"
+      }
+    ]
+  },
+  {
+    "name": "cg-concourse",
+    "slack_channel": "cloud-gov-atlas",
+    "skip_team_api": true,
+    "links": [
+      {
+        "url": "https://ci.fr.cloud.gov/",
+        "text": "cloud.gov - concourse"
+      }
+    ]
+  },
+  {
+    "name": "cg-deck",
+    "slack_channel": "cloud-gov-liberator",
+    "skip_team_api": true,
+    "links": [
+      {
+        "url": "https://console.fr.cloud.gov/",
+        "text": "cloud.gov - deck"
+      }
+    ]
+  },
+  {
+    "name": "cg-docs",
+    "slack_channel": "cloud-gov-liberator",
     "skip_team_api": true,
     "links": [
       {
@@ -110,6 +154,17 @@
       {
         "url": "https://logs.fr.cloud.gov/",
         "text": "cloud.gov - logs"
+      }
+    ]
+  },
+  {
+    "name": "cg-metrics",
+    "slack_channel": "cloud-gov-atlas",
+    "skip_team_api": true,
+    "links": [
+      {
+        "url": "https://metrics.fr.cloud.gov/",
+        "text": "cloud.gov - metrics"
       }
     ]
   },
