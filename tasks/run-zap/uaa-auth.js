@@ -58,9 +58,9 @@ function MWAuthenticator(helper, paramsValues, credentials) {
 
 MWAuthenticator.prototype = {
 	doLogin: function (loginToken) {
-		var requestBody = 'wpName=' + encodeURIComponent(this.userName) +
-				'&wpPassword=' + encodeURIComponent(this.password) +
-				'&wpLoginToken=' + encodeURIComponent(loginToken),
+		var requestBody = 'username=' + encodeURIComponent(this.userName) +
+				'&password=' + encodeURIComponent(this.password) +
+				'&X-Uaa-Csrf=' + encodeURIComponent(loginToken),
 			response = this.doRequest(
 				this.loginUrl + (this.loginUrl.indexOf('?') > -1 ? '&' : '?') + 'action=submitlogin&type=login',
 				HttpRequestHeader.POST,
@@ -72,7 +72,7 @@ MWAuthenticator.prototype = {
 
 	getLoginToken: function () {
 		var response = this.doRequest(this.loginUrl, HttpRequestHeader.GET),
-			loginToken = this.getLoginTokenFromForm(response, 'wpLoginToken');
+			loginToken = this.getLoginTokenFromForm(response, 'X-Uaa-Csrf');
 
 		return loginToken;
 	},
@@ -107,7 +107,7 @@ MWAuthenticator.prototype = {
 
 		for (iterator = elements.iterator(); iterator.hasNext();) {
 			element = iterator.next();
-			if (element.getAttributeValue('name') == 'wpLoginToken') {
+			if (element.getAttributeValue('name') == loginTokenName) {
 				loginToken = element.getAttributeValue('value');
 				break;
 			}
