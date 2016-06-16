@@ -22,12 +22,13 @@
  * @author grunny
  */
 
+var HttpRequestHeader = Java.type('org.parosproxy.paros.network.HttpRequestHeader');
+var HttpHeader = Java.type('org.parosproxy.paros.network.HttpHeader');
+var URI = Java.type('org.apache.commons.httpclient.URI');
+var Source = Java.type('net.htmlparser.jericho.Source');
+
 function authenticate(helper, paramsValues, credentials) {
-	println("Authenticating via JavaScript script...");
-	importClass(org.parosproxy.paros.network.HttpRequestHeader);
-	importClass(org.parosproxy.paros.network.HttpHeader);
-	importClass(org.apache.commons.httpclient.URI);
-	importClass(net.htmlparser.jericho.Source);
+	print("Authenticating via JavaScript script...");
 
 	var authHelper = new MWAuthenticator(helper, paramsValues, credentials),
 		loginToken = authHelper.getLoginToken();
@@ -92,9 +93,9 @@ MWAuthenticator.prototype = {
 			msg.setRequestBody(requestBody);
 		}
 
-		println(requestInfo);
+		print(requestInfo);
 		this.helper.sendAndReceive(msg);
-		println("Received response status code for authentication request: " + msg.getResponseHeader().getStatusCode());
+		print("Received response status code for authentication request: " + msg.getResponseHeader().getStatusCode());
 
 		return msg;
 	},
