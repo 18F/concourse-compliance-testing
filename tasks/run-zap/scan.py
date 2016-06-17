@@ -7,26 +7,28 @@ import time
 from pprint import pprint
 from zapv2 import ZAPv2
 
-api_base = 'http://127.0.0.1:8080/JSON/'
 target = 'https://login.fr.cloud.gov/login'
+API_BASE = 'http://127.0.0.1:8080/JSON/'
+
+def call_zap_api(endpoint, params={}):
+    params['zapapiformat'] = 'JSON'
+    resp = requests.get(API_BASE + endpoint, params=params)
+    print(resp.json())
+    return resp
+
 zap = ZAPv2()
 
 script = os.path.abspath('uaa-auth.js')
-print(script)
-payload = {
+call_zap_api('script/action/load/', {
     'scriptName': 'uaa-auth',
     'fileName': script,
     'scriptType': 'authentication',
     # for some reason Nashorn is installed for Mac, but Rhino is installed in Docker
     'scriptEngine': 'ECMAScript : Rhino',
-    'scriptDescription': '',
-    'zapapiformat': 'JSON'
-}
-resp = requests.get(api_base + 'script/action/load/', params=payload)
-print(resp.json())
+    'scriptDescription': ''
+})
 
-resp = requests.get(api_base + 'script/view/listScripts/?zapapiformat=JSON')
-print(resp.json())
+call_zap_api('script/view/listScripts/')
 sys.exit()
 
 
