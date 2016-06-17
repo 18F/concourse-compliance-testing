@@ -1,14 +1,34 @@
 #!/usr/bin/env python
 
+import requests
+import sys
+import os
 import time
 from pprint import pprint
 from zapv2 import ZAPv2
 
-target = 'http://127.0.0.1'
-# By default ZAP API client will connect to port 8080
+api_base = 'http://127.0.0.1:8080/JSON/'
+target = 'https://login.fr.cloud.gov/login'
 zap = ZAPv2()
-# Use the line below if ZAP is not listening on port 8080, for example, if listening on port 8090
-# zap = ZAPv2(proxies={'http': 'http://127.0.0.1:8090', 'https': 'http://127.0.0.1:8090'})
+
+script = os.path.abspath('uaa-auth.js')
+print(script)
+payload = {
+    'scriptName': 'uaa-auth',
+    'fileName': script,
+    'scriptType': 'authentication',
+    # for some reason Nashorn is installed for Mac, but Rhino is installed in Docker
+    'scriptEngine': 'ECMAScript : Rhino',
+    'scriptDescription': '',
+    'zapapiformat': 'JSON'
+}
+resp = requests.get(api_base + 'script/action/load/', params=payload)
+print(resp.json())
+
+resp = requests.get(api_base + 'script/view/listScripts/?zapapiformat=JSON')
+print(resp.json())
+sys.exit()
+
 
 # do stuff
 print 'Accessing target %s' % target
