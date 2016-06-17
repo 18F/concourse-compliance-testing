@@ -6,13 +6,20 @@ import os
 import time
 import json
 import urllib
+from bs4 import BeautifulSoup
 from pprint import pprint
 from zapv2 import ZAPv2
 
 target = 'https://login.fr.cloud.gov/login'
 username = os.environ['USER']
 password = os.environ['PASS']
-API_BASE = 'http://127.0.0.1:8080/JSON/'
+ZAP_BASE = 'http://127.0.0.1:8080'
+API_BASE = ZAP_BASE + '/JSON/'
+PROXIES = {
+    'http': ZAP_BASE,
+    'https': ZAP_BASE,
+}
+CSRF_ATTR = 'X-Uaa-Csrf'
 
 def call_zap_api(endpoint, params={}):
     params['zapapiformat'] = 'JSON'
@@ -22,70 +29,46 @@ def call_zap_api(endpoint, params={}):
     resp.raise_for_status()
     return resp
 
+def register_csrf_tag(name):
+    call_zap_api('acsrf/action/addOptionToken/', {
+        'String': name
+    })
+
 def get_context_id():
     resp = call_zap_api('context/view/context/', {
         'contextName': 'Default Context'
     })
     return int(resp.json()['context']['id'])
 
-def add_auth_script(abs_path):
-    filename = os.path.basename(abs_path)
-    name = os.path.splitext(filename)[0]
+def get_csrf_val(form_url):
+    resp = requests.get(form_url, proxies=PROXIES.copy(), verify=False)
+    # resp.raise_for_status()
 
-    call_zap_api('script/action/load/', {
-        'scriptName': name,
-        'fileName': abs_path,
-        'scriptType': 'authentication',
-        # for some reason Nashorn is installed for Mac, but Rhino is installed in Docker
-        'scriptEngine': 'ECMAScript : Rhino',
-        # BUG: required, even though the API page says it isn't
-        'scriptDescription': ''
-    })
+    soup = BeautifulSoup(resp.text, 'html.parser')
+    csrf_tag = soup.find('input', {'name': CSRF_ATTR})
+    return csrf_tag['value']
 
-def create_user(context_id, username, password):
-    resp = call_zap_api('users/action/newUser/', {
-        'contextId': context_id,
-        'name': username
-    })
-    user_id = resp.json()['userId']
+def log_in(target, username, password):
+    csrf_val = get_csrf_val(target)
 
-    params = urllib.urlencode({
-        'Username': username,
-        'Password': password,
-        'sessionName': 'Session 0' # BUG
-    })
-    call_zap_api('users/action/setAuthenticationCredentials/', {
-        'contextId': context_id,
-        'userId': user_id,
-        'authCredentialsConfigParams': params
-    })
-
-    return user_id
-
+    data = {
+        CSRF_ATTR: csrf_val,
+        'username': username,
+        'password': password
+    }
+    # TODO remove hard-coding
+    resp = requests.post('https://login.fr.cloud.gov/login.do', proxies=PROXIES.copy(), verify=False, data=data)
+    # resp.raise_for_status()
 
 zap = ZAPv2()
 
 context_id = get_context_id()
+register_csrf_tag(CSRF_ATTR)
 
-# add auth script
-script_path = os.path.abspath('uaa-auth.js')
-add_auth_script(script_path)
-
-# add the UAA's CSRF tag `name`
-call_zap_api('acsrf/action/addOptionToken/', {
-    'String': 'X-Uaa-Csrf'
-})
-
-print 'Accessing target %s' % target
-# try have a unique enough session...
-zap.urlopen(target)
-# Give the sites tree a chance to get updated
-time.sleep(2)
-
-user_id = create_user(context_id, username, password)
+log_in(target, username, password)
 
 print 'Spidering target %s' % target
-scanid = zap.spider.scan_as_user(context_id=context_id, userid=user_id, url=target)
+scanid = zap.spider.scan(target)
 # Give the Spider a chance to start
 time.sleep(2)
 while (int(zap.spider.status(scanid)) < 100):

@@ -1,6 +1,6 @@
 FROM owasp/zap2docker-stable
 
-RUN pip install --upgrade zapcli
+RUN pip install --upgrade beautifulsoup4 requests zapcli
 
 RUN mkdir -p /usr/src/app
 WORKDIR /usr/src/app
