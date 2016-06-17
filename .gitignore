@@ -6,6 +6,7 @@ env/
 results/
 Vagrantfile
 
+.env
 config/local.yml
 config/prod.yml
 # legacy
