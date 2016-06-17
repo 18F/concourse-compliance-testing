@@ -1,27 +1,4 @@
 // tweaked from https://github.com/zaproxy/community-scripts/blob/ee1812031bc9c305b671f415bf09984865965161/authentication/MediaWikiAuthentication.js
-/**
- * Script to authenticate on a MediaWiki site in ZAP via the login form.
- *
- * MediaWiki protects against Login CSRF using a login token generated
- * on viewing the login page and storing it in the session and in a
- * hidden field in the login form. On submitting the login form, the
- * submitted token and the one in the session are compared to prevent
- * login CSRF. As a result, ZAP can't currently handle MediaWiki logins
- * with its form-based authentication. So, we need to first get the login
- * token, then use it to perform the login request.
- *
- * The required parameter 'Login URL' should be set to the path to
- * Special:UserLogin, i.e. http://127.0.0.1/wiki/Special:UserLogin
- *
- * The regex pattern to identify logged in responses could be set to:
- *     id="pt-logout"
- *
- * The regex pattern to identify logged out responses could be set to:
- *     id="pt-login"
- *
- * @author grunny
- */
-
 var HttpRequestHeader = Java.type('org.parosproxy.paros.network.HttpRequestHeader');
 var HttpHeader = Java.type('org.parosproxy.paros.network.HttpHeader');
 var URI = Java.type('org.apache.commons.httpclient.URI');
@@ -63,7 +40,7 @@ MWAuthenticator.prototype = {
 				'&password=' + encodeURIComponent(this.password) +
 				'&X-Uaa-Csrf=' + encodeURIComponent(loginToken),
 			response = this.doRequest(
-				this.loginUrl + (this.loginUrl.indexOf('?') > -1 ? '&' : '?') + 'action=submitlogin&type=login',
+				'https://login.fr.cloud.gov/login.do',
 				HttpRequestHeader.POST,
 				requestBody
 			);
