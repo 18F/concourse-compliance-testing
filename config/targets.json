@@ -136,6 +136,17 @@
     ]
   },
   {
+    "name": "cg-invite",
+    "slack_channel": "cloud-gov-atlas",
+    "skip_team_api": true,
+    "links": [
+      {
+        "url": "https://invite.fr.cloud.gov/",
+        "text": "cloud.gov - invite"
+      }
+    ]
+  },
+  {
     "name": "cg-landing",
     "slack_channel": "cloud-gov-liberator",
     "skip_team_api": true,
