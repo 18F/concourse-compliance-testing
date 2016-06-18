@@ -47,6 +47,16 @@ def get_context_id():
     })
     return int(resp.json()['context']['id'])
 
+def set_auth_indicators(context_id):
+    call_zap_api('authentication/action/setLoggedInIndicator/', {
+        'contextId': context_id,
+        'loggedInIndicatorRegex': 'logout\.do'
+    })
+    call_zap_api('authentication/action/setLoggedOutIndicator/', {
+        'contextId': context_id,
+        'loggedOutIndicatorRegex': 'login\.do'
+    })
+
 def get_csrf_val(session, form_url):
     resp = session.get(form_url, proxies=PROXIES.copy(), verify=False)
     resp.raise_for_status()
@@ -73,6 +83,7 @@ def log_in(target, username, password):
 zap = ZAPv2()
 
 context_id = get_context_id()
+set_auth_indicators(context_id)
 register_csrf_tag(CSRF_ATTR)
 
 log_in(target, username, password)
