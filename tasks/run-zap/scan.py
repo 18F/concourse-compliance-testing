@@ -11,15 +11,19 @@ from pprint import pprint
 from zapv2 import ZAPv2
 
 target = 'https://login.fr.cloud.gov/login'
-username = os.environ['USER']
-password = os.environ['PASS']
+
+LOGIN_FORM_URL = 'https://login.fr.cloud.gov/login'
+LOGIN_ACTION_URL = 'https://login.fr.cloud.gov/login.do'
+CSRF_ATTR = 'X-Uaa-Csrf'
+USERNAME = os.environ['USER']
+PASSWORD = os.environ['PASS']
+
 ZAP_BASE = 'http://127.0.0.1:8080'
 API_BASE = ZAP_BASE + '/JSON/'
 PROXIES = {
     'http': ZAP_BASE,
     'https': ZAP_BASE,
 }
-CSRF_ATTR = 'X-Uaa-Csrf'
 
 def call_zap_api(endpoint, params={}):
     params['zapapiformat'] = 'JSON'
@@ -30,9 +34,9 @@ def call_zap_api(endpoint, params={}):
     return resp
 
 # needs the site to exist within ZAP first
-def initialize_session():
+def initialize_session(site):
     call_zap_api('httpSessions/action/setActiveSession/', {
-        'site': 'https://login.fr.cloud.gov', # TODO remove hard-coding
+        'site': site,
         'session': 'Session 0'
     })
 
@@ -57,6 +61,7 @@ def set_auth_indicators(context_id):
         'loggedOutIndicatorRegex': 'login\.do'
     })
 
+# private
 def get_csrf_val(session, form_url):
     resp = session.get(form_url, proxies=PROXIES.copy(), verify=False)
     resp.raise_for_status()
@@ -65,10 +70,10 @@ def get_csrf_val(session, form_url):
     csrf_tag = soup.find('input', {'name': CSRF_ATTR})
     return csrf_tag['value']
 
-def log_in(target, username, password):
+def log_in(username, password):
     # login request requires a cookie
     session = requests.Session()
-    csrf_val = get_csrf_val(session, target)
+    csrf_val = get_csrf_val(session, LOGIN_FORM_URL)
 
     data = {
         CSRF_ATTR: csrf_val,
@@ -76,8 +81,7 @@ def log_in(target, username, password):
         'password': password
     }
     print(data)
-    # TODO remove hard-coding
-    resp = session.post('https://login.fr.cloud.gov/login.do', proxies=PROXIES.copy(), verify=False, data=data)
+    resp = session.post(LOGIN_ACTION_URL, proxies=PROXIES.copy(), verify=False, data=data)
     resp.raise_for_status()
 
 zap = ZAPv2()
@@ -86,9 +90,9 @@ context_id = get_context_id()
 set_auth_indicators(context_id)
 register_csrf_tag(CSRF_ATTR)
 
-log_in(target, username, password)
+log_in(USERNAME, PASSWORD)
 time.sleep(2)
-initialize_session()
+initialize_session(target)
 time.sleep(2)
 
 print 'Spidering target %s' % target
