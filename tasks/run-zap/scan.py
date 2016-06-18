@@ -21,8 +21,6 @@ PROXIES = {
 }
 CSRF_ATTR = 'X-Uaa-Csrf'
 
-s = requests.Session()
-
 def call_zap_api(endpoint, params={}):
     params['zapapiformat'] = 'JSON'
     resp = requests.get(API_BASE + endpoint, params=params)
@@ -30,6 +28,13 @@ def call_zap_api(endpoint, params={}):
     print json.dumps(resp.json(), indent=4)
     resp.raise_for_status()
     return resp
+
+# needs the site to exist within ZAP first
+def initialize_session():
+    call_zap_api('httpSessions/action/setActiveSession/', {
+        'site': 'https://login.fr.cloud.gov', # TODO remove hard-coding
+        'session': 'Session 0'
+    })
 
 def register_csrf_tag(name):
     call_zap_api('acsrf/action/addOptionToken/', {
@@ -42,8 +47,8 @@ def get_context_id():
     })
     return int(resp.json()['context']['id'])
 
-def get_csrf_val(form_url):
-    resp = s.get(form_url, proxies=PROXIES.copy(), verify=False)
+def get_csrf_val(session, form_url):
+    resp = session.get(form_url, proxies=PROXIES.copy(), verify=False)
     resp.raise_for_status()
 
     soup = BeautifulSoup(resp.text, 'html.parser')
@@ -51,7 +56,9 @@ def get_csrf_val(form_url):
     return csrf_tag['value']
 
 def log_in(target, username, password):
-    csrf_val = get_csrf_val(target)
+    # login request requires a cookie
+    session = requests.Session()
+    csrf_val = get_csrf_val(session, target)
 
     data = {
         CSRF_ATTR: csrf_val,
@@ -60,7 +67,7 @@ def log_in(target, username, password):
     }
     print(data)
     # TODO remove hard-coding
-    resp = s.post('https://login.fr.cloud.gov/login.do', proxies=PROXIES.copy(), verify=False, data=data)
+    resp = session.post('https://login.fr.cloud.gov/login.do', proxies=PROXIES.copy(), verify=False, data=data)
     resp.raise_for_status()
 
 zap = ZAPv2()
@@ -69,6 +76,9 @@ context_id = get_context_id()
 register_csrf_tag(CSRF_ATTR)
 
 log_in(target, username, password)
+time.sleep(2)
+initialize_session()
+time.sleep(2)
 
 print 'Spidering target %s' % target
 scanid = zap.spider.scan(target)
