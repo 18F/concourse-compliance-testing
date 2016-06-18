@@ -21,6 +21,8 @@ PROXIES = {
 }
 CSRF_ATTR = 'X-Uaa-Csrf'
 
+s = requests.Session()
+
 def call_zap_api(endpoint, params={}):
     params['zapapiformat'] = 'JSON'
     resp = requests.get(API_BASE + endpoint, params=params)
@@ -41,8 +43,8 @@ def get_context_id():
     return int(resp.json()['context']['id'])
 
 def get_csrf_val(form_url):
-    resp = requests.get(form_url, proxies=PROXIES.copy(), verify=False)
-    # resp.raise_for_status()
+    resp = s.get(form_url, proxies=PROXIES.copy(), verify=False)
+    resp.raise_for_status()
 
     soup = BeautifulSoup(resp.text, 'html.parser')
     csrf_tag = soup.find('input', {'name': CSRF_ATTR})
@@ -56,9 +58,10 @@ def log_in(target, username, password):
         'username': username,
         'password': password
     }
+    print(data)
     # TODO remove hard-coding
-    resp = requests.post('https://login.fr.cloud.gov/login.do', proxies=PROXIES.copy(), verify=False, data=data)
-    # resp.raise_for_status()
+    resp = s.post('https://login.fr.cloud.gov/login.do', proxies=PROXIES.copy(), verify=False, data=data)
+    resp.raise_for_status()
 
 zap = ZAPv2()
 
