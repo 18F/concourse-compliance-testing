@@ -12,3 +12,22 @@ This assumes a [Concourse](http://concourse.ci/) target named `lite`.
     ```bash
     fly execute -t lite -c tasks/run-zap/task.yml -i filtered-project-data=out -i scripts=.
     ```
+
+### Docker
+
+This is experimental...just keeping notes here.
+
+1. Create a test user.
+1. Manually authorize site for test user.
+1. Create a `.env` file that contains the test user credentials.
+
+    ```
+    USER=...
+    PASS=...
+    ```
+
+1. Run
+
+    ```bash
+    docker build -t zap-auth . && docker run --env-file .env zap-auth
+    ```

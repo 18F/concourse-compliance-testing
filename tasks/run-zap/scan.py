@@ -10,7 +10,8 @@ from bs4 import BeautifulSoup
 from pprint import pprint
 from zapv2 import ZAPv2
 
-target = 'https://login.fr.cloud.gov/login'
+# TODO read from project.json
+target = 'https://invite.fr.cloud.gov/'
 
 LOGIN_FORM_URL = 'https://login.fr.cloud.gov/login'
 LOGIN_ACTION_URL = 'https://login.fr.cloud.gov/login.do'
@@ -24,6 +25,7 @@ PROXIES = {
     'http': ZAP_BASE,
     'https': ZAP_BASE,
 }
+CONTEXT_NAME = 'Default Context'
 
 def call_zap_api(endpoint, params={}):
     params['zapapiformat'] = 'JSON'
@@ -33,11 +35,20 @@ def call_zap_api(endpoint, params={}):
     resp.raise_for_status()
     return resp
 
+def default_session_name(site):
+    resp = call_zap_api('httpSessions/view/sessions/', {
+        'site': site,
+        'session': '' # BUG
+    })
+    resp.raise_for_status()
+    return resp.json()['sessions'][0]['session'][0]
+
 # needs the site to exist within ZAP first
 def initialize_session(site):
+    session_name = default_session_name(site)
     call_zap_api('httpSessions/action/setActiveSession/', {
         'site': site,
-        'session': 'Session 0'
+        'session': session_name
     })
 
 def register_csrf_tag(name):
@@ -45,9 +56,21 @@ def register_csrf_tag(name):
         'String': name
     })
 
+def include_in_context(url):
+    call_zap_api('context/action/includeInContext/', {
+        'contextName': CONTEXT_NAME,
+        'regex': target + '.*'
+    })
+
+def add_session_token(site, name):
+    call_zap_api('httpSessions/action/addSessionToken/', {
+        'site': site,
+        'sessionToken': name
+    })
+
 def get_context_id():
     resp = call_zap_api('context/view/context/', {
-        'contextName': 'Default Context'
+        'contextName': CONTEXT_NAME
     })
     return int(resp.json()['context']['id'])
 
@@ -62,8 +85,8 @@ def set_auth_indicators(context_id):
     })
 
 # private
-def get_csrf_val(session, form_url):
-    resp = session.get(form_url, proxies=PROXIES.copy(), verify=False)
+def get_csrf_val(client, form_url):
+    resp = client.get(form_url, proxies=PROXIES.copy(), verify=False)
     resp.raise_for_status()
 
     soup = BeautifulSoup(resp.text, 'html.parser')
@@ -72,16 +95,15 @@ def get_csrf_val(session, form_url):
 
 def log_in(username, password):
     # login request requires a cookie
-    session = requests.Session()
-    csrf_val = get_csrf_val(session, LOGIN_FORM_URL)
+    client = requests.Session()
+    csrf_val = get_csrf_val(client, LOGIN_FORM_URL)
 
     data = {
         CSRF_ATTR: csrf_val,
         'username': username,
         'password': password
     }
-    print(data)
-    resp = session.post(LOGIN_ACTION_URL, proxies=PROXIES.copy(), verify=False, data=data)
+    resp = client.post(LOGIN_ACTION_URL, proxies=PROXIES.copy(), verify=False, data=data)
     resp.raise_for_status()
 
 zap = ZAPv2()
@@ -89,14 +111,26 @@ zap = ZAPv2()
 context_id = get_context_id()
 set_auth_indicators(context_id)
 register_csrf_tag(CSRF_ATTR)
+include_in_context(target)
+include_in_context('https://login.fr.cloud.gov') # TODO remove hard-coding
 
+zap.urlopen(target)
+time.sleep(5)
+# TODO read from project.json, if specified
+add_session_token(target, 'session')
+
+# TODO do this conditionally
 log_in(USERNAME, PASSWORD)
-time.sleep(2)
+time.sleep(5)
+initialize_session(LOGIN_FORM_URL)
+
+zap.urlopen(target)
+time.sleep(5)
 initialize_session(target)
 time.sleep(2)
 
 print 'Spidering target %s' % target
-scanid = zap.spider.scan(target)
+scanid = zap.spider.scan(url=target, contextname=CONTEXT_NAME)
 # Give the Spider a chance to start
 time.sleep(2)
 while (int(zap.spider.status(scanid)) < 100):
@@ -106,6 +140,7 @@ while (int(zap.spider.status(scanid)) < 100):
 print 'Spider completed'
 
 call_zap_api('core/view/urls/')
+call_zap_api('spider/view/fullResults/', {'scanId': scanid})
 
 print '----------------------'
 sys.exit()
