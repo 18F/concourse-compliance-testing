@@ -11,7 +11,7 @@ from pprint import pprint
 from zapv2 import ZAPv2
 
 # TODO read from project.json
-target = 'https://invite.fr.cloud.gov/'
+target = 'https://invite.fr.cloud.gov'
 
 LOGIN_FORM_URL = 'https://login.fr.cloud.gov/login'
 LOGIN_ACTION_URL = 'https://login.fr.cloud.gov/login.do'
@@ -130,7 +130,7 @@ initialize_session(target)
 time.sleep(2)
 
 print 'Spidering target %s' % target
-scanid = zap.spider.scan(url=target, contextname=CONTEXT_NAME)
+scanid = zap.spider.scan(url=target, recurse=True, contextname=CONTEXT_NAME, subtreeonly=False)
 # Give the Spider a chance to start
 time.sleep(2)
 while (int(zap.spider.status(scanid)) < 100):
