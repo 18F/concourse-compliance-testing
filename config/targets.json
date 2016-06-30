@@ -37,6 +37,10 @@
     ]
   },
   {
+    "name": "betafec",
+    "slack_channel": "fec-dev"
+  },
+  {
     "name": "pulse",
     "slack_channel": "pulse",
     "links": [
