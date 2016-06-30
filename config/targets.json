@@ -38,7 +38,12 @@
   },
   {
     "name": "betafec",
-    "slack_channel": "fec-dev"
+    "slack_channel": "fec-dev",
+    "links": [
+      {
+        "url": "https://beta.fec.gov/"
+      }
+    ]
   },
   {
     "name": "pulse",
@@ -59,7 +64,12 @@
     ]
   },
   {
-    "name": "c2"
+    "name": "c2",
+    "links": [
+      {
+        "url": "https://cap.18f.gov/"
+      }
+    ]
   },
   {
     "name": "atf-eregs",
@@ -71,7 +81,12 @@
   },
   {
     "name": "federalist",
-    "slack_channel": "federalist"
+    "slack_channel": "federalist",
+    "links": [
+      {
+        "url": "https://federalist.18f.gov/"
+      }
+    ]
   },
   {
     "name": "compliance-toolkit",
