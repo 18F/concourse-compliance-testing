@@ -19,9 +19,7 @@ The [`config/targets.json`](config/targets.json) file acts as a whitelist agains
       "name": "NAME",
       // (optional) Channel in the 18F Slack to get notifications in.
       "slack_channel": "CHANNEL",
-      // (optional) If your project doesn't appear in the Team API (i.e. it's not an 18F project), set this to `true`. Defaults to `false`.
-      "skip_team_api": true
-      // (optional, unless `skip_team_api` is `true`) Links to scan. Defaults to the values from the Team API.
+      // Links to scan.
       "links": [
         {
           "url": "URL"
@@ -42,7 +40,6 @@ After the PR is merged, someone with access to the Concourse server will need to
 
 * `name` - This must match the `name` field from the team api, but should be all lowercase.
 * `slack_channel` (optional) - This should be the channel where you'd like to get alerts for completed scans. If left out, the alerts will be sent to the default channel, currently `#ct-bot-attack`.
-* `skip_team_api` (optional) - Set this to `true` if the project doesn't appear in the Team API.
 * `links` - An array of links that should be scanned with ZAP. The results will be concatenated together. If left out, any `.gov` urls in your team api entry will be scanned.
 
 For more information on the functionality available in `targets.json`, view the [filter-project-data README](https://github.com/18F/concourse-compliance-testing/blob/master/tasks/filter-project-data/README.md#configuring-projects).
