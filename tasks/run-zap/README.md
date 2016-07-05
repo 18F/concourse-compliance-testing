@@ -7,5 +7,5 @@ Concourse task to execute [OWASP ZAP](https://www.owasp.org/index.php/OWASP_Zed_
 This assumes a [Concourse](http://concourse.ci/) target named `lite`. Run the following from the top level of this repository:
 
 ```bash
-fly execute -t lite -c tasks/run-zap/task.yml -i filtered-project-data=out -i scripts=.
+fly execute -t lite -c tasks/run-zap/task.yml -i project-data=out -i scripts=.
 ```

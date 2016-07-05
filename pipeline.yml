@@ -85,14 +85,14 @@ jobs:
       inputs:
       - name: scripts
       outputs:
-      - name: filtered-project-data
+      - name: project-data
       run:
         path: sh
         args:
         - -exc
         - |
           echo "Creating base project JSON file."
-          cat scripts/config/targets.json | jq '.[] | select(.name == "<%= project['name'] %>")' > filtered-project-data/project.json
+          cat scripts/config/targets.json | jq '.[] | select(.name == "<%= project['name'] %>")' > project-data/project.json
   - get: last-results
     resource: s3-result-<%= project['name'] %>
   - task: scan-zap
