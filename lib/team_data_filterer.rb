@@ -1,7 +1,6 @@
 require 'json'
 require 'uri'
 
-# helper methods for filter-team-data
 module TeamDataFilterer
   class << self
     def transform_links(links)
