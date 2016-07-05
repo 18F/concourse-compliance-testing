@@ -6,10 +6,7 @@ engines:
     - "**/test/**"
     config:
       languages:
-      - javascript
       - ruby
-  eslint:
-    enabled: true
   fixme:
     enabled: true
   rubocop:
@@ -18,12 +15,10 @@ engines:
     enabled: true
 ratings:
   paths:
-  - "**.js"
   - "**.rb"
   - "**.sh"
 exclude_paths:
 - .vagrant/
-- "**/node_modules/**"
 - config/
 - tmp/
 - Vagrantfile

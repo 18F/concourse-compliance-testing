@@ -17,3 +17,43 @@ the [CC0 1.0 Universal public domain dedication](https://creativecommons.org/pub
 All contributions to this project will be released under the CC0
 dedication. By submitting a pull request, you are agreeing to comply
 with this waiver of copyright interest.
+
+## Deployment
+
+The Concourse.ci site provides solid information for [Getting Started](http://concourse.ci/getting-started.html) with Concourse. [The Fly CLI](http://concourse.ci/fly-cli.html) is your primary tool for working with the platform. Requires Concourse v0.74.0+.
+
+The ZAP pipeline is templatized, so it needs to be built before it can be uploaded. Make sure that you are checked out to the branch that you wish to deploy.
+
+### Local
+
+The following assumes a Concourse target named `lite`. Run the following from this directory:
+
+1. Run:
+
+    ```bash
+    cp config/local.example.yml config/local.yml
+    ```
+
+1. Modify `config/local.yml`.
+1. Run:
+
+    ```bash
+    rake local deploy
+    ```
+
+### Production
+
+1. Run:
+
+    ```bash
+    cp config/prod.example.yml config/prod.yml
+    ```
+
+1. Modify `config/prod.yml`.
+1. Run:
+
+    ```bash
+    fly -t cloud login -c https://ci.cloud.gov
+    fly -t cloud sync
+    rake prod deploy
+    ```
