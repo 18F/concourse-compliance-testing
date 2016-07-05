@@ -8,14 +8,13 @@ This is a Concourse pipeline that scans sites for vulnerabilities using [OWASP Z
 
 ## Adding a Project
 
-The [`config/targets.json`](config/targets.json) file acts as a whitelist against [the Team API list of projects](https://team-api.18f.gov/public/api/projects/). To get a new project added to the scans:
+The [`config/targets.json`](config/targets.json) is a list of the projects to be scanned. To get a new project added:
 
-1. Ensure that your project appears in the [team-api](https://team-api.18f.gov/api/projects/). The directions for doing that are [here](https://github.com/18F/team-api.18f.gov#adding-project-data).
-1. Submit a PR to this repo after [adding an entry in `config/targets.json`](https://github.com/18F/concourse-compliance-testing/edit/master/config/targets.json) like this:
+1. Submit a pull request to this repository to add an entry in [`config/targets.json`](config/targets.json) like this:
 
     ```javascript
     {
-      // Needs to be all lower-case. This should match the `name` in your Team API entry, if you have one.
+      // Needs to be all lower-case.
       "name": "NAME",
       // (optional) Channel in the 18F Slack to get notifications in.
       "slack_channel": "CHANNEL",
@@ -38,19 +37,15 @@ After the PR is merged, someone with access to the Concourse server will need to
 
 ### Attributes
 
-* `name` - This must match the `name` field from the team api, but should be all lowercase.
+* `name` - This should be all lowercase.
 * `slack_channel` (optional) - This should be the channel where you'd like to get alerts for completed scans. If left out, the alerts will be sent to the default channel, currently `#ct-bot-attack`.
-* `links` - An array of links that should be scanned with ZAP. The results will be concatenated together. If left out, any `.gov` urls in your team api entry will be scanned.
-
-For more information on the functionality available in `targets.json`, view the [filter-project-data README](https://github.com/18F/concourse-compliance-testing/blob/master/tasks/filter-project-data/README.md#configuring-projects).
+* `links` - An array of links that should be scanned with ZAP. The results will be concatenated together.
 
 ## Process Overview
 
 ### Inputs
 
-The deployed pipeline depends on a few external systems to function. The [Team API](https://team-api.18f.gov/public/api/) is the source of information for all projects. A project should have a Team API entry, but it is not necessary to be scanned.
-
-The running pipeline depends on [this repository](https://github.com/18F/concourse-compliance-testing) for [the tasks](https://github.com/18F/concourse-compliance-testing/tree/master/tasks) to be performed and [targets](https://github.com/18F/concourse-compliance-testing/blob/master/config/targets.json) to scan. By default, the pipeline pulls the `master` branch for these tasks, but it can be pointed at a different branch for testing.
+The running pipeline depends on [this repository](https://github.com/18F/concourse-compliance-testing) for [the tasks](https://github.com/18F/concourse-compliance-testing/tree/master/tasks) to be performed and [targets](config/targets.json) to scan. By default, the pipeline pulls the `master` branch for these tasks, but it can be pointed at a different branch for testing.
 
 ### Outputs
 
@@ -70,7 +65,6 @@ Each scan is a multi-step process:
 
 1. Triggered at 12:00 AM.
 1. Retrieves scripts to run from the GitHub repository.
-1. Retrieves project information from the Team API and merges the `targets.json` information into it.
 1. Retrieves the prior scan results from S3.
 1. Performs some filtering/scrubbing of the prior scan results.
 1. Run the ZAP scan via [zap-cli](https://github.com/Grunny/zap-cli). The ZAP scan has several sub steps of its own:
