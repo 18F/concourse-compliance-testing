@@ -203,5 +203,15 @@
         "text": "ed - college scorecard"
       }
     ]
+  },
+  {
+    "name": "calc",
+    "slack_channel": "calc-data-capture",
+    "links": [
+      {
+        "url": "https://calc-dev.apps.cloud.gov/",
+        "text": "CALC (staging)"
+      }
+    ]
   }
 ]
