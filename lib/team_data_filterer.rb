@@ -3,30 +3,6 @@ require 'uri'
 
 module TeamDataFilterer
   class << self
-    def transform_links(links)
-      results = normalize_links(links)
-      filter_links(results)
-    end
-
-    # copy in overridden attributes from the target
-    def transform_project(project, target)
-      result = project.merge(target)
-
-      # not always present in about.yml
-      links = result['links'] || []
-      result['links'] = transform_links(links)
-
-      result
-    end
-
-    def filtered_projects(projects, targets)
-      p_by_name = projects_by_name(projects)
-
-      targets.map do |target|
-        build_target(target, p_by_name)
-      end
-    end
-
     def read_json(path)
       JSON.load(File.new(path))
     end
@@ -38,57 +14,6 @@ module TeamDataFilterer
     def targets
       path = File.expand_path('../../config/targets.json', __FILE__)
       read_json(path)
-    end
-
-    def target(project_name)
-      targets.find { |t| t['name'] == project_name }
-    end
-
-    private
-
-    def projects_by_name(projects)
-      results = {}
-      projects.each do |project|
-        name = project['name']
-        results[name] = project
-      end
-      results
-    end
-
-    def build_target(target, p_by_name)
-      name = target['name']
-      project = p_by_name[name]
-
-      unless project
-        STDERR.puts "WARN: `#{name}` is missing from Team API data."
-        project = {}
-      end
-
-      transform_project(project, target)
-    end
-
-    def normalize_links(links)
-      links.map do |link|
-        case link
-        # the new about.yml format
-        # https://github.com/18F/about_yml#aboutyml-cheat-sheet
-        when Hash
-          link
-        # the old about.yml format
-        when String
-          { "url" => link }
-        else
-          STDERR.puts "WARN: unknown link format: `#{link.inspect}`."
-        end
-      end
-    end
-
-    # `links` should be in the Hash format
-    def filter_links(links)
-      links.select do |link|
-        uri = URI(link['url'])
-        uri.host.end_with?('.gov')
-      end
     end
   end
 end

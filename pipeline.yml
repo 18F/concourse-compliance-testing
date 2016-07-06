@@ -59,15 +59,6 @@ resources:
     versioned_file: summaries/<%= project['name'] %>.json
     access_key_id: {{aws-access-key}}
     secret_access_key: {{aws-secret-key}}
-<% unless project['skip_team_api'] -%>
-- name: fetch-project-data-<%= project['name'] %>
-  type: http-resource
-  source:
-    uri: https://team-api.18f.gov/public/api/projects/<%= project['name'] %>/
-    filename: project.json
-    index: https://team-api.18f.gov/public/api/projects/<%= project['name'] %>/
-    etag: true
-<% end -%>
 <% end -%>
 
 jobs:
@@ -84,14 +75,15 @@ jobs:
     trigger: true
 <% end -%>
   - get: scripts
-<% if project['skip_team_api'] -%>
   - task: create-project-data
     config:
       platform: linux
       image_resource:
         type: docker-image
         source:
-          repository: busybox
+          repository: jemmyw/jq
+      inputs:
+      - name: scripts
       outputs:
       - name: project-data
       run:
@@ -99,16 +91,10 @@ jobs:
         args:
         - -exc
         - |
-          echo "Creating base project JSON file, since 'skip_team_api' was specified."
-          echo '{"name": <%= project['name'].to_json %>}' > project-data/project.json
-<% else -%>
-  - get: project-data
-    resource: fetch-project-data-<%= project['name'] %>
-<% end -%>
+          echo "Creating base project JSON file."
+          cat scripts/config/targets.json | jq '.[] | select(.name == "<%= project['name'] %>")' > project-data/project.json
   - get: last-results
     resource: s3-result-<%= project['name'] %>
-  - task: filter-project-data
-    file: scripts/tasks/filter-project-data/task.yml
   - task: scan-zap
     file: scripts/tasks/run-zap/task.yml
   - put: s3-result-<%= project['name'] %>

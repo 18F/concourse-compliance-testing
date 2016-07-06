@@ -11,7 +11,6 @@
   {
     "name": "micropurchase",
     "slack_channel": "micropurchase-status",
-    "skip_team_api": true,
     "links": [
       {
         "url": "https://micropurchase.18f.gov"
@@ -38,7 +37,12 @@
   },
   {
     "name": "betafec",
-    "slack_channel": "fec-dev"
+    "slack_channel": "fec-dev",
+    "links": [
+      {
+        "url": "https://beta.fec.gov/"
+      }
+    ]
   },
   {
     "name": "pulse",
@@ -51,7 +55,6 @@
   },
   {
     "name": "confidential-survey",
-    "skip_team_api": true,
     "links": [
       {
         "url": "https://survey.apps.cloud.gov/"
@@ -59,7 +62,12 @@
     ]
   },
   {
-    "name": "c2"
+    "name": "c2",
+    "links": [
+      {
+        "url": "https://cap.18f.gov/"
+      }
+    ]
   },
   {
     "name": "atf-eregs",
@@ -71,7 +79,12 @@
   },
   {
     "name": "federalist",
-    "slack_channel": "federalist"
+    "slack_channel": "federalist",
+    "links": [
+      {
+        "url": "https://federalist.18f.gov/"
+      }
+    ]
   },
   {
     "name": "compliance-toolkit",
@@ -87,7 +100,6 @@
   {
     "name": "cg-api",
     "slack_channel": "cloud-gov-atlas",
-    "skip_team_api": true,
     "links": [
       {
         "url": "https://api.fr.cloud.gov/",
@@ -98,7 +110,6 @@
   {
     "name": "cg-community",
     "slack_channel": "cloud-gov-liberator",
-    "skip_team_api": true,
     "links": [
       {
         "url": "https://community.fr.cloud.gov/",
@@ -109,7 +120,6 @@
   {
     "name": "cg-concourse",
     "slack_channel": "cloud-gov-atlas",
-    "skip_team_api": true,
     "links": [
       {
         "url": "https://ci.fr.cloud.gov/",
@@ -120,7 +130,6 @@
   {
     "name": "cg-deck",
     "slack_channel": "cloud-gov-liberator",
-    "skip_team_api": true,
     "links": [
       {
         "url": "https://console.fr.cloud.gov/",
@@ -131,7 +140,6 @@
   {
     "name": "cg-docs",
     "slack_channel": "cloud-gov-liberator",
-    "skip_team_api": true,
     "links": [
       {
         "url": "https://docs.fr.cloud.gov/",
@@ -142,7 +150,6 @@
   {
     "name": "cg-landing",
     "slack_channel": "cloud-gov-liberator",
-    "skip_team_api": true,
     "links": [
       {
         "url": "https://landing.fr.cloud.gov/",
@@ -153,7 +160,6 @@
   {
     "name": "cg-logs",
     "slack_channel": "cloud-gov-atlas",
-    "skip_team_api": true,
     "links": [
       {
         "url": "https://logs.fr.cloud.gov/",
@@ -164,7 +170,6 @@
   {
     "name": "cg-metrics",
     "slack_channel": "cloud-gov-atlas",
-    "skip_team_api": true,
     "links": [
       {
         "url": "https://metrics.fr.cloud.gov/",
@@ -175,7 +180,6 @@
   {
     "name": "cg-uaa",
     "slack_channel": "cloud-gov-atlas",
-    "skip_team_api": true,
     "links": [
       {
         "url": "https://login.fr.cloud.gov/",
@@ -186,7 +190,6 @@
 
   {
     "name": "epa e-manifest",
-    "skip_team_api": true,
     "links": [
       {
         "url": "https://e-manifest.epa.gov/",
@@ -196,7 +199,6 @@
   },
   {
     "name": "college scorecard",
-    "skip_team_api": true,
     "links": [
       {
         "url": "https://collegescorecard.ed.gov/",
