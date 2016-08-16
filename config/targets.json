@@ -215,5 +215,19 @@
         "text": "CALC (staging)"
       }
     ]
+  },
+  {
+    "name": "vote.gov",
+    "slack_channel": "ffd-vote",
+    "links": [
+      {
+        "url": "https://vote-gov-staging.apps.cloud.gov",
+        "text": "Vote USA - Staging"
+      },
+      {
+        "url": "https://vote-gov.apps.cloud.gov",
+        "text": "Vote USA - Production"
+      }
+    ]
   }
 ]
