@@ -27,13 +27,12 @@ The [`config/targets.json`](config/targets.json) is a list of the projects to be
     }
     ```
 
-1. Ask someone in #cloud-gov-highbar to run
+1. After the pull request is merged, ask someone in #cloud-gov-highbar to run
 
     ```bash
     rake prod init_targets
+    rake prod deploy
     ```
-
-After the PR is merged, someone with access to the Concourse server will need to redeploy the pipeline to start the scans. You can ask in #cloud-gov-highbar for assistance.
 
 ### Attributes
 
