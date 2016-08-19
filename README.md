@@ -8,7 +8,7 @@ This is a Concourse pipeline that scans sites for vulnerabilities using [OWASP Z
 
 ## Adding a Project
 
-The [`config/targets.json`](config/targets.json) is a list of the projects to be scanned. To get a new project added:
+The [`config/targets.json`](config/targets.json) is a list of the projects to be scanned. Since ZAP can inject junk data if it's successful in finding certain vulnerabilities, we suggest using a staging URL. To get a new project added:
 
 1. Submit a pull request to this repository to add an entry in [`config/targets.json`](config/targets.json) like this:
 
@@ -27,13 +27,12 @@ The [`config/targets.json`](config/targets.json) is a list of the projects to be
     }
     ```
 
-1. Ask someone in #cloud-gov-highbar to run
+1. After the pull request is merged, ask someone in #cloud-gov-highbar to run
 
     ```bash
     rake prod init_targets
+    rake prod deploy
     ```
-
-After the PR is merged, someone with access to the Concourse server will need to redeploy the pipeline to start the scans. You can ask in #cloud-gov-highbar for assistance.
 
 ### Attributes
 
