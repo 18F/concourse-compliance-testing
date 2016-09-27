@@ -4,7 +4,7 @@ Concourse CI Compliance Testing
 [![Build Status](https://travis-ci.org/18F/concourse-compliance-testing.svg?branch=master)](https://travis-ci.org/18F/concourse-compliance-testing)
 [![Code Climate](https://codeclimate.com/github/18F/concourse-compliance-testing/badges/gpa.svg)](https://codeclimate.com/github/18F/concourse-compliance-testing)
 
-This is a Concourse pipeline that scans sites for vulnerabilities using [OWASP ZAP](https://www.owasp.org/index.php/OWASP_Zed_Attack_Proxy_Project). This is part of 18F's [Compliance Toolkit](https://github.com/18f/compliance-toolkit/) project.
+This is a Concourse pipeline that scans sites for vulnerabilities using [OWASP ZAP](https://www.owasp.org/index.php/OWASP_Zed_Attack_Proxy_Project). This is part of 18F's [Compliance Toolkit](https://github.com/18f/compliance-toolkit/) project, and is essentially the back end of [Compliance Viewer](https://compliance-viewer.18f.gov/).
 
 ## Adding a Project
 
@@ -50,7 +50,7 @@ The running pipeline depends on [this repository](https://github.com/18F/concour
 
 Normal users of Compliance Toolkit do not need access to the Concourse CI. The pipeline publishes output in a few different modes.
 
-Primarily, the pipeline publishes the ZAP scan results as a JSON file to S3. This is the information that is consumed by the user via Compliance Viewer.
+Primarily, the pipeline publishes the ZAP scan results as a JSON file to S3. This is the information that is consumed by the user via [Compliance Viewer](https://compliance-viewer.18f.gov/).
 
 The pipeline also published two types of Slack notifications. The first is a heartbeat notification; it is published to a central channel (currently #ct-bot-attack, but configurable in the pipeline) after every run to confirm that the run happened. This is for the Compliance Toolkit team to monitor that the process is functioning.
 
