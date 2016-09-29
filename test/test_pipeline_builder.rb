@@ -21,6 +21,10 @@ describe PipelineBuilder do
       ])
       jobs = data['jobs'].map { |job| job['name'] }.sort
       jobs.must_equal %w(
+        accessibility-scan-ondemand-bar
+        accessibility-scan-ondemand-foo
+        accessibility-scan-scheduled-bar
+        accessibility-scan-scheduled-foo
         zap-ondemand-bar
         zap-ondemand-foo
         zap-scheduled-bar

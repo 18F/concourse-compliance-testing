@@ -142,10 +142,10 @@ jobs:
         icon_emoji: ':cop:'
 - name: accessibility-scan-<%= job %>-<%= project['name'] %>
   plan:
-  <% if job == 'scheduled' -%>
+<% if job == 'scheduled' -%>
   - get: after-midnight
     trigger: true
-  <% end -%>
+<% end -%>
   - task: run-pa11y
     config:
       platform: linux
