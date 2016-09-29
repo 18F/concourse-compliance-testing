@@ -1,0 +1,25 @@
+jobs:
+  - name: accessibility-scan
+    plan:
+    - task: run-pa11y
+      config:
+        platform: linux
+        image_resource:
+          type: docker-image
+          source:
+            repository: node
+        run:
+          path: sh
+          args:
+          - -exc
+          - |
+            npm install -g pa11y-crawl
+            npm install -g phantomjs
+            curl -L https://raw.githubusercontent.com/yyuu/pyenv-installer/master/bin/pyenv-installer | bash
+            export PATH="/root/.pyenv/bin:$PATH"
+            eval "$(pyenv init -)"
+            eval "$(pyenv virtualenv-init -)"
+            pyenv update
+            apt-get update
+            apt-get install jq
+            pa11y-crawl https://login.gov

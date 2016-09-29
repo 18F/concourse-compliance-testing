@@ -1,0 +1,280 @@
+{
+  "data": {
+    "login.gov/index.html": {
+      "url": "login.gov/index.html",
+      "isPerfect": false,
+      "count": {
+        "total": 44,
+        "error": 0,
+        "warning": 3,
+        "notice": 41
+      },
+      "results": [
+        {
+          "code": "WCAG2AA.Principle2.Guideline2_4.2_4_2.H25.2",
+          "message": "Check that the title element describes the document.",
+          "type": "notice",
+          "html": "<title>login.gov</title>"
+        },
+        {
+          "code": "WCAG2AA.Principle1.Guideline1_1.1_1_1.G94.Image",
+          "message": "Ensure that the img element's alt text serves the same purpose and presents the same information as the image.",
+          "type": "notice",
+          "html": "<img src=\"assets/img/us-flag.png\" width=\"13\" alt=\"US flag\">"
+        },
+        {
+          "code": "WCAG2AA.Principle1.Guideline1_1.1_1_1.G73,G74",
+          "message": "If this image cannot be fully described in a short text alternative, ensure a long text alternative is also available, such as in the body text or through a link.",
+          "type": "notice",
+          "html": "<img src=\"assets/img/us-flag.png\" width=\"13\" alt=\"US flag\">"
+        },
+        {
+          "code": "WCAG2AA.Principle2.Guideline2_4.2_4_4.H77,H78,H79,H80,H81",
+          "message": "Check that the link text combined with programmatically determined link context identifies the purpose of the link.",
+          "type": "notice",
+          "html": "<a href=\".\">\n        <img class=\"align-midd...</a>"
+        },
+        {
+          "code": "WCAG2AA.Principle1.Guideline1_1.1_1_1.G94.Image",
+          "message": "Ensure that the img element's alt text serves the same purpose and presents the same information as the image.",
+          "type": "notice",
+          "html": "<img class=\"align-middle\" width=\"172\" src=\"assets/img/logo.svg\" alt=\"login.gov\">"
+        },
+        {
+          "code": "WCAG2AA.Principle1.Guideline1_1.1_1_1.G73,G74",
+          "message": "If this image cannot be fully described in a short text alternative, ensure a long text alternative is also available, such as in the body text or through a link.",
+          "type": "notice",
+          "html": "<img class=\"align-middle\" width=\"172\" src=\"assets/img/logo.svg\" alt=\"login.gov\">"
+        },
+        {
+          "code": "WCAG2AA.Principle1.Guideline1_4.1_4_3_F24.F24.BGColour",
+          "message": "Check that this element has an inherited foreground colour to complement the corresponding inline background colour or image.",
+          "type": "warning",
+          "html": "<div class=\"py4 bg-navy bg-cover bg-center\" style=\"background-image: url(assets/img/hero.png)\">\n    <div class=\"py3\"></div>\n  </div>"
+        },
+        {
+          "code": "WCAG2AA.Principle1.Guideline1_1.1_1_1.G94.Image",
+          "message": "Ensure that the img element's alt text serves the same purpose and presents the same information as the image.",
+          "type": "notice",
+          "html": "<img class=\"mb3\" src=\"assets/img/rule/red-1.svg\" alt=\"rule\">"
+        },
+        {
+          "code": "WCAG2AA.Principle1.Guideline1_1.1_1_1.G73,G74",
+          "message": "If this image cannot be fully described in a short text alternative, ensure a long text alternative is also available, such as in the body text or through a link.",
+          "type": "notice",
+          "html": "<img class=\"mb3\" src=\"assets/img/rule/red-1.svg\" alt=\"rule\">"
+        },
+        {
+          "code": "WCAG2AA.Principle1.Guideline1_1.1_1_1.G94.Image",
+          "message": "Ensure that the img element's alt text serves the same purpose and presents the same information as the image.",
+          "type": "notice",
+          "html": "<img width=\"230\" class=\"mt2\" src=\"assets/img/graphic-circles.png\" alt=\"easy, secure and privacy-protecting\">"
+        },
+        {
+          "code": "WCAG2AA.Principle1.Guideline1_1.1_1_1.G73,G74",
+          "message": "If this image cannot be fully described in a short text alternative, ensure a long text alternative is also available, such as in the body text or through a link.",
+          "type": "notice",
+          "html": "<img width=\"230\" class=\"mt2\" src=\"assets/img/graphic-circles.png\" alt=\"easy, secure and privacy-protecting\">"
+        },
+        {
+          "code": "WCAG2AA.Principle1.Guideline1_1.1_1_1.G94.Image",
+          "message": "Ensure that the img element's alt text serves the same purpose and presents the same information as the image.",
+          "type": "notice",
+          "html": "<img class=\"mb3\" src=\"assets/img/rule/red-2.svg\" alt=\"rule\">"
+        },
+        {
+          "code": "WCAG2AA.Principle1.Guideline1_1.1_1_1.G73,G74",
+          "message": "If this image cannot be fully described in a short text alternative, ensure a long text alternative is also available, such as in the body text or through a link.",
+          "type": "notice",
+          "html": "<img class=\"mb3\" src=\"assets/img/rule/red-2.svg\" alt=\"rule\">"
+        },
+        {
+          "code": "WCAG2AA.Principle1.Guideline1_1.1_1_1.G94.Image",
+          "message": "Ensure that the img element's alt text serves the same purpose and presents the same information as the image.",
+          "type": "notice",
+          "html": "<img class=\"mb3\" src=\"assets/img/rule/red-3.svg\" alt=\"rule\">"
+        },
+        {
+          "code": "WCAG2AA.Principle1.Guideline1_1.1_1_1.G73,G74",
+          "message": "If this image cannot be fully described in a short text alternative, ensure a long text alternative is also available, such as in the body text or through a link.",
+          "type": "notice",
+          "html": "<img class=\"mb3\" src=\"assets/img/rule/red-3.svg\" alt=\"rule\">"
+        },
+        {
+          "code": "WCAG2AA.Principle1.Guideline1_1.1_1_1.G94.Image",
+          "message": "Ensure that the img element's alt text serves the same purpose and presents the same information as the image.",
+          "type": "notice",
+          "html": "<img class=\"mb2\" src=\"assets/img/rule/blue-1.svg\" alt=\"rule\">"
+        },
+        {
+          "code": "WCAG2AA.Principle1.Guideline1_1.1_1_1.G73,G74",
+          "message": "If this image cannot be fully described in a short text alternative, ensure a long text alternative is also available, such as in the body text or through a link.",
+          "type": "notice",
+          "html": "<img class=\"mb2\" src=\"assets/img/rule/blue-1.svg\" alt=\"rule\">"
+        },
+        {
+          "code": "WCAG2AA.Principle1.Guideline1_1.1_1_1.G94.Image",
+          "message": "Ensure that the img element's alt text serves the same purpose and presents the same information as the image.",
+          "type": "notice",
+          "html": "<img class=\"mb2\" src=\"assets/img/rule/blue-2.svg\" alt=\"rule\">"
+        },
+        {
+          "code": "WCAG2AA.Principle1.Guideline1_1.1_1_1.G73,G74",
+          "message": "If this image cannot be fully described in a short text alternative, ensure a long text alternative is also available, such as in the body text or through a link.",
+          "type": "notice",
+          "html": "<img class=\"mb2\" src=\"assets/img/rule/blue-2.svg\" alt=\"rule\">"
+        },
+        {
+          "code": "WCAG2AA.Principle1.Guideline1_1.1_1_1.G94.Image",
+          "message": "Ensure that the img element's alt text serves the same purpose and presents the same information as the image.",
+          "type": "notice",
+          "html": "<img class=\"mb2\" src=\"assets/img/rule/blue-3.svg\" alt=\"rule\">"
+        },
+        {
+          "code": "WCAG2AA.Principle1.Guideline1_1.1_1_1.G73,G74",
+          "message": "If this image cannot be fully described in a short text alternative, ensure a long text alternative is also available, such as in the body text or through a link.",
+          "type": "notice",
+          "html": "<img class=\"mb2\" src=\"assets/img/rule/blue-3.svg\" alt=\"rule\">"
+        },
+        {
+          "code": "WCAG2AA.Principle1.Guideline1_1.1_1_1.G94.Image",
+          "message": "Ensure that the img element's alt text serves the same purpose and presents the same information as the image.",
+          "type": "notice",
+          "html": "<img class=\"mt2\" src=\"assets/img/graphic-people.png\" alt=\"open and user-centered\">"
+        },
+        {
+          "code": "WCAG2AA.Principle1.Guideline1_1.1_1_1.G73,G74",
+          "message": "If this image cannot be fully described in a short text alternative, ensure a long text alternative is also available, such as in the body text or through a link.",
+          "type": "notice",
+          "html": "<img class=\"mt2\" src=\"assets/img/graphic-people.png\" alt=\"open and user-centered\">"
+        },
+        {
+          "code": "WCAG2AA.Principle1.Guideline1_1.1_1_1.G94.Image",
+          "message": "Ensure that the img element's alt text serves the same purpose and presents the same information as the image.",
+          "type": "notice",
+          "html": "<img class=\"mb3\" src=\"assets/img/rule/red-4.svg\" alt=\"rule\">"
+        },
+        {
+          "code": "WCAG2AA.Principle1.Guideline1_1.1_1_1.G73,G74",
+          "message": "If this image cannot be fully described in a short text alternative, ensure a long text alternative is also available, such as in the body text or through a link.",
+          "type": "notice",
+          "html": "<img class=\"mb3\" src=\"assets/img/rule/red-4.svg\" alt=\"rule\">"
+        },
+        {
+          "code": "WCAG2AA.Principle1.Guideline1_1.1_1_1.G94.Image",
+          "message": "Ensure that the img element's alt text serves the same purpose and presents the same information as the image.",
+          "type": "notice",
+          "html": "<img class=\"mb3\" src=\"assets/img/rule/red-5.svg\" alt=\"rule\">"
+        },
+        {
+          "code": "WCAG2AA.Principle1.Guideline1_1.1_1_1.G73,G74",
+          "message": "If this image cannot be fully described in a short text alternative, ensure a long text alternative is also available, such as in the body text or through a link.",
+          "type": "notice",
+          "html": "<img class=\"mb3\" src=\"assets/img/rule/red-5.svg\" alt=\"rule\">"
+        },
+        {
+          "code": "WCAG2AA.Principle1.Guideline1_3.1_3_1.H48",
+          "message": "If this element contains a navigation section, it is recommended that it be marked up as a list.",
+          "type": "warning",
+          "html": "<p class=\"mb3 h3 serif line-height-3\">\n        This project builds on...</p>"
+        },
+        {
+          "code": "WCAG2AA.Principle2.Guideline2_4.2_4_4.H77,H78,H79,H80,H81",
+          "message": "Check that the link text combined with programmatically determined link context identifies the purpose of the link.",
+          "type": "notice",
+          "html": "<a href=\"http://www.nist.gov/\" class=\"teal bold\">National Institute for Standard...</a>"
+        },
+        {
+          "code": "WCAG2AA.Principle2.Guideline2_4.2_4_4.H77,H78,H79,H80,H81",
+          "message": "Check that the link text combined with programmatically determined link context identifies the purpose of the link.",
+          "type": "notice",
+          "html": "<a href=\"https://www.whitehouse.gov/the-press-office/2016/02/09/fact-sheet-cybersecurity-national-action-plan\" class=\"teal bold\">Cybersecurity National Action P...</a>"
+        },
+        {
+          "code": "WCAG2AA.Principle2.Guideline2_4.2_4_4.H77,H78,H79,H80,H81",
+          "message": "Check that the link text combined with programmatically determined link context identifies the purpose of the link.",
+          "type": "notice",
+          "html": "<a href=\"http://www.gsa.gov/portal/content/105080\" class=\"teal bold\">Federal Acquisition Service</a>"
+        },
+        {
+          "code": "WCAG2AA.Principle1.Guideline1_1.1_1_1.G94.Image",
+          "message": "Ensure that the img element's alt text serves the same purpose and presents the same information as the image.",
+          "type": "notice",
+          "html": "<img class=\"mb3\" src=\"assets/img/rule/red-1.svg\" alt=\"rule\">"
+        },
+        {
+          "code": "WCAG2AA.Principle1.Guideline1_1.1_1_1.G73,G74",
+          "message": "If this image cannot be fully described in a short text alternative, ensure a long text alternative is also available, such as in the body text or through a link.",
+          "type": "notice",
+          "html": "<img class=\"mb3\" src=\"assets/img/rule/red-1.svg\" alt=\"rule\">"
+        },
+        {
+          "code": "WCAG2AA.Principle2.Guideline2_4.2_4_4.H77,H78,H79,H80,H81",
+          "message": "Check that the link text combined with programmatically determined link context identifies the purpose of the link.",
+          "type": "notice",
+          "html": "<a href=\"mailto:18f@gsa.gov?subject=login.gov%3A%20\" class=\"navy bold\">18F@gsa.gov</a>"
+        },
+        {
+          "code": "WCAG2AA.Principle1.Guideline1_3.1_3_1.H48",
+          "message": "If this element contains a navigation section, it is recommended that it be marked up as a list.",
+          "type": "warning",
+          "html": "<div class=\"sm-col mb1 sm-m0\">\n          <a href=\"https://18f...</div>"
+        },
+        {
+          "code": "WCAG2AA.Principle2.Guideline2_4.2_4_4.H77,H78,H79,H80,H81",
+          "message": "Check that the link text combined with programmatically determined link context identifies the purpose of the link.",
+          "type": "notice",
+          "html": "<a href=\"https://18f.gsa.gov/\">\n            <img class=\"mr1 al...</a>"
+        },
+        {
+          "code": "WCAG2AA.Principle1.Guideline1_1.1_1_1.G94.Image",
+          "message": "Ensure that the img element's alt text serves the same purpose and presents the same information as the image.",
+          "type": "notice",
+          "html": "<img class=\"mr1 align-middle\" width=\"40\" src=\"assets/img/square-18f.svg\" alt=\"18F\">"
+        },
+        {
+          "code": "WCAG2AA.Principle1.Guideline1_1.1_1_1.G73,G74",
+          "message": "If this image cannot be fully described in a short text alternative, ensure a long text alternative is also available, such as in the body text or through a link.",
+          "type": "notice",
+          "html": "<img class=\"mr1 align-middle\" width=\"40\" src=\"assets/img/square-18f.svg\" alt=\"18F\">"
+        },
+        {
+          "code": "WCAG2AA.Principle2.Guideline2_4.2_4_4.H77,H78,H79,H80,H81",
+          "message": "Check that the link text combined with programmatically determined link context identifies the purpose of the link.",
+          "type": "notice",
+          "html": "<a href=\"http://www.gsa.gov/portal/category/100000\">\n            <img class=\"align-...</a>"
+        },
+        {
+          "code": "WCAG2AA.Principle1.Guideline1_1.1_1_1.G94.Image",
+          "message": "Ensure that the img element's alt text serves the same purpose and presents the same information as the image.",
+          "type": "notice",
+          "html": "<img class=\"align-middle\" width=\"40\" src=\"assets/img/square-gsa.svg\" alt=\"GSA\">"
+        },
+        {
+          "code": "WCAG2AA.Principle1.Guideline1_1.1_1_1.G73,G74",
+          "message": "If this image cannot be fully described in a short text alternative, ensure a long text alternative is also available, such as in the body text or through a link.",
+          "type": "notice",
+          "html": "<img class=\"align-middle\" width=\"40\" src=\"assets/img/square-gsa.svg\" alt=\"GSA\">"
+        },
+        {
+          "code": "WCAG2AA.Principle2.Guideline2_4.2_4_4.H77,H78,H79,H80,H81",
+          "message": "Check that the link text combined with programmatically determined link context identifies the purpose of the link.",
+          "type": "notice",
+          "html": "<a class=\"inline-block\" href=\".\">\n            <img class=\"py1 al...</a>"
+        },
+        {
+          "code": "WCAG2AA.Principle1.Guideline1_1.1_1_1.G94.Image",
+          "message": "Ensure that the img element's alt text serves the same purpose and presents the same information as the image.",
+          "type": "notice",
+          "html": "<img class=\"py1 align-middle\" width=\"172\" src=\"assets/img/logo-white.svg\" alt=\"login.gov\">"
+        },
+        {
+          "code": "WCAG2AA.Principle1.Guideline1_1.1_1_1.G73,G74",
+          "message": "If this image cannot be fully described in a short text alternative, ensure a long text alternative is also available, such as in the body text or through a link.",
+          "type": "notice",
+          "html": "<img class=\"py1 align-middle\" width=\"172\" src=\"assets/img/logo-white.svg\" alt=\"login.gov\">"
+        }
+      ]
+    }
+  }
+}

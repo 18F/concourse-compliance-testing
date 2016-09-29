@@ -1,5 +1,14 @@
 [
   {
+    "name": "18f-site",
+    "slack_channel": "beta-18f-site",
+    "links": [
+      {
+        "url": "https://federalist.18f.gov/preview/18F/18f.gsa.gov/master/"
+      }
+    ]
+  },
+  {
     "name": "openopps",
     "slack_channel": "openopps-platform",
     "links": [
