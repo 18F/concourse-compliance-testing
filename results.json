@@ -1,3 +1,1066 @@
 {
-  "data": {}
+  "data": {
+    "useiti.doi.gov/index.html": {
+      "url": "useiti.doi.gov/index.html",
+      "isPerfect": false,
+      "count": {
+        "total": 175,
+        "error": 0,
+        "warning": 8,
+        "notice": 167
+      },
+      "results": [
+        {
+          "code": "WCAG2AA.Principle2.Guideline2_4.2_4_2.H25.2",
+          "message": "Check that the title element describes the document.",
+          "type": "notice",
+          "html": "<title>Home | USEITI</title>"
+        },
+        {
+          "code": "WCAG2AA.Principle1.Guideline1_1.1_1_1.G94.Image",
+          "message": "Ensure that the img element's alt text serves the same purpose and presents the same information as the image.",
+          "type": "notice",
+          "html": "<img class=\"banner-image\" src=\"/img/us-flag-small.png\" alt=\"U.S. flag signifying that this is a United States Federal Government website\">"
+        },
+        {
+          "code": "WCAG2AA.Principle1.Guideline1_1.1_1_1.G73,G74",
+          "message": "If this image cannot be fully described in a short text alternative, ensure a long text alternative is also available, such as in the body text or through a link.",
+          "type": "notice",
+          "html": "<img class=\"banner-image\" src=\"/img/us-flag-small.png\" alt=\"U.S. flag signifying that this is a United States Federal Government website\">"
+        },
+        {
+          "code": "WCAG2AA.Principle2.Guideline2_4.2_4_4.H77,H78,H79,H80,H81",
+          "message": "Check that the link text combined with programmatically determined link context identifies the purpose of the link.",
+          "type": "notice",
+          "html": "<a class=\"link-alpha\" tabindex=\"0\" href=\"/about/whats-new/\">See what’s new</a>"
+        },
+        {
+          "code": "WCAG2AA.Principle2.Guideline2_4.2_4_4.H77,H78,H79,H80,H81",
+          "message": "Check that the link text combined with programmatically determined link context identifies the purpose of the link.",
+          "type": "notice",
+          "html": "<a class=\"link-alpha\" href=\"https://ethn.io/38933\">help us improve the site</a>"
+        },
+        {
+          "code": "WCAG2AA.Principle2.Guideline2_4.2_4_4.H77,H78,H79,H80,H81",
+          "message": "Check that the link text combined with programmatically determined link context identifies the purpose of the link.",
+          "type": "notice",
+          "html": "<a class=\"header-image_link\" href=\"/\">\n      <img class=\"header-image...</a>"
+        },
+        {
+          "code": "WCAG2AA.Principle1.Guideline1_1.1_1_1.G94.Image",
+          "message": "Ensure that the img element's alt text serves the same purpose and presents the same information as the image.",
+          "type": "notice",
+          "html": "<img class=\"header-image\" src=\"/img/logo-USEITI-color.svg\" alt=\"USEITI logo\">"
+        },
+        {
+          "code": "WCAG2AA.Principle1.Guideline1_1.1_1_1.G73,G74",
+          "message": "If this image cannot be fully described in a short text alternative, ensure a long text alternative is also available, such as in the body text or through a link.",
+          "type": "notice",
+          "html": "<img class=\"header-image\" src=\"/img/logo-USEITI-color.svg\" alt=\"USEITI logo\">"
+        },
+        {
+          "code": "WCAG2AA.Principle2.Guideline2_4.2_4_4.H77,H78,H79,H80,H81",
+          "message": "Check that the link text combined with programmatically determined link context identifies the purpose of the link.",
+          "type": "notice",
+          "html": "<a href=\"javascript:void(0)\" class=\"header-nav_item_link_top js-glossary-toggle\" alt=\"this is the glossary drawer\">Glossary</a>"
+        },
+        {
+          "code": "WCAG2AA.Principle2.Guideline2_4.2_4_4.H77,H78,H79,H80,H81",
+          "message": "Check that the link text combined with programmatically determined link context identifies the purpose of the link.",
+          "type": "notice",
+          "html": "<a class=\"header-nav_item_link_top \" href=\"/downloads/\">Downloads</a>"
+        },
+        {
+          "code": "WCAG2AA.Principle3.Guideline3_3.3_3_1.G83,G84,G85",
+          "message": "If an input error is automatically detected in this form, check that the item(s) in error are identified and the error(s) are described to the user in text.",
+          "type": "notice",
+          "html": "<form action=\"/search-results/\">\n          <label class=\"sr-onl...</form>"
+        },
+        {
+          "code": "WCAG2AA.Principle3.Guideline3_3.3_3_2.G131,G89,G184,H90",
+          "message": "Check that descriptive labels or instructions (including for required fields) are provided for user input in this form.",
+          "type": "notice",
+          "html": "<form action=\"/search-results/\">\n          <label class=\"sr-onl...</form>"
+        },
+        {
+          "code": "WCAG2AA.Principle3.Guideline3_3.3_3_3.G177",
+          "message": "Check that this form provides suggested corrections to errors in user input, unless it would jeopardize the security or purpose of the content.",
+          "type": "notice",
+          "html": "<form action=\"/search-results/\">\n          <label class=\"sr-onl...</form>"
+        },
+        {
+          "code": "WCAG2AA.Principle3.Guideline3_3.3_3_4.G98,G99,G155,G164,G168.LegalForms",
+          "message": "If this form would bind a user to a financial or legal commitment, modify/delete user-controllable data, or submit test responses, ensure that submissions are either reversible, checked for input errors, and/or confirmed by the user.",
+          "type": "notice",
+          "html": "<form action=\"/search-results/\">\n          <label class=\"sr-onl...</form>"
+        },
+        {
+          "code": "WCAG2AA.Principle3.Guideline3_2.3_2_1.G107",
+          "message": "Check that a change of context does not occur when this input field receives focus.",
+          "type": "notice",
+          "html": "<input type=\"search\" class=\"q header-nav_search\" placeholder=\"Search\" id=\"q\" name=\"q\" role=\"search\">"
+        },
+        {
+          "code": "WCAG2AA.Principle3.Guideline3_2.3_2_1.G107",
+          "message": "Check that a change of context does not occur when this input field receives focus.",
+          "type": "notice",
+          "html": "<button type=\"submit\" class=\"header-nav_search_icon\" title=\"search\"><span class=\"icon-search\"></spa...</button>"
+        },
+        {
+          "code": "WCAG2AA.Principle1.Guideline1_3.1_3_1.H44.NonExistentFragment",
+          "message": "This label's \"for\" attribute contains an ID that does not exist in the document fragment.",
+          "type": "warning",
+          "html": "<label class=\"sr-only\">Icon search button</label>"
+        },
+        {
+          "code": "WCAG2AA.Principle2.Guideline2_4.2_4_4.H77,H78,H79,H80,H81",
+          "message": "Check that the link text combined with programmatically determined link context identifies the purpose of the link.",
+          "type": "notice",
+          "html": "<a class=\"header-nav_item_link\" href=\"/\">Home</a>"
+        },
+        {
+          "code": "WCAG2AA.Principle2.Guideline2_4.2_4_4.H77,H78,H79,H80,H81",
+          "message": "Check that the link text combined with programmatically determined link context identifies the purpose of the link.",
+          "type": "notice",
+          "html": "<a class=\"header-nav_item_link\" href=\"/about/\">About USEITI</a>"
+        },
+        {
+          "code": "WCAG2AA.Principle2.Guideline2_4.2_4_4.H77,H78,H79,H80,H81",
+          "message": "Check that the link text combined with programmatically determined link context identifies the purpose of the link.",
+          "type": "notice",
+          "html": "<a class=\"header-nav_item_link\" href=\"/how-it-works/\">How It Works</a>"
+        },
+        {
+          "code": "WCAG2AA.Principle2.Guideline2_4.2_4_4.H77,H78,H79,H80,H81",
+          "message": "Check that the link text combined with programmatically determined link context identifies the purpose of the link.",
+          "type": "notice",
+          "html": "<a class=\"header-nav_item_link\" href=\"/explore/\">Explore Data</a>"
+        },
+        {
+          "code": "WCAG2AA.Principle2.Guideline2_4.2_4_4.H77,H78,H79,H80,H81",
+          "message": "Check that the link text combined with programmatically determined link context identifies the purpose of the link.",
+          "type": "notice",
+          "html": "<a class=\"header-nav_item_link\" href=\"/case-studies/\">Case Studies</a>"
+        },
+        {
+          "code": "WCAG2AA.Principle1.Guideline1_3.1_3_1.ARIA16,ARIA9",
+          "message": "This form control contains an aria-labelledby attribute, however it includes an ID \"menu-button\" that does not exist on an element. The aria-labelledby attribute will be ignored for labelling test purposes.",
+          "type": "warning",
+          "html": "<button data-toggler=\"nav-drawer\" is=\"eiti-toggle\" aria-controls=\"nav-drawer\" aria-hidden=\"false\" aria-expanded=\"false\" class=\"header-right header-bars\" data-inner-markup=\"bars\" title=\"Global navigation toggle\" aria-labelledby=\"menu-button\"><span cla..."
+        },
+        {
+          "code": "WCAG2AA.Principle3.Guideline3_2.3_2_1.G107",
+          "message": "Check that a change of context does not occur when this input field receives focus.",
+          "type": "notice",
+          "html": "<button data-toggler=\"nav-drawer\" is=\"eiti-toggle\" aria-controls=\"nav-drawer\" aria-hidden=\"false\" aria-expanded=\"false\" class=\"header-right header-bars\" data-inner-markup=\"bars\" title=\"Global navigation toggle\" aria-labelledby=\"menu-button\"><span cla..."
+        },
+        {
+          "code": "WCAG2AA.Principle3.Guideline3_2.3_2_1.G107",
+          "message": "Check that a change of context does not occur when this input field receives focus.",
+          "type": "notice",
+          "html": "<button id=\"glossary-toggle\" class=\"button button--close toggle\" tabindex=\"-1\">\n      <label for=\"glossary-tog...</button>"
+        },
+        {
+          "code": "WCAG2AA.Principle3.Guideline3_2.3_2_1.G107",
+          "message": "Check that a change of context does not occur when this input field receives focus.",
+          "type": "notice",
+          "html": "<input id=\"drawer-search-bar\" class=\"js-glossary-search drawer-search\" type=\"search\" placeholder=\"e.g. Fossil fuel\" tabindex=\"-1\">"
+        },
+        {
+          "code": "WCAG2AA.Principle3.Guideline3_2.3_2_1.G107",
+          "message": "Check that a change of context does not occur when this input field receives focus.",
+          "type": "notice",
+          "html": "<button tabindex=\"-1\" accordion-button=\"\" role=\"button\" aria-controls=\"glossary-accordion--content--0\"><span class=\"sr-only\">Toggle fo...</button>"
+        },
+        {
+          "code": "WCAG2AA.Principle3.Guideline3_2.3_2_1.G107",
+          "message": "Check that a change of context does not occur when this input field receives focus.",
+          "type": "notice",
+          "html": "<button tabindex=\"-1\" accordion-button=\"\" role=\"button\" aria-controls=\"glossary-accordion--content--1\"><span class=\"sr-only\">Toggle fo...</button>"
+        },
+        {
+          "code": "WCAG2AA.Principle3.Guideline3_2.3_2_1.G107",
+          "message": "Check that a change of context does not occur when this input field receives focus.",
+          "type": "notice",
+          "html": "<button tabindex=\"-1\" accordion-button=\"\" role=\"button\" aria-controls=\"glossary-accordion--content--2\"><span class=\"sr-only\">Toggle fo...</button>"
+        },
+        {
+          "code": "WCAG2AA.Principle3.Guideline3_2.3_2_1.G107",
+          "message": "Check that a change of context does not occur when this input field receives focus.",
+          "type": "notice",
+          "html": "<button tabindex=\"-1\" accordion-button=\"\" role=\"button\" aria-controls=\"glossary-accordion--content--3\"><span class=\"sr-only\">Toggle fo...</button>"
+        },
+        {
+          "code": "WCAG2AA.Principle3.Guideline3_2.3_2_1.G107",
+          "message": "Check that a change of context does not occur when this input field receives focus.",
+          "type": "notice",
+          "html": "<button tabindex=\"-1\" accordion-button=\"\" role=\"button\" aria-controls=\"glossary-accordion--content--4\"><span class=\"sr-only\">Toggle fo...</button>"
+        },
+        {
+          "code": "WCAG2AA.Principle3.Guideline3_2.3_2_1.G107",
+          "message": "Check that a change of context does not occur when this input field receives focus.",
+          "type": "notice",
+          "html": "<button tabindex=\"-1\" accordion-button=\"\" role=\"button\" aria-controls=\"glossary-accordion--content--5\"><span class=\"sr-only\">Toggle fo...</button>"
+        },
+        {
+          "code": "WCAG2AA.Principle3.Guideline3_2.3_2_1.G107",
+          "message": "Check that a change of context does not occur when this input field receives focus.",
+          "type": "notice",
+          "html": "<button tabindex=\"-1\" accordion-button=\"\" role=\"button\" aria-controls=\"glossary-accordion--content--6\"><span class=\"sr-only\">Toggle fo...</button>"
+        },
+        {
+          "code": "WCAG2AA.Principle3.Guideline3_2.3_2_1.G107",
+          "message": "Check that a change of context does not occur when this input field receives focus.",
+          "type": "notice",
+          "html": "<button tabindex=\"-1\" accordion-button=\"\" role=\"button\" aria-controls=\"glossary-accordion--content--7\"><span class=\"sr-only\">Toggle fo...</button>"
+        },
+        {
+          "code": "WCAG2AA.Principle3.Guideline3_2.3_2_1.G107",
+          "message": "Check that a change of context does not occur when this input field receives focus.",
+          "type": "notice",
+          "html": "<button tabindex=\"-1\" accordion-button=\"\" role=\"button\" aria-controls=\"glossary-accordion--content--8\"><span class=\"sr-only\">Toggle fo...</button>"
+        },
+        {
+          "code": "WCAG2AA.Principle3.Guideline3_2.3_2_1.G107",
+          "message": "Check that a change of context does not occur when this input field receives focus.",
+          "type": "notice",
+          "html": "<button tabindex=\"-1\" accordion-button=\"\" role=\"button\" aria-controls=\"glossary-accordion--content--9\"><span class=\"sr-only\">Toggle fo...</button>"
+        },
+        {
+          "code": "WCAG2AA.Principle3.Guideline3_2.3_2_1.G107",
+          "message": "Check that a change of context does not occur when this input field receives focus.",
+          "type": "notice",
+          "html": "<button tabindex=\"-1\" accordion-button=\"\" role=\"button\" aria-controls=\"glossary-accordion--content--10\"><span class=\"sr-only\">Toggle fo...</button>"
+        },
+        {
+          "code": "WCAG2AA.Principle3.Guideline3_2.3_2_1.G107",
+          "message": "Check that a change of context does not occur when this input field receives focus.",
+          "type": "notice",
+          "html": "<button tabindex=\"-1\" accordion-button=\"\" role=\"button\" aria-controls=\"glossary-accordion--content--11\"><span class=\"sr-only\">Toggle fo...</button>"
+        },
+        {
+          "code": "WCAG2AA.Principle3.Guideline3_2.3_2_1.G107",
+          "message": "Check that a change of context does not occur when this input field receives focus.",
+          "type": "notice",
+          "html": "<button tabindex=\"-1\" accordion-button=\"\" role=\"button\" aria-controls=\"glossary-accordion--content--12\"><span class=\"sr-only\">Toggle fo...</button>"
+        },
+        {
+          "code": "WCAG2AA.Principle3.Guideline3_2.3_2_1.G107",
+          "message": "Check that a change of context does not occur when this input field receives focus.",
+          "type": "notice",
+          "html": "<button tabindex=\"-1\" accordion-button=\"\" role=\"button\" aria-controls=\"glossary-accordion--content--13\"><span class=\"sr-only\">Toggle fo...</button>"
+        },
+        {
+          "code": "WCAG2AA.Principle3.Guideline3_2.3_2_1.G107",
+          "message": "Check that a change of context does not occur when this input field receives focus.",
+          "type": "notice",
+          "html": "<button tabindex=\"-1\" accordion-button=\"\" role=\"button\" aria-controls=\"glossary-accordion--content--14\"><span class=\"sr-only\">Toggle fo...</button>"
+        },
+        {
+          "code": "WCAG2AA.Principle3.Guideline3_2.3_2_1.G107",
+          "message": "Check that a change of context does not occur when this input field receives focus.",
+          "type": "notice",
+          "html": "<button tabindex=\"-1\" accordion-button=\"\" role=\"button\" aria-controls=\"glossary-accordion--content--15\"><span class=\"sr-only\">Toggle fo...</button>"
+        },
+        {
+          "code": "WCAG2AA.Principle3.Guideline3_2.3_2_1.G107",
+          "message": "Check that a change of context does not occur when this input field receives focus.",
+          "type": "notice",
+          "html": "<button tabindex=\"-1\" accordion-button=\"\" role=\"button\" aria-controls=\"glossary-accordion--content--16\"><span class=\"sr-only\">Toggle fo...</button>"
+        },
+        {
+          "code": "WCAG2AA.Principle3.Guideline3_2.3_2_1.G107",
+          "message": "Check that a change of context does not occur when this input field receives focus.",
+          "type": "notice",
+          "html": "<button tabindex=\"-1\" accordion-button=\"\" role=\"button\" aria-controls=\"glossary-accordion--content--17\"><span class=\"sr-only\">Toggle fo...</button>"
+        },
+        {
+          "code": "WCAG2AA.Principle3.Guideline3_2.3_2_1.G107",
+          "message": "Check that a change of context does not occur when this input field receives focus.",
+          "type": "notice",
+          "html": "<button tabindex=\"-1\" accordion-button=\"\" role=\"button\" aria-controls=\"glossary-accordion--content--18\"><span class=\"sr-only\">Toggle fo...</button>"
+        },
+        {
+          "code": "WCAG2AA.Principle3.Guideline3_2.3_2_1.G107",
+          "message": "Check that a change of context does not occur when this input field receives focus.",
+          "type": "notice",
+          "html": "<button tabindex=\"-1\" accordion-button=\"\" role=\"button\" aria-controls=\"glossary-accordion--content--19\"><span class=\"sr-only\">Toggle fo...</button>"
+        },
+        {
+          "code": "WCAG2AA.Principle3.Guideline3_2.3_2_1.G107",
+          "message": "Check that a change of context does not occur when this input field receives focus.",
+          "type": "notice",
+          "html": "<button tabindex=\"-1\" accordion-button=\"\" role=\"button\" aria-controls=\"glossary-accordion--content--20\"><span class=\"sr-only\">Toggle fo...</button>"
+        },
+        {
+          "code": "WCAG2AA.Principle3.Guideline3_2.3_2_1.G107",
+          "message": "Check that a change of context does not occur when this input field receives focus.",
+          "type": "notice",
+          "html": "<button tabindex=\"-1\" accordion-button=\"\" role=\"button\" aria-controls=\"glossary-accordion--content--21\"><span class=\"sr-only\">Toggle fo...</button>"
+        },
+        {
+          "code": "WCAG2AA.Principle3.Guideline3_2.3_2_1.G107",
+          "message": "Check that a change of context does not occur when this input field receives focus.",
+          "type": "notice",
+          "html": "<button tabindex=\"-1\" accordion-button=\"\" role=\"button\" aria-controls=\"glossary-accordion--content--22\"><span class=\"sr-only\">Toggle fo...</button>"
+        },
+        {
+          "code": "WCAG2AA.Principle3.Guideline3_2.3_2_1.G107",
+          "message": "Check that a change of context does not occur when this input field receives focus.",
+          "type": "notice",
+          "html": "<button tabindex=\"-1\" accordion-button=\"\" role=\"button\" aria-controls=\"glossary-accordion--content--23\"><span class=\"sr-only\">Toggle fo...</button>"
+        },
+        {
+          "code": "WCAG2AA.Principle3.Guideline3_2.3_2_1.G107",
+          "message": "Check that a change of context does not occur when this input field receives focus.",
+          "type": "notice",
+          "html": "<button tabindex=\"-1\" accordion-button=\"\" role=\"button\" aria-controls=\"glossary-accordion--content--24\"><span class=\"sr-only\">Toggle fo...</button>"
+        },
+        {
+          "code": "WCAG2AA.Principle3.Guideline3_2.3_2_1.G107",
+          "message": "Check that a change of context does not occur when this input field receives focus.",
+          "type": "notice",
+          "html": "<button tabindex=\"-1\" accordion-button=\"\" role=\"button\" aria-controls=\"glossary-accordion--content--25\"><span class=\"sr-only\">Toggle fo...</button>"
+        },
+        {
+          "code": "WCAG2AA.Principle3.Guideline3_2.3_2_1.G107",
+          "message": "Check that a change of context does not occur when this input field receives focus.",
+          "type": "notice",
+          "html": "<button tabindex=\"-1\" accordion-button=\"\" role=\"button\" aria-controls=\"glossary-accordion--content--26\"><span class=\"sr-only\">Toggle fo...</button>"
+        },
+        {
+          "code": "WCAG2AA.Principle3.Guideline3_2.3_2_1.G107",
+          "message": "Check that a change of context does not occur when this input field receives focus.",
+          "type": "notice",
+          "html": "<button tabindex=\"-1\" accordion-button=\"\" role=\"button\" aria-controls=\"glossary-accordion--content--27\"><span class=\"sr-only\">Toggle fo...</button>"
+        },
+        {
+          "code": "WCAG2AA.Principle3.Guideline3_2.3_2_1.G107",
+          "message": "Check that a change of context does not occur when this input field receives focus.",
+          "type": "notice",
+          "html": "<button tabindex=\"-1\" accordion-button=\"\" role=\"button\" aria-controls=\"glossary-accordion--content--28\"><span class=\"sr-only\">Toggle fo...</button>"
+        },
+        {
+          "code": "WCAG2AA.Principle3.Guideline3_2.3_2_1.G107",
+          "message": "Check that a change of context does not occur when this input field receives focus.",
+          "type": "notice",
+          "html": "<button tabindex=\"-1\" accordion-button=\"\" role=\"button\" aria-controls=\"glossary-accordion--content--29\"><span class=\"sr-only\">Toggle fo...</button>"
+        },
+        {
+          "code": "WCAG2AA.Principle3.Guideline3_2.3_2_1.G107",
+          "message": "Check that a change of context does not occur when this input field receives focus.",
+          "type": "notice",
+          "html": "<button tabindex=\"-1\" accordion-button=\"\" role=\"button\" aria-controls=\"glossary-accordion--content--30\"><span class=\"sr-only\">Toggle fo...</button>"
+        },
+        {
+          "code": "WCAG2AA.Principle3.Guideline3_2.3_2_1.G107",
+          "message": "Check that a change of context does not occur when this input field receives focus.",
+          "type": "notice",
+          "html": "<button tabindex=\"-1\" accordion-button=\"\" role=\"button\" aria-controls=\"glossary-accordion--content--31\"><span class=\"sr-only\">Toggle fo...</button>"
+        },
+        {
+          "code": "WCAG2AA.Principle3.Guideline3_2.3_2_1.G107",
+          "message": "Check that a change of context does not occur when this input field receives focus.",
+          "type": "notice",
+          "html": "<button tabindex=\"-1\" accordion-button=\"\" role=\"button\" aria-controls=\"glossary-accordion--content--32\"><span class=\"sr-only\">Toggle fo...</button>"
+        },
+        {
+          "code": "WCAG2AA.Principle3.Guideline3_2.3_2_1.G107",
+          "message": "Check that a change of context does not occur when this input field receives focus.",
+          "type": "notice",
+          "html": "<button tabindex=\"-1\" accordion-button=\"\" role=\"button\" aria-controls=\"glossary-accordion--content--33\"><span class=\"sr-only\">Toggle fo...</button>"
+        },
+        {
+          "code": "WCAG2AA.Principle3.Guideline3_2.3_2_1.G107",
+          "message": "Check that a change of context does not occur when this input field receives focus.",
+          "type": "notice",
+          "html": "<button tabindex=\"-1\" accordion-button=\"\" role=\"button\" aria-controls=\"glossary-accordion--content--34\"><span class=\"sr-only\">Toggle fo...</button>"
+        },
+        {
+          "code": "WCAG2AA.Principle3.Guideline3_2.3_2_1.G107",
+          "message": "Check that a change of context does not occur when this input field receives focus.",
+          "type": "notice",
+          "html": "<button tabindex=\"-1\" accordion-button=\"\" role=\"button\" aria-controls=\"glossary-accordion--content--35\"><span class=\"sr-only\">Toggle fo...</button>"
+        },
+        {
+          "code": "WCAG2AA.Principle3.Guideline3_2.3_2_1.G107",
+          "message": "Check that a change of context does not occur when this input field receives focus.",
+          "type": "notice",
+          "html": "<button tabindex=\"-1\" accordion-button=\"\" role=\"button\" aria-controls=\"glossary-accordion--content--36\"><span class=\"sr-only\">Toggle fo...</button>"
+        },
+        {
+          "code": "WCAG2AA.Principle3.Guideline3_2.3_2_1.G107",
+          "message": "Check that a change of context does not occur when this input field receives focus.",
+          "type": "notice",
+          "html": "<button tabindex=\"-1\" accordion-button=\"\" role=\"button\" aria-controls=\"glossary-accordion--content--37\"><span class=\"sr-only\">Toggle fo...</button>"
+        },
+        {
+          "code": "WCAG2AA.Principle3.Guideline3_2.3_2_1.G107",
+          "message": "Check that a change of context does not occur when this input field receives focus.",
+          "type": "notice",
+          "html": "<button tabindex=\"-1\" accordion-button=\"\" role=\"button\" aria-controls=\"glossary-accordion--content--38\"><span class=\"sr-only\">Toggle fo...</button>"
+        },
+        {
+          "code": "WCAG2AA.Principle3.Guideline3_2.3_2_1.G107",
+          "message": "Check that a change of context does not occur when this input field receives focus.",
+          "type": "notice",
+          "html": "<button tabindex=\"-1\" accordion-button=\"\" role=\"button\" aria-controls=\"glossary-accordion--content--39\"><span class=\"sr-only\">Toggle fo...</button>"
+        },
+        {
+          "code": "WCAG2AA.Principle3.Guideline3_2.3_2_1.G107",
+          "message": "Check that a change of context does not occur when this input field receives focus.",
+          "type": "notice",
+          "html": "<button tabindex=\"-1\" accordion-button=\"\" role=\"button\" aria-controls=\"glossary-accordion--content--40\"><span class=\"sr-only\">Toggle fo...</button>"
+        },
+        {
+          "code": "WCAG2AA.Principle3.Guideline3_2.3_2_1.G107",
+          "message": "Check that a change of context does not occur when this input field receives focus.",
+          "type": "notice",
+          "html": "<button tabindex=\"-1\" accordion-button=\"\" role=\"button\" aria-controls=\"glossary-accordion--content--41\"><span class=\"sr-only\">Toggle fo...</button>"
+        },
+        {
+          "code": "WCAG2AA.Principle3.Guideline3_2.3_2_1.G107",
+          "message": "Check that a change of context does not occur when this input field receives focus.",
+          "type": "notice",
+          "html": "<button tabindex=\"-1\" accordion-button=\"\" role=\"button\" aria-controls=\"glossary-accordion--content--42\"><span class=\"sr-only\">Toggle fo...</button>"
+        },
+        {
+          "code": "WCAG2AA.Principle3.Guideline3_2.3_2_1.G107",
+          "message": "Check that a change of context does not occur when this input field receives focus.",
+          "type": "notice",
+          "html": "<button tabindex=\"-1\" accordion-button=\"\" role=\"button\" aria-controls=\"glossary-accordion--content--43\"><span class=\"sr-only\">Toggle fo...</button>"
+        },
+        {
+          "code": "WCAG2AA.Principle3.Guideline3_2.3_2_1.G107",
+          "message": "Check that a change of context does not occur when this input field receives focus.",
+          "type": "notice",
+          "html": "<button tabindex=\"-1\" accordion-button=\"\" role=\"button\" aria-controls=\"glossary-accordion--content--44\"><span class=\"sr-only\">Toggle fo...</button>"
+        },
+        {
+          "code": "WCAG2AA.Principle3.Guideline3_2.3_2_1.G107",
+          "message": "Check that a change of context does not occur when this input field receives focus.",
+          "type": "notice",
+          "html": "<button tabindex=\"-1\" accordion-button=\"\" role=\"button\" aria-controls=\"glossary-accordion--content--45\"><span class=\"sr-only\">Toggle fo...</button>"
+        },
+        {
+          "code": "WCAG2AA.Principle3.Guideline3_2.3_2_1.G107",
+          "message": "Check that a change of context does not occur when this input field receives focus.",
+          "type": "notice",
+          "html": "<button tabindex=\"-1\" accordion-button=\"\" role=\"button\" aria-controls=\"glossary-accordion--content--46\"><span class=\"sr-only\">Toggle fo...</button>"
+        },
+        {
+          "code": "WCAG2AA.Principle3.Guideline3_2.3_2_1.G107",
+          "message": "Check that a change of context does not occur when this input field receives focus.",
+          "type": "notice",
+          "html": "<button tabindex=\"-1\" accordion-button=\"\" role=\"button\" aria-controls=\"glossary-accordion--content--47\"><span class=\"sr-only\">Toggle fo...</button>"
+        },
+        {
+          "code": "WCAG2AA.Principle3.Guideline3_2.3_2_1.G107",
+          "message": "Check that a change of context does not occur when this input field receives focus.",
+          "type": "notice",
+          "html": "<button tabindex=\"-1\" accordion-button=\"\" role=\"button\" aria-controls=\"glossary-accordion--content--48\"><span class=\"sr-only\">Toggle fo...</button>"
+        },
+        {
+          "code": "WCAG2AA.Principle3.Guideline3_2.3_2_1.G107",
+          "message": "Check that a change of context does not occur when this input field receives focus.",
+          "type": "notice",
+          "html": "<button tabindex=\"-1\" accordion-button=\"\" role=\"button\" aria-controls=\"glossary-accordion--content--49\"><span class=\"sr-only\">Toggle fo...</button>"
+        },
+        {
+          "code": "WCAG2AA.Principle3.Guideline3_2.3_2_1.G107",
+          "message": "Check that a change of context does not occur when this input field receives focus.",
+          "type": "notice",
+          "html": "<button tabindex=\"-1\" accordion-button=\"\" role=\"button\" aria-controls=\"glossary-accordion--content--50\"><span class=\"sr-only\">Toggle fo...</button>"
+        },
+        {
+          "code": "WCAG2AA.Principle3.Guideline3_2.3_2_1.G107",
+          "message": "Check that a change of context does not occur when this input field receives focus.",
+          "type": "notice",
+          "html": "<button tabindex=\"-1\" accordion-button=\"\" role=\"button\" aria-controls=\"glossary-accordion--content--51\"><span class=\"sr-only\">Toggle fo...</button>"
+        },
+        {
+          "code": "WCAG2AA.Principle3.Guideline3_2.3_2_1.G107",
+          "message": "Check that a change of context does not occur when this input field receives focus.",
+          "type": "notice",
+          "html": "<button tabindex=\"-1\" accordion-button=\"\" role=\"button\" aria-controls=\"glossary-accordion--content--52\"><span class=\"sr-only\">Toggle fo...</button>"
+        },
+        {
+          "code": "WCAG2AA.Principle3.Guideline3_2.3_2_1.G107",
+          "message": "Check that a change of context does not occur when this input field receives focus.",
+          "type": "notice",
+          "html": "<button tabindex=\"-1\" accordion-button=\"\" role=\"button\" aria-controls=\"glossary-accordion--content--53\"><span class=\"sr-only\">Toggle fo...</button>"
+        },
+        {
+          "code": "WCAG2AA.Principle3.Guideline3_2.3_2_1.G107",
+          "message": "Check that a change of context does not occur when this input field receives focus.",
+          "type": "notice",
+          "html": "<button data-toggler=\"nav-drawer\" class=\"button--close\" is=\"eiti-toggle\" aria-expanded=\"false\" aria-controls=\"nav-drawer\" title=\"Global navigation close\" data-inner-markup=\"x\"><span class=\"u-visually-hidden\"...</button>"
+        },
+        {
+          "code": "WCAG2AA.Principle1.Guideline1_3.1_3_1.H44.NonExistentFragment",
+          "message": "This label's \"for\" attribute contains an ID that does not exist in the document fragment.",
+          "type": "warning",
+          "html": "<label for=\"drawer-search\" class=\"label\">Search</label>"
+        },
+        {
+          "code": "WCAG2AA.Principle3.Guideline3_3.3_3_1.G83,G84,G85",
+          "message": "If an input error is automatically detected in this form, check that the item(s) in error are identified and the error(s) are described to the user in text.",
+          "type": "notice",
+          "html": "<form action=\"/search-results/\" class=\"drawer-search_form\">\n    <label for=\"q\" class=\"sr-o...</form>"
+        },
+        {
+          "code": "WCAG2AA.Principle3.Guideline3_3.3_3_2.G131,G89,G184,H90",
+          "message": "Check that descriptive labels or instructions (including for required fields) are provided for user input in this form.",
+          "type": "notice",
+          "html": "<form action=\"/search-results/\" class=\"drawer-search_form\">\n    <label for=\"q\" class=\"sr-o...</form>"
+        },
+        {
+          "code": "WCAG2AA.Principle3.Guideline3_3.3_3_3.G177",
+          "message": "Check that this form provides suggested corrections to errors in user input, unless it would jeopardize the security or purpose of the content.",
+          "type": "notice",
+          "html": "<form action=\"/search-results/\" class=\"drawer-search_form\">\n    <label for=\"q\" class=\"sr-o...</form>"
+        },
+        {
+          "code": "WCAG2AA.Principle3.Guideline3_3.3_3_4.G98,G99,G155,G164,G168.LegalForms",
+          "message": "If this form would bind a user to a financial or legal commitment, modify/delete user-controllable data, or submit test responses, ensure that submissions are either reversible, checked for input errors, and/or confirmed by the user.",
+          "type": "notice",
+          "html": "<form action=\"/search-results/\" class=\"drawer-search_form\">\n    <label for=\"q\" class=\"sr-o...</form>"
+        },
+        {
+          "code": "WCAG2AA.Principle3.Guideline3_2.3_2_1.G107",
+          "message": "Check that a change of context does not occur when this input field receives focus.",
+          "type": "notice",
+          "html": "<input class=\"q glossary__search drawer-search_field\" type=\"search\" name=\"q\">"
+        },
+        {
+          "code": "WCAG2AA.Principle3.Guideline3_2.3_2_1.G107",
+          "message": "Check that a change of context does not occur when this input field receives focus.",
+          "type": "notice",
+          "html": "<button type=\"submit\" class=\"drawer-search_button icon-search\" title=\"search\"></button>"
+        },
+        {
+          "code": "WCAG2AA.Principle2.Guideline2_4.2_4_4.H77,H78,H79,H80,H81",
+          "message": "Check that the link text combined with programmatically determined link context identifies the purpose of the link.",
+          "type": "notice",
+          "html": "<a class=\"nav_drawer-nav_item_link\" href=\"/\">Home</a>"
+        },
+        {
+          "code": "WCAG2AA.Principle2.Guideline2_4.2_4_4.H77,H78,H79,H80,H81",
+          "message": "Check that the link text combined with programmatically determined link context identifies the purpose of the link.",
+          "type": "notice",
+          "html": "<a class=\"nav_drawer-nav_item_link\" href=\"/about/\">About USEITI</a>"
+        },
+        {
+          "code": "WCAG2AA.Principle2.Guideline2_4.2_4_4.H77,H78,H79,H80,H81",
+          "message": "Check that the link text combined with programmatically determined link context identifies the purpose of the link.",
+          "type": "notice",
+          "html": "<a class=\"nav_drawer-nav_item_link\" href=\"/how-it-works/\">How It Works</a>"
+        },
+        {
+          "code": "WCAG2AA.Principle2.Guideline2_4.2_4_4.H77,H78,H79,H80,H81",
+          "message": "Check that the link text combined with programmatically determined link context identifies the purpose of the link.",
+          "type": "notice",
+          "html": "<a class=\"nav_drawer-nav_item_link\" href=\"/explore/\">Explore Data</a>"
+        },
+        {
+          "code": "WCAG2AA.Principle2.Guideline2_4.2_4_4.H77,H78,H79,H80,H81",
+          "message": "Check that the link text combined with programmatically determined link context identifies the purpose of the link.",
+          "type": "notice",
+          "html": "<a class=\"nav_drawer-nav_item_link\" href=\"/case-studies/\">Case Studies</a>"
+        },
+        {
+          "code": "WCAG2AA.Principle2.Guideline2_4.2_4_4.H77,H78,H79,H80,H81",
+          "message": "Check that the link text combined with programmatically determined link context identifies the purpose of the link.",
+          "type": "notice",
+          "html": "<a class=\"nav_drawer-nav_item_link\" href=\"/downloads/\">Downloads</a>"
+        },
+        {
+          "code": "WCAG2AA.Principle2.Guideline2_4.2_4_4.H77,H78,H79,H80,H81",
+          "message": "Check that the link text combined with programmatically determined link context identifies the purpose of the link.",
+          "type": "notice",
+          "html": "<a href=\"javascript:void(0)\" class=\"nav_drawer-nav_item_link js-glossary-toggle\" alt=\"this is the glossary drawer\">Glossary</a>"
+        },
+        {
+          "code": "WCAG2AA.Principle2.Guideline2_4.2_4_4.H77,H78,H79,H80,H81",
+          "message": "Check that the link text combined with programmatically determined link context identifies the purpose of the link.",
+          "type": "notice",
+          "html": "<a href=\"/about/\">Learn more about the initiative...</a>"
+        },
+        {
+          "code": "WCAG2AA.Principle2.Guideline2_4.2_4_4.H77,H78,H79,H80,H81",
+          "message": "Check that the link text combined with programmatically determined link context identifies the purpose of the link.",
+          "type": "notice",
+          "html": "<a href=\"/how-it-works/\" class=\"carousel-button button-primary\">See how it works</a>"
+        },
+        {
+          "code": "WCAG2AA.Principle1.Guideline1_1.1_1_1.G94.Image",
+          "message": "Ensure that the img element's alt text serves the same purpose and presents the same information as the image.",
+          "type": "notice",
+          "html": "<img class=\"carousel-image\" src=\"/img/placeholders/how-it-works-home.png\" alt=\"How it works\">"
+        },
+        {
+          "code": "WCAG2AA.Principle1.Guideline1_1.1_1_1.G73,G74",
+          "message": "If this image cannot be fully described in a short text alternative, ensure a long text alternative is also available, such as in the body text or through a link.",
+          "type": "notice",
+          "html": "<img class=\"carousel-image\" src=\"/img/placeholders/how-it-works-home.png\" alt=\"How it works\">"
+        },
+        {
+          "code": "WCAG2AA.Principle2.Guideline2_4.2_4_4.H77,H78,H79,H80,H81",
+          "message": "Check that the link text combined with programmatically determined link context identifies the purpose of the link.",
+          "type": "notice",
+          "html": "<a href=\"#revenue\" tabindex=\"0\" role=\"tab\" aria-controls=\"revenue\" aria-selected=\"true\" class=\"link-charlie\">Revenue</a>"
+        },
+        {
+          "code": "WCAG2AA.Principle2.Guideline2_4.2_4_4.H77,H78,H79,H80,H81",
+          "message": "Check that the link text combined with programmatically determined link context identifies the purpose of the link.",
+          "type": "notice",
+          "html": "<a href=\"#production\" tabindex=\"-1\" role=\"tab\" aria-controls=\"production\" class=\"link-charlie\">Production</a>"
+        },
+        {
+          "code": "WCAG2AA.Principle2.Guideline2_4.2_4_4.H77,H78,H79,H80,H81",
+          "message": "Check that the link text combined with programmatically determined link context identifies the purpose of the link.",
+          "type": "notice",
+          "html": "<a href=\"#impact\" tabindex=\"-1\" role=\"tab\" aria-controls=\"impact\" class=\"link-charlie\"><span class=\"explore_home-tab_m...</a>"
+        },
+        {
+          "code": "WCAG2AA.Principle2.Guideline2_4.2_4_4.H77,H78,H79,H80,H81",
+          "message": "Check that the link text combined with programmatically determined link context identifies the purpose of the link.",
+          "type": "notice",
+          "html": "<a href=\"/explore/#revenue\" class=\"button-primary explore_home-button\">Explore data</a>"
+        },
+        {
+          "code": "WCAG2AA.Principle2.Guideline2_4.2_4_4.H77,H78,H79,H80,H81",
+          "message": "Check that the link text combined with programmatically determined link context identifies the purpose of the link.",
+          "type": "notice",
+          "html": "<a href=\"/explore/federal-revenue-by-location/\" class=\"explore_home-img\">\n          <!-- <h4>Revenue fro...</a>"
+        },
+        {
+          "code": "WCAG2AA.Principle1.Guideline1_1.1_1_1.G94.Image",
+          "message": "Ensure that the img element's alt text serves the same purpose and presents the same information as the image.",
+          "type": "notice",
+          "html": "<img src=\"/img/explore-home-revenue.png\" alt=\"Map showing revenues from extractive resources on federal lands\">"
+        },
+        {
+          "code": "WCAG2AA.Principle1.Guideline1_1.1_1_1.G73,G74",
+          "message": "If this image cannot be fully described in a short text alternative, ensure a long text alternative is also available, such as in the body text or through a link.",
+          "type": "notice",
+          "html": "<img src=\"/img/explore-home-revenue.png\" alt=\"Map showing revenues from extractive resources on federal lands\">"
+        },
+        {
+          "code": "WCAG2AA.Principle2.Guideline2_4.2_4_4.H77,H78,H79,H80,H81",
+          "message": "Check that the link text combined with programmatically determined link context identifies the purpose of the link.",
+          "type": "notice",
+          "html": "<a href=\"/explore/federal-revenue-by-location/\">Federal revenue from all lands ...</a>"
+        },
+        {
+          "code": "WCAG2AA.Principle2.Guideline2_4.2_4_4.H77,H78,H79,H80,H81",
+          "message": "Check that the link text combined with programmatically determined link context identifies the purpose of the link.",
+          "type": "notice",
+          "html": "<a href=\"/explore/#production\" class=\"button-primary explore_home-button\">Explore data</a>"
+        },
+        {
+          "code": "WCAG2AA.Principle2.Guideline2_4.2_4_4.H77,H78,H79,H80,H81",
+          "message": "Check that the link text combined with programmatically determined link context identifies the purpose of the link.",
+          "type": "notice",
+          "html": "<a href=\"/explore/federal-production/\" class=\"explore_home-img\">\n          <h4>Production from ...</a>"
+        },
+        {
+          "code": "WCAG2AA.Principle1.Guideline1_3.1_3_1_A.G141",
+          "message": "The heading structure is not logically nested. This h4 element should be an h3 to be properly nested.",
+          "type": "warning",
+          "html": "<h4>Production from federal vs. non...</h4>"
+        },
+        {
+          "code": "WCAG2AA.Principle1.Guideline1_1.1_1_1.G94.Image",
+          "message": "Ensure that the img element's alt text serves the same purpose and presents the same information as the image.",
+          "type": "notice",
+          "html": "<img src=\"/img/explore-home-production.png\" alt=\"Chart showing percentage of production occuring on federal versus non-federal lands and waters\">"
+        },
+        {
+          "code": "WCAG2AA.Principle1.Guideline1_1.1_1_1.G73,G74",
+          "message": "If this image cannot be fully described in a short text alternative, ensure a long text alternative is also available, such as in the body text or through a link.",
+          "type": "notice",
+          "html": "<img src=\"/img/explore-home-production.png\" alt=\"Chart showing percentage of production occuring on federal versus non-federal lands and waters\">"
+        },
+        {
+          "code": "WCAG2AA.Principle2.Guideline2_4.2_4_4.H77,H78,H79,H80,H81",
+          "message": "Check that the link text combined with programmatically determined link context identifies the purpose of the link.",
+          "type": "notice",
+          "html": "<a href=\"/explore/federal-production/\">Federal production data →</a>"
+        },
+        {
+          "code": "WCAG2AA.Principle2.Guideline2_4.2_4_4.H77,H78,H79,H80,H81",
+          "message": "Check that the link text combined with programmatically determined link context identifies the purpose of the link.",
+          "type": "notice",
+          "html": "<a href=\"/explore/#economic-impact\" class=\"button-primary explore_home-button\">Explore data</a>"
+        },
+        {
+          "code": "WCAG2AA.Principle2.Guideline2_4.2_4_4.H77,H78,H79,H80,H81",
+          "message": "Check that the link text combined with programmatically determined link context identifies the purpose of the link.",
+          "type": "notice",
+          "html": "<a href=\"/explore/jobs/\" class=\"explore_home-img\">\n          <h4>Employment in ex...</a>"
+        },
+        {
+          "code": "WCAG2AA.Principle1.Guideline1_1.1_1_1.G94.Image",
+          "message": "Ensure that the img element's alt text serves the same purpose and presents the same information as the image.",
+          "type": "notice",
+          "html": "<img src=\"/img/explore-home-impact.png\" alt=\"Chart showing employment in extractive industries vs. all other industries\">"
+        },
+        {
+          "code": "WCAG2AA.Principle1.Guideline1_1.1_1_1.G73,G74",
+          "message": "If this image cannot be fully described in a short text alternative, ensure a long text alternative is also available, such as in the body text or through a link.",
+          "type": "notice",
+          "html": "<img src=\"/img/explore-home-impact.png\" alt=\"Chart showing employment in extractive industries vs. all other industries\">"
+        },
+        {
+          "code": "WCAG2AA.Principle2.Guideline2_4.2_4_4.H77,H78,H79,H80,H81",
+          "message": "Check that the link text combined with programmatically determined link context identifies the purpose of the link.",
+          "type": "notice",
+          "html": "<a href=\"/explore/jobs/\">Jobs data →</a>"
+        },
+        {
+          "code": "WCAG2AA.Principle2.Guideline2_4.2_4_4.H77,H78,H79,H80,H81",
+          "message": "Check that the link text combined with programmatically determined link context identifies the purpose of the link.",
+          "type": "notice",
+          "html": "<a class=\"card-image_link\" href=\"/about/report/\"><img class=\"card-image\" src=\"/i...</a>"
+        },
+        {
+          "code": "WCAG2AA.Principle1.Guideline1_1.1_1_1.G94.Image",
+          "message": "Ensure that the img element's alt text serves the same purpose and presents the same information as the image.",
+          "type": "notice",
+          "html": "<img class=\"card-image\" src=\"/img/home-card-exec_summary.png\" alt=\"USEITI 2015 Executive Summary\">"
+        },
+        {
+          "code": "WCAG2AA.Principle1.Guideline1_1.1_1_1.G73,G74",
+          "message": "If this image cannot be fully described in a short text alternative, ensure a long text alternative is also available, such as in the body text or through a link.",
+          "type": "notice",
+          "html": "<img class=\"card-image\" src=\"/img/home-card-exec_summary.png\" alt=\"USEITI 2015 Executive Summary\">"
+        },
+        {
+          "code": "WCAG2AA.Principle2.Guideline2_4.2_4_4.H77,H78,H79,H80,H81",
+          "message": "Check that the link text combined with programmatically determined link context identifies the purpose of the link.",
+          "type": "notice",
+          "html": "<a href=\"/about/report/\"><h3 class=\"card-title\">Download...</a>"
+        },
+        {
+          "code": "WCAG2AA.Principle2.Guideline2_4.2_4_4.H77,H78,H79,H80,H81",
+          "message": "Check that the link text combined with programmatically determined link context identifies the purpose of the link.",
+          "type": "notice",
+          "html": "<a class=\"card-image_link\" href=\"/how-it-works/production/\"><img class=\"card-image\" src=\"/i...</a>"
+        },
+        {
+          "code": "WCAG2AA.Principle1.Guideline1_1.1_1_1.G94.Image",
+          "message": "Ensure that the img element's alt text serves the same purpose and presents the same information as the image.",
+          "type": "notice",
+          "html": "<img class=\"card-image\" src=\"/img/home-card-nat_res.png\" alt=\"U.S. natural resource sectors\">"
+        },
+        {
+          "code": "WCAG2AA.Principle1.Guideline1_1.1_1_1.G73,G74",
+          "message": "If this image cannot be fully described in a short text alternative, ensure a long text alternative is also available, such as in the body text or through a link.",
+          "type": "notice",
+          "html": "<img class=\"card-image\" src=\"/img/home-card-nat_res.png\" alt=\"U.S. natural resource sectors\">"
+        },
+        {
+          "code": "WCAG2AA.Principle2.Guideline2_4.2_4_4.H77,H78,H79,H80,H81",
+          "message": "Check that the link text combined with programmatically determined link context identifies the purpose of the link.",
+          "type": "notice",
+          "html": "<a href=\"/how-it-works/production/\"><h3 class=\"card-title\">What nat...</a>"
+        },
+        {
+          "code": "WCAG2AA.Principle2.Guideline2_4.2_4_4.H77,H78,H79,H80,H81",
+          "message": "Check that the link text combined with programmatically determined link context identifies the purpose of the link.",
+          "type": "notice",
+          "html": "<a class=\"card-image_link\" href=\"/case-studies/\"><img class=\"card-image\" src=\"/i...</a>"
+        },
+        {
+          "code": "WCAG2AA.Principle1.Guideline1_1.1_1_1.G94.Image",
+          "message": "Ensure that the img element's alt text serves the same purpose and presents the same information as the image.",
+          "type": "notice",
+          "html": "<img class=\"card-image\" src=\"/img/home-card-placeholder.png\" alt=\"Placeholder\">"
+        },
+        {
+          "code": "WCAG2AA.Principle1.Guideline1_1.1_1_1.G73,G74",
+          "message": "If this image cannot be fully described in a short text alternative, ensure a long text alternative is also available, such as in the body text or through a link.",
+          "type": "notice",
+          "html": "<img class=\"card-image\" src=\"/img/home-card-placeholder.png\" alt=\"Placeholder\">"
+        },
+        {
+          "code": "WCAG2AA.Principle2.Guideline2_4.2_4_4.H77,H78,H79,H80,H81",
+          "message": "Check that the link text combined with programmatically determined link context identifies the purpose of the link.",
+          "type": "notice",
+          "html": "<a href=\"/case-studies/\"><h3 class=\"card-title\">How does...</a>"
+        },
+        {
+          "code": "WCAG2AA.Principle2.Guideline2_4.2_4_4.H77,H78,H79,H80,H81",
+          "message": "Check that the link text combined with programmatically determined link context identifies the purpose of the link.",
+          "type": "notice",
+          "html": "<a class=\"card-image_link\" href=\"/how-it-works/revenues/\"><img class=\"card-image\" src=\"/i...</a>"
+        },
+        {
+          "code": "WCAG2AA.Principle1.Guideline1_1.1_1_1.G94.Image",
+          "message": "Ensure that the img element's alt text serves the same purpose and presents the same information as the image.",
+          "type": "notice",
+          "html": "<img class=\"card-image\" src=\"/img/home-card-oil.png\" alt=\"Oil operation in the mountains\">"
+        },
+        {
+          "code": "WCAG2AA.Principle1.Guideline1_1.1_1_1.G73,G74",
+          "message": "If this image cannot be fully described in a short text alternative, ensure a long text alternative is also available, such as in the body text or through a link.",
+          "type": "notice",
+          "html": "<img class=\"card-image\" src=\"/img/home-card-oil.png\" alt=\"Oil operation in the mountains\">"
+        },
+        {
+          "code": "WCAG2AA.Principle2.Guideline2_4.2_4_4.H77,H78,H79,H80,H81",
+          "message": "Check that the link text combined with programmatically determined link context identifies the purpose of the link.",
+          "type": "notice",
+          "html": "<a href=\"/how-it-works/revenues/\"><h3 class=\"card-title\">How do n...</a>"
+        },
+        {
+          "code": "WCAG2AA.Principle2.Guideline2_4.2_4_4.H77,H78,H79,H80,H81",
+          "message": "Check that the link text combined with programmatically determined link context identifies the purpose of the link.",
+          "type": "notice",
+          "html": "<a href=\"/how-it-works/ownership/\" class=\"card-image_link\"><img class=\"card-image\" src=\"/i...</a>"
+        },
+        {
+          "code": "WCAG2AA.Principle1.Guideline1_1.1_1_1.G94.Image",
+          "message": "Ensure that the img element's alt text serves the same purpose and presents the same information as the image.",
+          "type": "notice",
+          "html": "<img class=\"card-image\" src=\"/img/home-card-usa.png\" alt=\"Partial map of the United States\">"
+        },
+        {
+          "code": "WCAG2AA.Principle1.Guideline1_1.1_1_1.G73,G74",
+          "message": "If this image cannot be fully described in a short text alternative, ensure a long text alternative is also available, such as in the body text or through a link.",
+          "type": "notice",
+          "html": "<img class=\"card-image\" src=\"/img/home-card-usa.png\" alt=\"Partial map of the United States\">"
+        },
+        {
+          "code": "WCAG2AA.Principle2.Guideline2_4.2_4_4.H77,H78,H79,H80,H81",
+          "message": "Check that the link text combined with programmatically determined link context identifies the purpose of the link.",
+          "type": "notice",
+          "html": "<a href=\"/how-it-works/ownership/\"><h3 class=\"card-title\">Who owns...</a>"
+        },
+        {
+          "code": "WCAG2AA.Principle2.Guideline2_4.2_4_4.H77,H78,H79,H80,H81",
+          "message": "Check that the link text combined with programmatically determined link context identifies the purpose of the link.",
+          "type": "notice",
+          "html": "<a class=\"card-image_link\" href=\"/explore/disbursements/\"><img class=\"card-image\" src=\"/i...</a>"
+        },
+        {
+          "code": "WCAG2AA.Principle1.Guideline1_1.1_1_1.G94.Image",
+          "message": "Ensure that the img element's alt text serves the same purpose and presents the same information as the image.",
+          "type": "notice",
+          "html": "<img class=\"card-image\" src=\"/img/home-card-disbursements.png\" alt=\"Circles of various sizes and shapes\">"
+        },
+        {
+          "code": "WCAG2AA.Principle1.Guideline1_1.1_1_1.G73,G74",
+          "message": "If this image cannot be fully described in a short text alternative, ensure a long text alternative is also available, such as in the body text or through a link.",
+          "type": "notice",
+          "html": "<img class=\"card-image\" src=\"/img/home-card-disbursements.png\" alt=\"Circles of various sizes and shapes\">"
+        },
+        {
+          "code": "WCAG2AA.Principle2.Guideline2_4.2_4_4.H77,H78,H79,H80,H81",
+          "message": "Check that the link text combined with programmatically determined link context identifies the purpose of the link.",
+          "type": "notice",
+          "html": "<a href=\"/explore/disbursements/\"><h3 class=\"card-title\">Where do...</a>"
+        },
+        {
+          "code": "WCAG2AA.Principle2.Guideline2_4.2_4_4.H77,H78,H79,H80,H81",
+          "message": "Check that the link text combined with programmatically determined link context identifies the purpose of the link.",
+          "type": "notice",
+          "html": "<a href=\"/how-it-works/\">Learn how natural resources res...</a>"
+        },
+        {
+          "code": "WCAG2AA.Principle1.Guideline1_3.1_3_1.H48",
+          "message": "If this element contains a navigation section, it is recommended that it be marked up as a list.",
+          "type": "warning",
+          "html": "<div class=\"footer-col_left\">\n      <a href=\"/\"><img class=\"...</div>"
+        },
+        {
+          "code": "WCAG2AA.Principle2.Guideline2_4.2_4_4.H77,H78,H79,H80,H81",
+          "message": "Check that the link text combined with programmatically determined link context identifies the purpose of the link.",
+          "type": "notice",
+          "html": "<a href=\"/\"><img class=\"footer-image\" src=\"...</a>"
+        },
+        {
+          "code": "WCAG2AA.Principle1.Guideline1_1.1_1_1.G94.Image",
+          "message": "Ensure that the img element's alt text serves the same purpose and presents the same information as the image.",
+          "type": "notice",
+          "html": "<img class=\"footer-image\" src=\"/img/logo-USEITI-white.svg\" alt=\"USEITI logo\">"
+        },
+        {
+          "code": "WCAG2AA.Principle1.Guideline1_1.1_1_1.G73,G74",
+          "message": "If this image cannot be fully described in a short text alternative, ensure a long text alternative is also available, such as in the body text or through a link.",
+          "type": "notice",
+          "html": "<img class=\"footer-image\" src=\"/img/logo-USEITI-white.svg\" alt=\"USEITI logo\">"
+        },
+        {
+          "code": "WCAG2AA.Principle2.Guideline2_4.2_4_4.H77,H78,H79,H80,H81",
+          "message": "Check that the link text combined with programmatically determined link context identifies the purpose of the link.",
+          "type": "notice",
+          "html": "<a class=\"button-big button-primary footer-button\" href=\"https://ethn.io/38933\">Share your feedback</a>"
+        },
+        {
+          "code": "WCAG2AA.Principle2.Guideline2_4.2_4_4.H77,H78,H79,H80,H81",
+          "message": "Check that the link text combined with programmatically determined link context identifies the purpose of the link.",
+          "type": "notice",
+          "html": "<a class=\"link-beta\" href=\"/about/\">About USEITI</a>"
+        },
+        {
+          "code": "WCAG2AA.Principle2.Guideline2_4.2_4_4.H77,H78,H79,H80,H81",
+          "message": "Check that the link text combined with programmatically determined link context identifies the purpose of the link.",
+          "type": "notice",
+          "html": "<a class=\"link-beta\" href=\"/about/#initiative\">What is USEITI?</a>"
+        },
+        {
+          "code": "WCAG2AA.Principle2.Guideline2_4.2_4_4.H77,H78,H79,H80,H81",
+          "message": "Check that the link text combined with programmatically determined link context identifies the purpose of the link.",
+          "type": "notice",
+          "html": "<a class=\"link-beta\" href=\"/about/whats-new/\">What’s New</a>"
+        },
+        {
+          "code": "WCAG2AA.Principle2.Guideline2_4.2_4_4.H77,H78,H79,H80,H81",
+          "message": "Check that the link text combined with programmatically determined link context identifies the purpose of the link.",
+          "type": "notice",
+          "html": "<a class=\"link-beta\" href=\"/about/report/\">Executive Summary</a>"
+        },
+        {
+          "code": "WCAG2AA.Principle2.Guideline2_4.2_4_4.H77,H78,H79,H80,H81",
+          "message": "Check that the link text combined with programmatically determined link context identifies the purpose of the link.",
+          "type": "notice",
+          "html": "<a class=\"link-beta\" href=\"/how-it-works/\">How It Works</a>"
+        },
+        {
+          "code": "WCAG2AA.Principle2.Guideline2_4.2_4_4.H77,H78,H79,H80,H81",
+          "message": "Check that the link text combined with programmatically determined link context identifies the purpose of the link.",
+          "type": "notice",
+          "html": "<a class=\"link-beta\" href=\"/how-it-works/#natural-resources\">Natural Resources</a>"
+        },
+        {
+          "code": "WCAG2AA.Principle2.Guideline2_4.2_4_4.H77,H78,H79,H80,H81",
+          "message": "Check that the link text combined with programmatically determined link context identifies the purpose of the link.",
+          "type": "notice",
+          "html": "<a class=\"link-beta\" href=\"/how-it-works/#process\">The Process</a>"
+        },
+        {
+          "code": "WCAG2AA.Principle2.Guideline2_4.2_4_4.H77,H78,H79,H80,H81",
+          "message": "Check that the link text combined with programmatically determined link context identifies the purpose of the link.",
+          "type": "notice",
+          "html": "<a class=\"link-beta\" href=\"/how-it-works/#laws-governance\">Laws and Governance</a>"
+        },
+        {
+          "code": "WCAG2AA.Principle2.Guideline2_4.2_4_4.H77,H78,H79,H80,H81",
+          "message": "Check that the link text combined with programmatically determined link context identifies the purpose of the link.",
+          "type": "notice",
+          "html": "<a class=\"link-beta\" href=\"/explore/\">Explore Data</a>"
+        },
+        {
+          "code": "WCAG2AA.Principle2.Guideline2_4.2_4_4.H77,H78,H79,H80,H81",
+          "message": "Check that the link text combined with programmatically determined link context identifies the purpose of the link.",
+          "type": "notice",
+          "html": "<a class=\"link-beta\" href=\"/explore/#production\">Production</a>"
+        },
+        {
+          "code": "WCAG2AA.Principle2.Guideline2_4.2_4_4.H77,H78,H79,H80,H81",
+          "message": "Check that the link text combined with programmatically determined link context identifies the purpose of the link.",
+          "type": "notice",
+          "html": "<a class=\"link-beta\" href=\"/explore/#revenue\">Revenue</a>"
+        },
+        {
+          "code": "WCAG2AA.Principle2.Guideline2_4.2_4_4.H77,H78,H79,H80,H81",
+          "message": "Check that the link text combined with programmatically determined link context identifies the purpose of the link.",
+          "type": "notice",
+          "html": "<a class=\"link-beta\" href=\"/explore/#economic-impact\">Economic Impact</a>"
+        },
+        {
+          "code": "WCAG2AA.Principle2.Guideline2_4.2_4_4.H77,H78,H79,H80,H81",
+          "message": "Check that the link text combined with programmatically determined link context identifies the purpose of the link.",
+          "type": "notice",
+          "html": "<a class=\"link-beta\" href=\"/case-studies/\">Case Studies</a>"
+        },
+        {
+          "code": "WCAG2AA.Principle2.Guideline2_4.2_4_4.H77,H78,H79,H80,H81",
+          "message": "Check that the link text combined with programmatically determined link context identifies the purpose of the link.",
+          "type": "notice",
+          "html": "<a class=\"link-beta\" href=\"/downloads/\"><icon class=\"icon-cloud icon-pa...</a>"
+        },
+        {
+          "code": "WCAG2AA.Principle2.Guideline2_4.2_4_4.H77,H78,H79,H80,H81",
+          "message": "Check that the link text combined with programmatically determined link context identifies the purpose of the link.",
+          "type": "notice",
+          "html": "<a class=\"link-active-beta\" href=\"mailto:useiti@ios.doi.gov\">USEITI@ios.doi.gov</a>"
+        },
+        {
+          "code": "WCAG2AA.Principle1.Guideline1_3.1_3_1.H48",
+          "message": "If this element contains a navigation section, it is recommended that it be marked up as a list.",
+          "type": "warning",
+          "html": "<p class=\"footer-para\">This site (<a href=\"https://git...</p>"
+        },
+        {
+          "code": "WCAG2AA.Principle2.Guideline2_4.2_4_4.H77,H78,H79,H80,H81",
+          "message": "Check that the link text combined with programmatically determined link context identifies the purpose of the link.",
+          "type": "notice",
+          "html": "<a href=\"https://github.com/18F/doi-extractives-data/releases/v1.3.4\" class=\"link-active-beta\">v1.3.4</a>"
+        },
+        {
+          "code": "WCAG2AA.Principle2.Guideline2_4.2_4_4.H77,H78,H79,H80,H81",
+          "message": "Check that the link text combined with programmatically determined link context identifies the purpose of the link.",
+          "type": "notice",
+          "html": "<a class=\"link-active-beta\" href=\"/downloads\">USEITI data</a>"
+        },
+        {
+          "code": "WCAG2AA.Principle2.Guideline2_4.2_4_4.H77,H78,H79,H80,H81",
+          "message": "Check that the link text combined with programmatically determined link context identifies the purpose of the link.",
+          "type": "notice",
+          "html": "<a class=\"link-active-beta\" href=\"https://github.com/18F/doi-extractives-data/\">GitHub</a>"
+        },
+        {
+          "code": "WCAG2AA.Principle1.Guideline1_3.1_3_1.H48",
+          "message": "If this element contains a navigation section, it is recommended that it be marked up as a list.",
+          "type": "warning",
+          "html": "<p class=\"footer-para footer-para_last\"><a href=\"https://www.doi.gov/\" ...</p>"
+        },
+        {
+          "code": "WCAG2AA.Principle2.Guideline2_4.2_4_4.H77,H78,H79,H80,H81",
+          "message": "Check that the link text combined with programmatically determined link context identifies the purpose of the link.",
+          "type": "notice",
+          "html": "<a href=\"https://www.doi.gov/\" class=\"link-beta\">Department of the Interior Home</a>"
+        },
+        {
+          "code": "WCAG2AA.Principle2.Guideline2_4.2_4_4.H77,H78,H79,H80,H81",
+          "message": "Check that the link text combined with programmatically determined link context identifies the purpose of the link.",
+          "type": "notice",
+          "html": "<a href=\"https://www.doi.gov/privacy\" class=\"link-beta\">Privacy Policy</a>"
+        },
+        {
+          "code": "WCAG2AA.Principle2.Guideline2_4.2_4_4.H77,H78,H79,H80,H81",
+          "message": "Check that the link text combined with programmatically determined link context identifies the purpose of the link.",
+          "type": "notice",
+          "html": "<a href=\"https://www.doi.gov/foia\" class=\"link-beta\">FOIA</a>"
+        },
+        {
+          "code": "WCAG2AA.Principle2.Guideline2_4.2_4_4.H77,H78,H79,H80,H81",
+          "message": "Check that the link text combined with programmatically determined link context identifies the purpose of the link.",
+          "type": "notice",
+          "html": "<a href=\"https://www.usa.gov/\" class=\"link-beta\">USA.gov</a>"
+        },
+        {
+          "code": "WCAG2AA.Principle1.Guideline1_3.1_3_1.H48",
+          "message": "If this element contains a navigation section, it is recommended that it be marked up as a list.",
+          "type": "warning",
+          "html": "<div class=\"footer-bottom-right\">\n\n          <p class=\"footer-pa...</div>"
+        },
+        {
+          "code": "WCAG2AA.Principle2.Guideline2_4.2_4_4.H77,H78,H79,H80,H81",
+          "message": "Check that the link text combined with programmatically determined link context identifies the purpose of the link.",
+          "type": "notice",
+          "html": "<a class=\"footer-link_social\" href=\"https://twitter.com/useiti_doi\">\n  \t\t    \t\t<span class=\"fa-stac...</a>"
+        },
+        {
+          "code": "WCAG2AA.Principle2.Guideline2_4.2_4_4.H77,H78,H79,H80,H81",
+          "message": "Check that the link text combined with programmatically determined link context identifies the purpose of the link.",
+          "type": "notice",
+          "html": "<a class=\"footer-link_social\" href=\"https://www.facebook.com/USEITI\">\n  \t          <span class=\"fa-s...</a>"
+        }
+      ]
+    }
+  }
 }
