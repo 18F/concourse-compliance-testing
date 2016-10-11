@@ -225,5 +225,15 @@
         "text": "Vote USA - Staging"
       }
     ]
+  },
+  {
+    "name": "fedramp dashboard",
+    "slack_channel": "acq-fedramp-dashboard",
+    "links": [
+      {
+        "url": "https://fedramp-develop.fr.cloud.gov/#/products",
+        "text": "FedRAMP Dashboard - Staging"
+      }
+    ]
   }
 ]
