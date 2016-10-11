@@ -128,12 +128,22 @@
     ]
   },
   {
-    "name": "cg-deck",
+    "name": "cg-dashboard",
+    "slack_channel": "cloud-gov-liberator",
+    "links": [
+      {
+        "url": "https://dashboard.fr.cloud.gov/",
+        "text": "cloud.gov - dashboard"
+      }
+    ]
+  },
+  {
+    "name": "cg-deck (deprecated)",
     "slack_channel": "cloud-gov-liberator",
     "links": [
       {
         "url": "https://console.fr.cloud.gov/",
-        "text": "cloud.gov - deck"
+        "text": "cloud.gov - deck (deprecated)"
       }
     ]
   },
