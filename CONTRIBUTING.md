@@ -28,32 +28,51 @@ The ZAP pipeline is templatized, so it needs to be built before it can be upload
 
 The following assumes a Concourse target named `lite`. Run the following from this directory:
 
+#### Setup
+
 1. Run:
 
-    ```bash
+    ```shell
     cp config/local.example.yml config/local.yml
     ```
 
 1. Modify `config/local.yml`.
+
+#### To deploy
+
+1. Ensure branch is pushed to GitHub.
+1. Point to branch in your `config/local.yml`.
 1. Run:
 
-    ```bash
+    ```shell
     rake local deploy
     ```
 
 ### Production
 
+#### One-time
+
 1. Run:
 
-    ```bash
+    ```shell
     cp config/prod.example.yml config/prod.yml
     ```
 
 1. Modify `config/prod.yml`.
 1. Run:
 
-    ```bash
+    ```shell
     fly -t cloud login -c https://ci.cloud.gov
     fly -t cloud sync
+    ```
+
+#### To deploy
+
+1. Ensure branch is pushed to GitHub.
+1. Point to branch in your `config/prod.yml`.
+    * Make sure to re-deploy to point to `master` afterwards if you've changed it.
+1. Run:
+
+    ```shell
     rake prod deploy
     ```

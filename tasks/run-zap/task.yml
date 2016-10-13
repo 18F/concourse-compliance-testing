@@ -3,6 +3,7 @@ inputs:
 - name: scripts
 - name: project-data
 outputs:
+- name: reports
 - name: results
 platform: linux
 image_resource:

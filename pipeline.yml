@@ -45,6 +45,13 @@ resources:
   source:
     url: {{slack-hook}}
 <% projects.each do |project| -%>
+- name: s3-report-<%= project['name'] %>
+  type: s3
+  source:
+    bucket: {{aws-bucket}}
+    versioned_file: reports/<%= project['name'] %>.xml
+    access_key_id: {{aws-access-key}}
+    secret_access_key: {{aws-secret-key}}
 - name: s3-result-<%= project['name'] %>
   type: s3
   source:
@@ -97,6 +104,9 @@ jobs:
     resource: s3-result-<%= project['name'] %>
   - task: scan-zap
     file: scripts/tasks/run-zap/task.yml
+  - put: s3-report-<%= project['name'] %>
+    params:
+      file: reports/<%= project['name'] %>.xml
   - put: s3-result-<%= project['name'] %>
     params:
       file: results/<%= project['name'] %>.json
