@@ -19,7 +19,7 @@
   },
   {
     "name": "api-data-gov",
-    "slack_channel": "wg-api",
+    "slack_channel": "api-data-gov",
     "links": [
       {
         "url": "https://api.data.gov/"
