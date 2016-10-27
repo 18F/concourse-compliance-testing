@@ -245,5 +245,35 @@
         "text": "FedRAMP Dashboard - Staging"
       }
     ]
+  },
+  {
+    "name": "api_program-api",
+    "slack_channel": "api-program",
+    "links": [
+      {
+        "url": "https://autoapi-ed.apps.cloud.gov/college-enrollment-rates_2015",
+        "text": "API Program - API"
+      }
+    ]
+  },
+  {
+    "name": "api_program-proxied_api",
+    "slack_channel": "api-program",
+    "links": [
+      {
+        "url": "https://api.ed.gov/data/college-enrollment-rates_2015?api_key=DEMO_KEY1",
+        "text": "API Program - Proxied API"
+      }
+    ]
+  },
+  {
+    "name": "api_program-hub",
+    "slack_channel": "api-program",
+    "links": [
+      {
+        "url": "https://pages.18f.gov/ED-Developer-Hub/",
+        "text": "API Program - Developer Hub"
+      }
+    ]
   }
 ]
