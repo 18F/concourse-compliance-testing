@@ -128,7 +128,7 @@ jobs:
           icon_emoji: ':cop:'
           text: |
             :white_check_mark: $BUILD_JOB_NAME completed—posted in #<%= project['slack_channel'] %>.
-            <$ATC_EXTERNAL_URL/pipelines/$BUILD_PIPELINE_NAME/jobs/$BUILD_JOB_NAME/builds/$BUILD_NAME|View build details>
+            <$ATC_EXTERNAL_URL/teams/$BUILD_TEAM_NAME/pipelines/$BUILD_PIPELINE_NAME/jobs/$BUILD_JOB_NAME/builds/$BUILD_NAME|View build details>
           username: {{slack-user}}
 <% else -%>
       - put: slack
@@ -146,7 +146,7 @@ jobs:
       params:
         text: |
           :x: FAILED to scan properties.
-          <$ATC_EXTERNAL_URL/pipelines/$BUILD_PIPELINE_NAME/jobs/$BUILD_JOB_NAME/builds/$BUILD_NAME|View build details>
+          <$ATC_EXTERNAL_URL/teams/$BUILD_TEAM_NAME/pipelines/$BUILD_PIPELINE_NAME/jobs/$BUILD_JOB_NAME/builds/$BUILD_NAME|View build details>
         channel: {{slack-channel}}
         username: {{slack-user}}
         icon_emoji: ':cop:'
