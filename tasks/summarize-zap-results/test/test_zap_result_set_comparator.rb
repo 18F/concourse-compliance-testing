@@ -28,7 +28,7 @@ describe ZAPResultSetComparator do
         comparator = ZAPResultSetComparator.new('fake-site-1', last_results_dir, curr_results_dir)
         comparator.write_slack_summary(output_dir)
         summary_txt = File.read("#{output_dir}/summary.txt")
-        expected = "Completed scan of fake-site-1: (2/0/1/1) has 2 new HIGH, 1 fewer MEDIUM, 1 fewer LOW, 1 fewer INFORMATIONAL, 1 fewer INFORMATIONAL\n<https://compliance-viewer.18f.gov/results/fake-site-1/current|View results>"
+        expected = "Completed scan of fake-site-1: (2/0/1/1) has 2 new HIGH, 1 fewer MEDIUM, 1 fewer LOW, 1 new INFORMATIONAL, 1 fewer INFORMATIONAL\n<https://compliance-viewer.18f.gov/results/fake-site-1/current|View results>"
         assert_equal expected, summary_txt
       end
     end
