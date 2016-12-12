@@ -293,5 +293,23 @@
         "text": "Consumer Identity Single Signon Program - Login.gov"
       }
     ]
+  },
+  {
+    "name": "e-qip prototype (frontend)",
+    "slack_channel": "acq-e-qip-vendor",
+    "links": [
+      {
+        "url": "https://eqip-prototype-staging.fr.cloud.gov/"
+      }
+    ]
+  },
+  {
+    "name": "e-qip prototype (api backend)",
+    "slack_channel": "acq-e-qip-vendor",
+    "links": [
+      {
+        "url": "https://eqip-prototype-staging-api.fr.cloud.gov/"
+      }
+    ]
   }
 ]
