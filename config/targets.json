@@ -129,7 +129,7 @@
   },
   {
     "name": "cg-dashboard",
-    "slack_channel": "cloud-gov-liberator",
+    "slack_channel": "cloud-gov-navigator",
     "links": [
       {
         "url": "https://dashboard.fr.cloud.gov/",
@@ -139,7 +139,7 @@
   },
   {
     "name": "cg-deck (deprecated)",
-    "slack_channel": "cloud-gov-liberator",
+    "slack_channel": "cloud-gov-navigator",
     "links": [
       {
         "url": "https://console.fr.cloud.gov/",
@@ -149,7 +149,7 @@
   },
   {
     "name": "cg-docs",
-    "slack_channel": "cloud-gov-liberator",
+    "slack_channel": "cloud-gov-navigator",
     "links": [
       {
         "url": "https://docs.fr.cloud.gov/",
@@ -159,7 +159,7 @@
   },
   {
     "name": "cg-landing",
-    "slack_channel": "cloud-gov-liberator",
+    "slack_channel": "cloud-gov-navigator",
     "links": [
       {
         "url": "https://landing.fr.cloud.gov/",
