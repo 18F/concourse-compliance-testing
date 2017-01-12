@@ -6,6 +6,7 @@
 aws-access-key:
 aws-secret-key:
 aws-bucket:
+region_name:
 
 # the branch to use for the scripts repo
 script-branch: master

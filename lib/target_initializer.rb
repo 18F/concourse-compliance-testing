@@ -29,7 +29,7 @@ class TargetInitializer
     @s3_client ||= Aws::S3::Client.new(
       access_key_id: config['aws-access-key'],
       secret_access_key: config['aws-secret-key'],
-      region: 'us-east-1'
+      region: config['region-name']
     )
   end
 

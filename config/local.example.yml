@@ -1,6 +1,7 @@
 # aws access controls
 aws-access-key:
 aws-secret-key:
+region_name:
 # name of the S3 bucket to use
 aws-bucket:
 # the branch to use for the scripts repo
