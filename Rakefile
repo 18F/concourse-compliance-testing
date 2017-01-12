@@ -25,9 +25,17 @@ def config_path
   File.expand_path("../config/#{@target}.yml", __FILE__)
 end
 
+def fly_data(target)
+  data = YAML.load_file(File.expand_path(File.join('~', '.flyrc')))
+  data['targets'][target]
+end
+
 def origin(target)
-  fly_data = YAML.load_file(File.expand_path(File.join('~', '.flyrc')))
-  fly_data['targets'][target]['api']
+  fly_data(target)['api']
+end
+
+def concourse_team(target)
+  fly_data(target)['team']
 end
 
 desc "Build the ZAP pipeline."
@@ -68,7 +76,8 @@ end
 
 desc "Open the pipeline in a browser."
 task open: :verify_target do
-  sh 'open', "#{@origin}/teams/cloud-gov-compliance-toolkit/"
+  team = concourse_team(@target)
+  sh 'open', "#{@origin}/teams/#{team}/"
 end
 
 desc "Build and update the pipeline on the given target."
