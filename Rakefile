@@ -1,5 +1,6 @@
 require 'rake/testtask'
 require 'tempfile'
+require 'yaml'
 require_relative 'lib/pipeline_builder'
 require_relative 'lib/team_data_filterer'
 
@@ -21,21 +22,12 @@ def branch
 end
 
 def config_path
-  File.expand_path("../config/#{@config}.yml", __FILE__)
+  File.expand_path("../config/#{@target}.yml", __FILE__)
 end
 
-desc "Set the deployment target to be local."
-task :local do
-  @config = 'local'
-  @origin = 'http://192.168.100.4:8080'
-  @target = 'lite'
-end
-
-desc "Set the deployment target to be ci.cloud.gov."
-task :prod do
-  @config = 'prod'
-  @origin = 'https://ci.cloud.gov'
-  @target = 'cloud'
+def origin(target)
+  fly_data = YAML.load_file(File.expand_path(File.join('~', '.flyrc')))
+  fly_data['targets'][target]['api']
 end
 
 desc "Build the ZAP pipeline."
@@ -47,10 +39,13 @@ task :build do
 end
 
 task :verify_target do
-  unless @config && @origin && @target
+  @target = ENV['TARGET']
+  unless @target
     task = Rake.application.top_level_tasks.last
-    error_and_quit("No target set. Usage:\n\n  rake <target> #{task}\n\n")
+    error_and_quit("No target set. Usage:\n\n  TARGET=<fly_target> rake #{task}\n\n")
   end
+
+  @origin = origin(@target)
 end
 
 desc "Updates the pipeline."
@@ -73,7 +68,7 @@ end
 
 desc "Open the pipeline in a browser."
 task open: :verify_target do
-  sh 'open', "#{@origin}/pipelines/zap"
+  sh 'open', "#{@origin}/teams/cloud-gov-compliance-toolkit/"
 end
 
 desc "Build and update the pipeline on the given target."

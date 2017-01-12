@@ -30,8 +30,8 @@ The [`config/targets.json`](config/targets.json) is a list of the projects to be
 1. After the pull request is merged, ask someone in #cloud-gov-highbar to run
 
     ```bash
-    rake prod init_targets
-    rake prod deploy
+    TARGET=<fly_target> rake init_targets
+    TARGET=<fly_target> rake deploy
     ```
 
 ### Attributes
