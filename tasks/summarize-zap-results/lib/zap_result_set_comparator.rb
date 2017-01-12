@@ -52,7 +52,7 @@ class ZAPResultSetComparator
     statuses = []
     [:high, :medium, :low, :informational].each do |level|
       statuses << "#{inc[level]} new #{level.upcase}" if inc[level] > 0
-      statuses << "#{dec[level]} less #{level.upcase}" if dec[level] > 0
+      statuses << "#{dec[level]} fewer #{level.upcase}" if dec[level] > 0
     end
     statuses
   end
