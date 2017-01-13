@@ -1,4 +1,4 @@
-# get the following AWS information from pipeline-creds service key
+# get the following AWS information from the service key
 aws-access-key:
 aws-secret-key:
 aws-bucket:
