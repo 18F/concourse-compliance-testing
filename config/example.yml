@@ -1,13 +1,14 @@
-# aws access controls
+# get the following AWS information from the service key
 aws-access-key:
 aws-secret-key:
-# name of the S3 bucket to use
 aws-bucket:
+region_name:
+
 # the branch to use for the scripts repo
-script-branch:
+script-branch: master
 # webhook for Slack (described here: https://api.slack.com/incoming-webhooks)
 slack-hook:
 # which channel should get notified?
-slack-channel:
+slack-channel: '#cloud-gov-highbar'
 # name for the slack user
-slack-user:
+slack-user: concourse

@@ -22,57 +22,36 @@ with this waiver of copyright interest.
 
 The Concourse.ci site provides solid information for [Getting Started](http://concourse.ci/getting-started.html) with Concourse. [The Fly CLI](http://concourse.ci/fly-cli.html) is your primary tool for working with the platform. Requires Concourse v0.74.0+.
 
+It is recommended that you deploy [Compliance Viewer](https://github.com/18f/compliance-toolkit) first.
+
 The ZAP pipeline is templatized, so it needs to be built before it can be uploaded. Make sure that you are checked out to the branch that you wish to deploy.
 
-### Local
+### Configuration
 
-The following assumes a Concourse target named `lite`. Run the following from this directory:
+This one-time setup will need to be done once per environment you want to deploy to. The configuration file should be named to match your Concourse target name in `fly`.
 
-#### Setup
+1. Create a service key.
 
-1. Run:
-
-    ```shell
-    cp config/local.example.yml config/local.yml
+    ```sh
+    cf create-service-key <s3_service_instance_name> pipeline-creds
     ```
 
-1. Modify `config/local.yml`.
+1. Set up the configuration file.
 
-#### To deploy
+    ```sh
+    cp config/example.yml config/<fly_target>.yml
+    ```
+
+1. Fill in `<fly_target>.yml`.
+
+### Fly
+
+Run the following from this directory:
 
 1. Ensure branch is pushed to GitHub.
-1. Point to branch in your `config/local.yml`.
+1. Point to branch in your `config/<fly_target>.yml`.
 1. Run:
 
     ```shell
-    rake local deploy
-    ```
-
-### Production
-
-#### One-time
-
-1. Run:
-
-    ```shell
-    cp config/prod.example.yml config/prod.yml
-    ```
-
-1. Modify `config/prod.yml`.
-1. Run:
-
-    ```shell
-    fly -t cloud login -c https://ci.cloud.gov
-    fly -t cloud sync
-    ```
-
-#### To deploy
-
-1. Ensure branch is pushed to GitHub.
-1. Point to branch in your `config/prod.yml`.
-    * Make sure to re-deploy to point to `master` afterwards if you've changed it.
-1. Run:
-
-    ```shell
-    rake prod deploy
+    TARGET=<fly_target> rake deploy
     ```

@@ -6,8 +6,10 @@ env/
 results/
 Vagrantfile
 
-config/local.yml
-config/prod.yml
+config/*
+!config/example.yml
+!config/targets.json
+!config/test_targets.rb
 # legacy
 credentials.yml
 credentials.18F.yml
