@@ -109,7 +109,7 @@
   },
   {
     "name": "cg-community",
-    "slack_channel": "cloud-gov-skyporter",
+    "slack_channel": "cloud-gov-seceng",
     "links": [
       {
         "url": "https://community.fr.cloud.gov/",
