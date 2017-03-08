@@ -275,5 +275,15 @@
         "text": "API Program - Developer Hub"
       }
     ]
-  }
+  },
+  {
+  "name": "crime-data-explorer",
+  "slack_channel": "fbi-cde-dev",
+  "links": [
+    {
+      "url": "https://crime-data-explorer.fr.cloud.gov",
+      "text": "Crime Data Explorer (master)"
+    }
+  ]
+}
 ]
