@@ -281,7 +281,7 @@
     "slack_channel": "identity-events",
     "links": [
       {
-        "url": "https://idp.staging.login.gov",
+        "url": "https://staging.login.gov",
         "text": "Consumer Identity Single Signon Program - Login.gov"
       }
     ]
