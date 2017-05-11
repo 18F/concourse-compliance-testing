@@ -5,10 +5,6 @@ set -x
 
 mkdir -p tmp
 
-apt-get install jq
-pip install --upgrade zapcli
-
-
 NAME=$(jq -r .name < project-data/project.json)
 LINK_COUNTER=0
 LINK_COUNT=$(jq ".links | length" < project-data/project.json)
