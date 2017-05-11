@@ -11,7 +11,7 @@ describe PipelineBuilder do
 
     it "succeeds for an empty list of projects" do
       data = build_for([])
-      data['jobs'].must_equal nil
+      assert_nil data['jobs']
     end
 
     it "adds an ondemand and a scheduled job for each project" do

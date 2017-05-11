@@ -28,7 +28,7 @@ describe ZAPResultSet do
       project_results = result_set.project_results
       assert_equal 1, project_results.size
       uri = URI(project_results.first['url'])
-      assert_equal nil, uri.query
+      assert_nil uri.query
     end
   end
 
