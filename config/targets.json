@@ -96,7 +96,6 @@
       }
     ]
   },
-
   {
     "name": "cg-api",
     "slack_channel": "cloud-gov-atlas",
@@ -197,7 +196,6 @@
       }
     ]
   },
-
   {
     "name": "epa e-manifest",
     "links": [
@@ -277,13 +275,23 @@
     ]
   },
   {
-  "name": "crime-data-explorer",
-  "slack_channel": "fbi-cde-dev",
-  "links": [
-    {
-      "url": "https://crime-data-explorer.fr.cloud.gov",
-      "text": "Crime Data Explorer (master)"
-    }
-  ]
-}
+    "name": "crime-data-explorer",
+    "slack_channel": "fbi-cde-dev",
+    "links": [
+      {
+        "url": "https://crime-data-explorer.fr.cloud.gov",
+        "text": "Crime Data Explorer (master)"
+      }
+    ]
+  },
+  {
+    "name": "login-dot-gov",
+    "slack_channel": "identity-events",
+    "links": [
+      {
+        "url": "https://staging.login.gov",
+        "text": "Consumer Identity Single Signon Program - Login.gov"
+      }
+    ]
+  }
 ]
