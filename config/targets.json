@@ -304,6 +304,26 @@
     ]
   },
   {
+    "name": "Digital Analytics Program - Snippet",
+    "slack_channel": "dap",
+    "links": [
+      {
+        "url": "https://raw.githubusercontent.com/digital-analytics-program/gov-wide-code/master/Universal-Federated-Analytics-Min.js",
+        "text": "Gov Wide Code - minified"
+      }
+    ]
+  },
+  {
+    "name": "Digital Analytics Program (gov-wide-code - minified)",
+    "slack_channel": "dap",
+    "links": [
+      {
+        "url": "https://raw.githubusercontent.com/digital-analytics-program/gov-wide-code/master/Universal-Federated-Analytics.js",
+        "text": "Gov Wide Code"
+      }
+    ]
+  }, 
+  {
     "name": "e-qip prototype (api backend)",
     "slack_channel": "acq-e-qip-vendor",
     "links": [
